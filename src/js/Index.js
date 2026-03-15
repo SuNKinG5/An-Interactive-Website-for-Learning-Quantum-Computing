@@ -28,7 +28,7 @@ const defaultConfig = {
     text_color: '#0f172a',
     primary_action_color: '#3b82f6',
     secondary_action_color: '#64748b',
-    font_family: 'DM Sans',
+    font_family: 'Google Sans',
     font_size: 16,
     headline: 'Learn Quantum Computing',
     subheadline: 'เรียนรู้ควอนตัมคอมพิวเตอร์ด้วยวิธีที่เข้าใจง่าย ผ่าน simulator และ visualization แบบ interactive',
@@ -48,7 +48,7 @@ async function onConfigChange(config) {
     const c = { ...defaultConfig, ...config };
     const font = c.font_family || defaultConfig.font_family;
     const base = c.font_size || defaultConfig.font_size;
-    const stack = `${font}, 'DM Sans', sans-serif`;
+    const stack = `${font}, 'Google Sans', sans-serif`;
 
     // ตัวอย่าง: คุณสามารถดึง Element บนหน้ามาเปลี่ยนสีตาม c.primary_action_color 
     // หรือเปลี่ยนข้อความตาม c.headline ได้ที่นี่ (ถ้าต้องการให้ SDK อัปเดต UI สดๆ)

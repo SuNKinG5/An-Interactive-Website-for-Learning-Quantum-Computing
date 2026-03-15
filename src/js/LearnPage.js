@@ -10,7 +10,7 @@ const defaultConfig = {
   text_color: '#0f172a',
   primary_action_color: '#3b82f6',
   secondary_action_color: '#64748b',
-  font_family: 'DM Sans',
+  font_family: 'Google Sans',
   font_size: 16,
   lesson_title: 'Understanding Qubits',
   lesson_explain: 'A qubit (quantum bit) is the fundamental unit of quantum information. Unlike classical bits that can only be 0 or 1, a qubit can exist in a superposition of both states simultaneously. This unique property is what gives quantum computers their incredible computational power.',
@@ -23,7 +23,7 @@ async function onConfigChange(config) {
   const c = { ...defaultConfig, ...config };
   const font = c.font_family || defaultConfig.font_family;
   const base = c.font_size || defaultConfig.font_size;
-  const stack = `${font}, 'DM Sans', sans-serif`;
+  const stack = `${font}, 'Google Sans', sans-serif`;
 
   // Update typography and text content
   const titleEl = document.getElementById('lesson-title');
@@ -160,9 +160,15 @@ function switchLesson(btn) {
 
 //--------------------------------------------------------------------------------------------------------------------------------------
 const lessonsData = [
-  // ==========================================
-  // บทเรียนที่ 1: Qubit (ใช้ Bloch Sphere เดิม)
-  // ==========================================
+  {
+    title: 'Quantum Computing',
+    header: 'ควอนตัมคอมพิวติงคืออะไร?',
+    explanation: `ควอนตัมคอมพิวติงคือเทคโนโลยีการประมวลผลรูปแบบใหม่ที่อาศัยหลักการทางฟิสิกส์ควอนตัม <br>แทนที่จะเก็บข้อมูลเป็นบิต (0 หรือ 1) แบบคอมพิวเตอร์ทั่วไป ควอนตัมจะใช้หน่วยข้อมูลที่เรียกว่า <b>คิวบิต (Qubit)</b> ซึ่งสามารถเป็นได้ทั้ง 0 และ 1 พร้อมๆ กัน เราเรียกสถานะนี้ว่า <b>"ซูเปอร์โพสิชัน (Superposition)"</b> โดยคิวบิตจะสุ่มเลือกเป็นค่าใดค่าหนึ่งก็ต่อเมื่อเราทำการ <b>"วัด (Measure)"</b> มันเท่านั้น ลองกดปุ่มด้านล่างเพื่อดูผลลัพธ์ได้เลย!`,
+    workspaceHTML: `
+      <section class="mb-12">
+        <h2 class="text-lg font-semibold mb-6 text-color-main">Bloch Sphere Visualization</h2>`
+  },
+  // Qubit
   {
     title: 'Understanding Qubits',
     explanation: 'A qubit (quantum bit) is the fundamental unit of quantum information. Unlike classical bits that can only be 0 or 1, a qubit can exist in a superposition of both states simultaneously.',
@@ -205,9 +211,7 @@ const lessonsData = [
     `
   },
 
-  // ==========================================
-  // บทเรียนที่ 2: Superposition (กราฟิกใหม่ - กล่องสุ่มสถานะ)
-  // ==========================================
+  // Superposition
   {
     title: 'Quantum Superposition',
     explanation: 'Superposition is the ability of a quantum system to be in multiple states at the same time until it is measured. It is neither purely 0 nor 1 until you look at it!',
@@ -227,9 +231,7 @@ const lessonsData = [
     `
   },
 
-  // ==========================================
-  // บทเรียนที่ 3: Entanglement (กราฟิกใหม่ - อนุภาคเชื่อมโยงกัน)
-  // ==========================================
+  // Entanglement
   {
     title: 'Quantum Entanglement',
     explanation: 'Entanglement occurs when particles interact such that the quantum state of each particle cannot be described independently. Measuring one instantly determines the state of the other.',
@@ -252,6 +254,7 @@ const lessonsData = [
     `
   },
 
+  // Pauli Gates
   {
     title: 'Pauli Gates',
     explanation: 'Pauli gates are fundamental quantum gates that perform rotations around the X, Y, and Z axes of the Bloch sphere.',
@@ -274,12 +277,13 @@ const lessonsData = [
     `
   },
 
+  // Rotation Gates
   {
     title: 'Rotation Gates',
     explanation: 'Rotation gates are quantum gates that perform rotations around the X, Y, and Z axes of the Bloch sphere.',
     workspaceHTML: `
       <section>
-        <h2 class="text-lg font-semibold mb-6 text-color-main">Pauli Gates</h2>
+        <h2 class="text-lg font-semibold mb-6 text-color-main">Rotation Gates</h2>
         <div class="rounded-2xl p-8 interactive-container flex flex-col items-center">
           <div class="flex items-center justify-center gap-12 w-full mb-8">
             <div class="w-20 h-20 rounded-full border-4 border-blue-400 flex items-center justify-center animate-pulse">
@@ -308,7 +312,7 @@ function loadLesson(index) {
 
   // 1. เปลี่ยนข้อความหลัก
   document.getElementById('lesson-title').textContent = lesson.title;
-  document.getElementById('lesson-explanation').textContent = lesson.explanation;
+  document.getElementById('lesson-explanation').innerHTML = lesson.explanation;
   document.getElementById('lesson-header').textContent = lesson.header;
 
   // 2. เสียบ (Inject) โค้ด HTML ของกราฟิกใหม่ลงในพื้นที่ว่าง
