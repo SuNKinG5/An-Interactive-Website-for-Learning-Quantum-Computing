@@ -70,7 +70,7 @@ export class BlochSphere {
     this._bloch = [vx, vy, vz];
 
     // set |0> on top 
-    const dir = new THREE.Vector3(vx, vz,vy);
+    const dir = new THREE.Vector3(vx, vz, vy);
     this.arrow.setDirection(dir.normalize());
     this.arrow.setLength(1.05, 0.12, 0.08);
   }

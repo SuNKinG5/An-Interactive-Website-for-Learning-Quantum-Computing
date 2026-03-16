@@ -1,5 +1,6 @@
-import { BlochSphere } from "./src/scene/BlochSphere.js";
-import { applyGate } from "./src/scene/Quantum_Engin.js";
+import * as THREE from "three";
+import { BlochSphere } from "../scene/BlochSphere.js";
+import { applyGate } from "../scene/Quantum_Engin.js";
 
 const canvas = document.getElementById("bloch");
 const scene = new BlochSphere(canvas, {

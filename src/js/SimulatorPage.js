@@ -1,6 +1,3 @@
-import { BlochSphere } from "../scene/BlochSphere.js";
-
-
 // ==========================================
 // 1. Global State & Data
 // ==========================================
@@ -10,14 +7,23 @@ let state = {
     stateBlend: 0.5     // 0 = |0⟩, 1 = |1⟩
 };
 
-let blochModel = null;
-let blochModelAnimationFrame = null;
-
 // เก็บชุดข้อมูล HTML สำหรับเปลี่ยนหน้าตา Visualization
 const vizData = {
     bloch: `
     <div class="rounded-2xl p-8 flex items-center justify-center mb-8 bg-[#f8fbff] border-[1.5px] border-[#e8eef6] w-full max-w-[420px] aspect-square">
-      <canvas id="bloch-model-canvas" class="w-full h-full rounded-xl border border-[#e8eef6]"></canvas>
+      <svg id="bloch-sphere" class="bloch-sphere max-w-[380px]" viewBox="0 0 300 300" width="100%" height="100%" fill="none">
+        <circle cx="150" cy="150" r="100" fill="none" stroke="#bfdbfe" stroke-width="2" />
+        <line x1="150" y1="50" x2="150" y2="250" stroke="#e0e7ff" stroke-width="1" stroke-dasharray="4 4" />
+        <line x1="50" y1="150" x2="250" y2="150" stroke="#e0e7ff" stroke-width="1" stroke-dasharray="4 4" />
+        <line x1="118" y1="82" x2="182" y2="218" stroke="#e0e7ff" stroke-width="1" stroke-dasharray="4 4" />
+        <line id="bloch-vector" x1="150" y1="150" x2="200" y2="120" stroke="#3b82f6" stroke-width="3" class="animate-pulse-glow" />
+        <circle id="bloch-tip" cx="200" cy="120" r="6" fill="#3b82f6" class="animate-pulse-glow" />
+        <circle cx="150" cy="150" r="3" fill="#3b82f6" />
+        <text x="150" y="35" text-anchor="middle" fill="#3b82f6" font-size="13" font-family="Space Mono" font-weight="700">|0⟩</text>
+        <text x="150" y="275" text-anchor="middle" fill="#3b82f6" font-size="13" font-family="Space Mono" font-weight="700">|1⟩</text>
+        <text x="25" y="157" text-anchor="middle" fill="#3b82f6" font-size="12" font-family="Space Mono" font-weight="700">-X</text>
+        <text x="275" y="157" text-anchor="middle" fill="#3b82f6" font-size="12" font-family="Space Mono" font-weight="700">+X</text>
+      </svg>
     </div>
     <div class="rounded-2xl p-6 w-full max-w-sm bg-[#f8fbff] border-[1.5px] border-[#e8eef6]">
       <h3 class="text-sm font-semibold mb-4 text-[#0f172a]">Probability Amplitudes</h3>
@@ -101,10 +107,6 @@ const vizData = {
 // 2. Navigation & Injection Logic (SPA)
 // ==========================================
 function loadVisualization(type) {
-    if (type !== 'bloch') {
-        destroyBlochModel();
-    }
-
     // 1. นำ HTML มาเสียบใน Workspace
     document.getElementById('dynamic-viz-workspace').innerHTML = vizData[type];
 
@@ -123,45 +125,8 @@ function loadVisualization(type) {
     // 3. สั่งวาดกราฟิกให้ตรงกับค่า State ปัจจุบัน (สำคัญมาก)
     updateAllViz();
 
-    if (type === 'bloch') {
-        initBlochModel();
-    }
-
     // 4. (ถ้ามี) โหลด icon ใหม่เผื่อใน HTML ที่ดึงมามี tag lucide
     if (typeof lucide !== 'undefined') lucide.createIcons();
-}
-window.loadVisualization = loadVisualization;
-
-
-function initBlochModel() {
-    const canvas = document.getElementById('bloch-model-canvas');
-    if (!canvas || blochModel) return;
-
-    blochModel = new BlochSphere(canvas, {
-        background: 0xf8fbff,
-        shellColor: 0xcbd5e1,
-        gridColor: 0xd1d5db,
-        equator: 0x60a5fa,
-        arrowColor: 0x2563eb
-    });
-
-    const animate = () => {
-        if (!blochModel) return;
-        blochModel.resize();
-        blochModel.render();
-        blochModelAnimationFrame = requestAnimationFrame(animate);
-    };
-
-    animate();
-    updateBlochSphere();
-}
-
-function destroyBlochModel() {
-    if (blochModelAnimationFrame) {
-        cancelAnimationFrame(blochModelAnimationFrame);
-        blochModelAnimationFrame = null;
-    }
-    blochModel = null;
 }
 
 
@@ -190,11 +155,6 @@ function updateBlochSphere() {
     safeSet('bloch-vector', 'y2', svgY, true);
     safeSet('bloch-tip', 'cx', svgX, true);
     safeSet('bloch-tip', 'cy', svgY, true);
-
-    if (blochModel) {
-        const y = r * Math.sin(theta) * Math.sin(phi);
-        blochModel.setBlochVector([x, y, z]);
-    }
 
     const prob0 = Math.pow(Math.cos(theta / 2), 2);
     const prob1 = Math.pow(Math.sin(theta / 2), 2);
