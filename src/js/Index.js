@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
 });
 
+
 /* =========================================
    SDK Configuration (ส่วนตั้งค่าระบบภายนอก)
 ========================================= */

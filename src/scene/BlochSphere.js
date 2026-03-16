@@ -18,6 +18,9 @@ export class BlochSphere {
     // controls
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
+    this.controls.enablePan = false;
+    this.controls.minDistance = 2;
+    this.controls.maxDistance = 5;
 
     // root
     this.root = new THREE.Group();
@@ -91,9 +94,12 @@ export class BlochSphere {
     this.renderer.setSize(w, h, false);
     this.camera.aspect = w / Math.max(1, h);
     this.camera.updateProjectionMatrix();
+    this.resizeObserver = new ResizeObserver(() => this.resize());
+    this.resizeObserver.observe(this.renderer.domElement);
   }
 
   render() {
+    this.resize();
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   }

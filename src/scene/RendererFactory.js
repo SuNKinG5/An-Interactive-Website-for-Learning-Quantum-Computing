@@ -2,10 +2,11 @@ import * as THREE from "three";
 
 export function createSceneAndCamera(opts = {}) {
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(opts.background ?? 0x1a1a1a);
+  // scene.background = new THREE.Color(opts.background ?? 0xF0F8FF);
+  scene.background = null
 
   const camera = new THREE.PerspectiveCamera(45, 2, 0.01, 100);
-  camera.position.set(2.2, 1.6, 2.2);
+  camera.position.set(2.6, 2.2, 2.6);
   scene.add(camera);
 
   // lighting
@@ -20,5 +21,6 @@ export function createSceneAndCamera(opts = {}) {
 export function createRenderer(canvas) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
   return renderer;
 }
