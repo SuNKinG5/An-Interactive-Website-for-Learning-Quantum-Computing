@@ -60,11 +60,14 @@ export class BlochSphere {
     const stateLine = new StateLine();
     this.root.add(stateLine.getObject3D());
 
-    // state in Bloch
-    this.bloch = [0, 0, 1];
+    this.resizeObserver = new ResizeObserver(() => this.resize());
+    this.resizeObserver.observe(this.renderer.domElement);
 
+    // state in Bloch
+    this.setBlochVector([0, 0, 1]);
     this.resize();
   }
+
   setBlochVector([x, y, z]) {
     const L = Math.hypot(x, y, z) || 1;
     const vx = x / L,
@@ -94,8 +97,6 @@ export class BlochSphere {
     this.renderer.setSize(w, h, false);
     this.camera.aspect = w / Math.max(1, h);
     this.camera.updateProjectionMatrix();
-    this.resizeObserver = new ResizeObserver(() => this.resize());
-    this.resizeObserver.observe(this.renderer.domElement);
   }
 
   render() {

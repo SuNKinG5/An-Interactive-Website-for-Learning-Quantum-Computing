@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แบบฝึกหัด | Quantum Learn</title>
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/PracticePage.css">
+</head>
+
+<body>
+  <main class="practice-shell">
+    <header class="practice-header">
+      <a class="back-link" href="/index.html">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Back Home
+      </a>
+      <a class="ghost-link" href="/pages/SimulatorPage.html">Open Simulator</a>
+    </header>
+
+    <section class="practice-hero">
+      <div>
+        <p class="eyebrow">ทบทวนความเข้าใจ</p>
+        <h1>แบบฝึกหัด Quantum Computing</h1>
+        <p class="hero-copy">
+          ใช้แบบฝึกหัดสั้น ๆ เหล่านี้หลังจากเรียนแต่ละบท ลองตอบจากความเข้าใจก่อน แล้วค่อยเปิดคำใบ้และเฉลยเพื่อตรวจแนวคิดของตัวเอง
+        </p>
+      </div>
+      <div class="hero-card">
+        <span>ลำดับที่แนะนำ</span>
+        <strong>เรียนรู้ -> ฝึกตอบ -> ทดลอง</strong>
+        <p>อ่านแนวคิดก่อน จากนั้นลองตอบเอง แล้วค่อยใช้เครื่องมือ interactive เพื่อตรวจว่าความเข้าใจของเราตรงกับพฤติกรรมของระบบจริงหรือไม่</p>
+      </div>
+    </section>
+
+    <section class="practice-grid">
+      <article class="exercise-card">
+        <p class="card-kicker">แบบฝึก 01</p>
+        <h2>ความน่าจะเป็นจากการวัด</h2>
+        <p>
+          ถ้าคิวบิตอยู่ในสถานะ <span class="inline-ket">sqrt(0.75)|0&gt; + 0.5|1&gt;</span> ความน่าจะเป็นที่จะวัดได้ <span class="inline-ket">|0&gt;</span> และ <span class="inline-ket">|1&gt;</span> คือเท่าไร?
+        </p>
+        <details>
+          <summary>Show Hint</summary>
+          <p>ให้นำค่าขนาดของแอมพลิจูดไปยกกำลังสอง ความน่าจะเป็นได้จาก <span class="inline-ket">|alpha|^2</span> และ <span class="inline-ket">|beta|^2</span></p>
+        </details>
+        <details>
+          <summary>Show Answer</summary>
+          <p>โอกาสของ <span class="inline-ket">|0&gt;</span> คือ 0.75 และโอกาสของ <span class="inline-ket">|1&gt;</span> คือ 0.25</p>
+        </details>
+      </article>
+
+      <article class="exercise-card">
+        <p class="card-kicker">แบบฝึก 02</p>
+        <h2>ความหมายของ Hadamard</h2>
+        <p>
+          ถ้าใช้เกต <span class="inline-ket">H</span> กับ <span class="inline-ket">|0&gt;</span> จะได้สถานะใด และเหตุใดจึงสำคัญต่ออัลกอริทึมควอนตัม?
+        </p>
+        <details>
+          <summary>Show Hint</summary>
+          <p>Hadamard สร้างแอมพลิจูดที่เท่ากันให้กับสถานะฐานทั้งสอง</p>
+        </details>
+        <details>
+          <summary>Show Answer</summary>
+          <p>เราจะได้ <span class="inline-ket">( |0&gt; + |1&gt; ) / sqrt(2)</span> ซึ่งเป็นซูเปอร์โพซิชันแบบสมดุล และเป็นจุดเริ่มต้นของการแทรกสอดในอัลกอริทึมหลายชนิด</p>
+        </details>
+      </article>
+
+      <article class="exercise-card">
+        <p class="card-kicker">แบบฝึก 03</p>
+        <h2>เฟสกับความน่าจะเป็น</h2>
+        <p>
+          เหตุใดเกต Z จึงสามารถเปลี่ยนสถานะของคิวบิตได้ แม้ว่าการวัดใน computational basis จะยังให้ความน่าจะเป็นเท่าเดิม?
+        </p>
+        <details>
+          <summary>Show Hint</summary>
+          <p>ลองพิจารณาว่า Z ทำอะไรกับเครื่องหมายหรือเฟสของแอมพลิจูดในองค์ประกอบ <span class="inline-ket">|1&gt;</span></p>
+        </details>
+        <details>
+          <summary>Show Answer</summary>
+          <p>เกต Z เปลี่ยนเฟสสัมพัทธ์ ไม่ได้เปลี่ยนขนาดของแอมพลิจูด จึงไม่เปลี่ยนความน่าจะเป็นใน basis เดิม แต่จะส่งผลเมื่อสถานะไปแทรกสอดกับเกตอื่นภายหลัง</p>
+        </details>
+      </article>
+
+      <article class="exercise-card">
+        <p class="card-kicker">แบบฝึก 04</p>
+        <h2>ตรวจความเข้าใจเรื่องเอนแทงเกิลเมนต์</h2>
+        <p>
+          ถ้า Bell pair อยู่ในสถานะ <span class="inline-ket">( |00&gt; + |11&gt; ) / sqrt(2)</span> และเราวัดคิวบิตตัวแรกได้ 1 เราจะสรุปอะไรเกี่ยวกับคิวบิตตัวที่สองใน basis เดียวกันได้บ้าง?
+        </p>
+        <details>
+          <summary>Show Hint</summary>
+          <p>ดูว่าสถานะฐานใดบ้างที่ยังเป็นไปได้หลังจากตรึงผลลัพธ์ของคิวบิตตัวแรกแล้ว</p>
+        </details>
+        <details>
+          <summary>Show Answer</summary>
+          <p>คิวบิตตัวที่สองจะต้องวัดได้ 1 เช่นกัน เพราะสถานะร่วมของระบบมีเฉพาะ <span class="inline-ket">|00&gt;</span> และ <span class="inline-ket">|11&gt;</span> เท่านั้น</p>
+        </details>
+      </article>
+    </section>
+
+    <section class="practice-footer">
+      <div class="footer-card">
+        <p class="card-kicker">ไปต่อจากนี้</p>
+        <h3>เปลี่ยนคำตอบให้กลายเป็นความเข้าใจจริง</h3>
+        <p>ลองใช้ซิมูเลเตอร์กดเกตด้วยตัวเอง แล้วเปิด Bloch sphere เพื่อดูว่าสถานะเปลี่ยนทิศอย่างไรในเชิงภาพ</p>
+      </div>
+      <div class="footer-actions">
+        <a class="primary-link" href="/pages/SimulatorPage.html">Open Simulator</a>
+        <a class="secondary-link" href="/pages/BlochSphere.html">Open Bloch Sphere</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>

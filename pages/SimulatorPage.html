@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="th" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ซิมูเลเตอร์ควอนตัม</title>
+
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        rel="stylesheet">
+
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="/src/styles/SimulatorPage.css">
+</head>
+
+<body class="h-full font-['Google_Sans'] bg-white text-[#1e293b]">
+    <div id="app-wrapper" class="sim-shell">
+
+        <header class="sim-header">
+            <div class="sim-brand">
+                <div>
+                    <h1 id="page-title" class="sim-title">ซิมูเลเตอร์ควอนตัม</h1>
+                    <p class="sim-subtitle">พื้นที่จำลองคิวบิตเดี่ยว</p>
+                </div>
+            </div>
+
+            <button id="reset-btn" class="toolbar-btn toolbar-btn-primary">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                <span>Reset</span>
+            </button>
+        </header>
+
+        <div class="sim-layout">
+            <aside class="sim-sidebar">
+                <section class="sidebar-section">
+                    <p class="sidebar-label">เกต</p>
+                    <div class="gate-palette">
+                        <button id="gate-h" class="palette-gate palette-gate-h">H</button>
+                        <button id="gate-x" class="palette-gate">X</button>
+                        <button id="gate-y" class="palette-gate palette-gate-cyan">Y</button>
+                        <button id="gate-z" class="palette-gate palette-gate-violet">Z</button>
+                    </div>
+                </section>
+
+                <section class="sidebar-section">
+                    <p class="sidebar-label">ควบคุมสถานะ</p>
+
+                    <label class="control-label" for="theta-slider">Theta</label>
+                    <div class="slider-row">
+                        <input type="range" id="theta-slider" min="0" max="180" value="90">
+                        <span class="slider-value"><span id="theta-value">90</span> องศา</span>
+                    </div>
+
+                    <label class="control-label" for="phi-slider">Phi</label>
+                    <div class="slider-row">
+                        <input type="range" id="phi-slider" min="0" max="360" value="0">
+                        <span class="slider-value"><span id="phi-value">0</span> องศา</span>
+                    </div>
+                </section>
+
+                <section class="sidebar-section">
+                    <p class="sidebar-label">หน้าต่างจำลอง</p>
+                    <nav class="sim-nav">
+                        <button class="sim-nav-btn active" data-panel="bloch">Bloch Sphere</button>
+                        <button class="sim-nav-btn" data-panel="probabilities">ความน่าจะเป็น</button>
+                        <button class="sim-nav-btn" data-panel="statevector">เวกเตอร์สถานะ</button>
+                    </nav>
+                </section>
+            </aside>
+
+            <main class="sim-main">
+                <section class="composer-card">
+                    <div class="section-head">
+                        <div>
+                            <p class="section-label">วงจรจำลอง</p>
+                            <h2>สถานะปัจจุบัน</h2>
+                        </div>
+                        <p class="section-help">ทุกเกตจะอัปเดตคิวบิตตัวเดียวกัน แต่แต่ละพาเนลจะแสดงผลลัพธ์ในคนละมุมมอง</p>
+                    </div>
+
+                    <div class="circuit-board">
+                        <div class="wire-labels">
+                            <span>q[0]</span>
+                            <span>c[0]</span>
+                        </div>
+
+                        <div class="wire-stage">
+                            <div class="wire-row">
+                                <div class="wire-line"></div>
+                                <div id="gate-sequence" class="gate-sequence"></div>
+                            </div>
+                            <div class="wire-row wire-row-classical">
+                                <div class="wire-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="simulation-grid">
+                    <article class="sim-panel is-active" data-panel-card="bloch">
+                        <div class="section-head">
+                            <div>
+                                <p class="section-label">มุมมอง 3 มิติ</p>
+                                <h3>Bloch Sphere</h3>
+                            </div>
+                        </div>
+                        <div class="bloch-stage">
+                            <canvas id="bloch-canvas"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="sim-panel" data-panel-card="probabilities">
+                        <div class="section-head">
+                            <div>
+                                <p class="section-label">มุมมองการวัด</p>
+                                <h3>ความน่าจะเป็น</h3>
+                            </div>
+                        </div>
+                        <div class="bars-panel">
+                            <div class="prob-row">
+                                <div class="prob-meta">
+                                    <span>|0></span>
+                                    <strong id="prob-0-percent">50.0%</strong>
+                                </div>
+                                <div class="prob-bar-track">
+                                    <div id="prob-0-bar" class="prob-bar-fill"></div>
+                                </div>
+                                <p id="prob-0-display" class="prob-amp">0.707</p>
+                            </div>
+
+                            <div class="prob-row">
+                                <div class="prob-meta">
+                                    <span>|1></span>
+                                    <strong id="prob-1-percent">50.0%</strong>
+                                </div>
+                                <div class="prob-bar-track">
+                                    <div id="prob-1-bar" class="prob-bar-fill prob-bar-fill-alt"></div>
+                                </div>
+                                <p id="prob-1-display" class="prob-amp">0.707</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="sim-panel" data-panel-card="statevector">
+                        <div class="section-head">
+                            <div>
+                                <p class="section-label">มุมมองเชิงวิเคราะห์</p>
+                                <h3>เวกเตอร์สถานะ</h3>
+                            </div>
+                        </div>
+                        <div class="state-panel">
+                            <div class="state-card">
+                                <span>alpha</span>
+                                <strong id="alpha-display">0.707</strong>
+                            </div>
+                            <div class="state-card">
+                                <span>beta</span>
+                                <strong id="beta-display">0.707</strong>
+                            </div>
+                            <div class="state-summary">
+                                <div><span>สถานะ</span><strong id="state-label">|psi></strong></div>
+                                <div><span>X</span><strong id="coord-x">1.000</strong></div>
+                                <div><span>Y</span><strong id="coord-y">0.000</strong></div>
+                                <div><span>Z</span><strong id="coord-z">0.000</strong></div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script type="module" src="/src/scripts/SimulatorPage.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
