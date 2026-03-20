@@ -23,9 +23,9 @@ const defaultConfig = {
     subheadline: "สำรวจคิวบิต เกต อัลกอริทึม และภาพประกอบควอนตัมแบบโต้ตอบได้ในประสบการณ์การเรียนรู้เดียว",
     btn_learn: "Start Learning",
     btn_sim: "Open Simulator",
-    feature1_title: "ภาพประกอบแบบโต้ตอบ",
-    feature2_title: "ซิมูเลเตอร์วงจรควอนตัม",
-    feature3_title: "อธิบายอัลกอริทึมทีละขั้น",
+    feature1_title: "Interactive Visualization",
+    feature2_title: "Quantum Circuit Simulator",
+    feature3_title: "Algorithm Walkthroughs",
     footer_text: "© 2025 QuantumLearn - สื่อการสอน บทจำลอง และเครื่องมือภาพสำหรับทำความเข้าใจ Quantum Computing"
 };
 

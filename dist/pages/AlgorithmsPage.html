@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>อัลกอริทึมควอนตัม | Quantum Learn</title>
+    <title>Quantum Algorithms | Quantum Learn</title>
 
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
@@ -15,7 +15,7 @@
         href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
         rel="stylesheet">
 
-  <script type="module" crossorigin src="/assets/algorithms-D8m_s1wb.js"></script>
+  <script type="module" crossorigin src="/assets/algorithms-B0kZPFh2.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-DfS4ul37.js">
   <link rel="stylesheet" crossorigin href="/assets/algorithms-B-c0adk0.css">
 </head>
@@ -37,8 +37,8 @@
                         </svg>
                     </a>
                     <div>
-                        <h1 id="page-title" class="text-lg font-bold tracking-tight font-['Space_Mono'] page-title">อัลกอริทึมควอนตัม</h1>
-                        <p class="text-xs page-kicker">เรียนรู้แบบทีละขั้น</p>
+                        <h1 id="page-title" class="text-lg font-bold tracking-tight font-['Space_Mono'] page-title">Quantum Algorithms</h1>
+                        <p class="text-xs page-kicker">Step-by-Step Learning</p>
                     </div>
                 </div>
                 <button id="reset-algo-btn" class="toolbar-button px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
@@ -51,7 +51,7 @@
 
             <div class="sidebar-panel w-48 border-r flex flex-col">
                 <div class="p-4 border-b sidebar-panel-header">
-                    <p class="text-xs font-semibold uppercase tracking-wide panel-kicker">อัลกอริทึม</p>
+                    <p class="text-xs font-semibold uppercase tracking-wide panel-kicker">Algorithms</p>
                 </div>
                 <nav class="flex-1 space-y-1 p-3">
                     <button
@@ -76,22 +76,22 @@
                 <div class="p-6 space-y-6">
 
                     <div class="control-panel">
-                        <label class="block text-sm font-semibold mb-3 panel-title">อัลกอริทึมปัจจุบัน</label>
+                        <label class="block text-sm font-semibold mb-3 panel-title">Current Algorithm</label>
                         <div class="info-card rounded-lg p-4">
                             <p id="algo-name" class="text-sm font-bold accent-text">Deutsch Algorithm</p>
-                            <p id="algo-desc" class="text-xs mt-2 muted-text">ตรวจว่าฟังก์ชันเป็นแบบ constant หรือ balanced</p>
+                            <p id="algo-desc" class="text-xs mt-2 muted-text">Determine whether a function is constant or balanced</p>
                         </div>
                     </div>
 
                     <div class="control-panel">
-                        <label class="block text-sm font-semibold mb-3 panel-title">ลำดับขั้น</label>
+                        <label class="block text-sm font-semibold mb-3 panel-title">Algorithm Steps</label>
                         <div id="steps-list" class="space-y-2">
                         </div>
                     </div>
 
                     <div class="control-panel">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs font-medium muted-text">ความคืบหน้า</span>
+                            <span class="text-xs font-medium muted-text">Progress</span>
                             <span id="progress-text" class="text-xs font-bold accent-text">1/4</span>
                         </div>
                         <div class="progress-track w-full rounded-full h-2">
@@ -116,12 +116,12 @@
                 <div class="flex-1 flex flex-col p-8">
 
                     <div class="hero-block mb-8">
-                        <h2 id="step-title" class="text-2xl font-bold mb-2 page-title">กำหนดสถานะเริ่มต้น</h2>
-                        <p id="step-desc" class="text-sm muted-text">เตรียมคิวบิตเริ่มต้นสำหรับอัลกอริทึม</p>
+                        <h2 id="step-title" class="text-2xl font-bold mb-2 page-title">Initialize Qubits</h2>
+                        <p id="step-desc" class="text-sm muted-text">Prepare the starting qubits for the algorithm</p>
                     </div>
 
                     <div class="mb-8">
-                        <h3 class="text-sm font-semibold mb-4 panel-title">วงจรควอนตัม</h3>
+                        <h3 class="text-sm font-semibold mb-4 panel-title">Quantum Circuit</h3>
                         <div class="circuit-container">
                             <div id="circuit-gates" class="flex items-center gap-3">
                             </div>
@@ -129,12 +129,12 @@
                     </div>
 
                     <div class="explanation-card rounded-2xl p-6 flex-1">
-                        <h3 class="text-sm font-semibold mb-4 panel-title">คำอธิบาย</h3>
+                        <h3 class="text-sm font-semibold mb-4 panel-title">Explanation</h3>
                         <div id="step-explanation" class="explanation-body">
                         </div>
 
                         <div id="amplitude-display" class="amplitude-display" style="display: none;">
-                            <h4 class="text-xs font-semibold mb-3 panel-title">การขยายแอมพลิจูด</h4>
+                            <h4 class="text-xs font-semibold mb-3 panel-title">Amplitude Amplification</h4>
                             <div id="amplitudes" class="space-y-2">
                             </div>
                         </div>

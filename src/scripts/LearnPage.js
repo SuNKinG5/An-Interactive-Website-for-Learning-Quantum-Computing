@@ -6,7 +6,7 @@ const defaultConfig = {
   secondary_action_color: "#64748b",
   font_family: "Google Sans",
   font_size: 16,
-  lesson_title: "พื้นฐานควอนตัมคอมพิวติ้ง",
+  lesson_title: "Quantum Computing Foundations",
   lesson_explain:
     "คอมพิวเตอร์ควอนตัมใช้คิวบิต ซูเปอร์โพซิชัน และการแทรกสอดเพื่อประมวลผลข้อมูลในรูปแบบที่ต่างจากคอมพิวเตอร์ทั่วไป",
   next_btn: "Next Lesson",
@@ -41,26 +41,26 @@ const gateDetails = {
 
 const lessonsData = [
   {
-    category: "พื้นฐานควอนตัม",
-    title: "พื้นฐานควอนตัมคอมพิวติ้ง",
-    header: "อะไรทำให้ Quantum Computing ต่างจากคอมพิวเตอร์ทั่วไป?",
+    category: "Quantum Basics",
+    title: "Quantum Computing Foundations",
+    header: "What Makes Quantum Computing Different?",
     explanation:
       "Quantum computing คือการประมวลผลข้อมูลด้วยระบบทางควอนตัม แทนที่จะเก็บข้อมูลเป็นบิตที่มีค่าได้แค่ 0 หรือ 1 เราใช้คิวบิตซึ่งมีแอมพลิจูดและเฟส ทำให้เกิดซูเปอร์โพซิชัน การแทรกสอด และการคำนวณแบบใหม่ที่เหมาะกับปัญหาบางชนิด เช่น การจำลองระบบฟิสิกส์ การค้นหา และการเพิ่มประสิทธิภาพเชิงโครงสร้าง",
     workspaceHTML: `
       <div class="workspace-stack">
         <section class="rounded-[1.5rem] p-7 interactive-container">
-          <p class="subtle-kicker">แนวคิดหลัก</p>
+          <p class="subtle-kicker">Core Idea</p>
           <div class="comparison-table">
             <div class="comparison-row">
-              <div class="comparison-label">บิตคลาสสิก</div>
+              <div class="comparison-label">Classical Bit</div>
               <p class="comparison-copy">บิตแบบดั้งเดิมเก็บค่าได้เพียง 0 หรือ 1 ในช่วงเวลาใดเวลาหนึ่ง และเกตแบบคลาสสิกจะเปลี่ยนค่านั้นตามกฎเชิงตรรกะที่แน่นอน</p>
             </div>
             <div class="comparison-row">
-              <div class="comparison-label">คิวบิต</div>
+              <div class="comparison-label">Qubit</div>
               <p class="comparison-copy">คิวบิตเก็บแอมพลิจูดของ |0> และ |1> พร้อมกันได้ ทำให้เส้นทางของการคำนวณมีความสำคัญพอ ๆ กับผลลัพธ์สุดท้าย</p>
             </div>
             <div class="comparison-row">
-              <div class="comparison-label">ศักยภาพ</div>
+              <div class="comparison-label">Advantage</div>
               <p class="comparison-copy">คอมพิวเตอร์ควอนตัมไม่ได้เร็วกว่าในทุกโจทย์ แต่ในปัญหาที่มีโครงสร้างเหมาะสม มันสามารถแทนสถานะและแปลงข้อมูลได้อย่างมีประสิทธิภาพกว่า</p>
             </div>
           </div>
@@ -68,21 +68,21 @@ const lessonsData = [
 
         <section class="lesson-grid">
           <article class="lesson-card">
-            <h3>การแทนข้อมูล</h3>
+            <h3>Representation</h3>
             <p>สถานะควอนตัมอธิบายด้วยเวกเตอร์ แอมพลิจูด และเฟส ไม่ได้มีแค่คำตอบแบบจริงหรือเท็จเหมือนตรรกะคลาสสิก</p>
           </article>
           <article class="lesson-card">
-            <h3>การเปลี่ยนสถานะ</h3>
+            <h3>Evolution</h3>
             <p>เกตควอนตัมคือเมทริกซ์ยูนิตารีที่หมุนและผสมแอมพลิจูดของสถานะอย่างย้อนกลับได้</p>
           </article>
           <article class="lesson-card">
-            <h3>การวัดผล</h3>
+            <h3>Measurement</h3>
             <p>เมื่อวัดคิวบิต เราจะได้ผลลัพธ์แบบคลาสสิก และแอมพลิจูดจะกลายเป็นความน่าจะเป็นของผลที่สังเกตได้</p>
           </article>
         </section>
 
         <section class="rounded-[1.5rem] p-7 visual-container">
-          <p class="subtle-kicker">เส้นทางการเรียนรู้</p>
+          <p class="subtle-kicker">Learning Roadmap</p>
           <ul class="bullet-list">
             <li>เริ่มจากคิวบิตเดี่ยวและทำความเข้าใจว่ามันถูกมองบน Bloch sphere อย่างไร</li>
             <li>ต่อด้วยซูเปอร์โพซิชันและเอนแทงเกิลเมนต์ ซึ่งอธิบายว่าทำไมระบบควอนตัมจึงต่างจากระบบคลาสสิก</li>
@@ -93,15 +93,15 @@ const lessonsData = [
     `,
   },
   {
-    category: "พื้นฐานควอนตัม",
-    title: "ทำความเข้าใจคิวบิต",
-    header: "คิวบิตคืออะไร?",
+    category: "Quantum Basics",
+    title: "Understanding the Qubit",
+    header: "What Is a Qubit?",
     explanation:
       "คิวบิตคือหน่วยข้อมูลพื้นฐานของระบบควอนตัม มันสามารถอธิบายได้เป็นเวกเตอร์ที่มีสองทิศฐานคือ |0> และ |1> ก่อนการวัด จุดของสถานะสามารถอยู่ระหว่างสองขั้วนี้ได้ ซึ่งหมายความว่ามันไม่จำเป็นต้องเป็นค่าแบบคลาสสิกเพียงค่าเดียว",
     workspaceHTML: `
       <div class="workspace-stack">
         <section class="rounded-[1.5rem] p-7 visual-container">
-          <p class="subtle-kicker">มองคิวบิตผ่าน Bloch Sphere</p>
+          <p class="subtle-kicker">Bloch Sphere Intuition</p>
           <div class="flex flex-col lg:flex-row items-center gap-8">
             <div class="flex-1 flex justify-center">
               <svg class="bloch-sphere" viewBox="0 0 320 320" width="300" height="300" fill="none">
@@ -128,7 +128,7 @@ const lessonsData = [
         </section>
 
         <section class="rounded-[1.5rem] p-7 interactive-container">
-          <p class="subtle-kicker">ลองปรับความน่าจะเป็น</p>
+          <p class="subtle-kicker">Probability Explorer</p>
           <div class="flex items-center justify-between mb-3">
             <label class="text-sm font-medium text-color-main" for="probability-slider">ความน่าจะเป็นของ |0&gt;</label>
             <span id="prob-0" class="text-sm font-semibold prob-text">50%</span>
@@ -136,14 +136,14 @@ const lessonsData = [
           <input id="probability-slider" type="range" min="0" max="100" value="50" class="w-full h-2 rounded-lg custom-slider" oninput="updateProbability(this.value)">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             <div class="rounded-xl p-4 state-box">
-              <p class="text-xs mb-1 text-color-muted">สถานะฐาน |0&gt;</p>
+              <p class="text-xs mb-1 text-color-muted">Basis State |0&gt;</p>
               <p id="state-0" class="text-lg font-bold prob-text">50%</p>
-              <p class="text-sm text-color-muted mt-2">แอมพลิจูด: <span id="amp-0" class="inline-ket">0.707</span></p>
+              <p class="text-sm text-color-muted mt-2">Amplitude: <span id="amp-0" class="inline-ket">0.707</span></p>
             </div>
             <div class="rounded-xl p-4 state-box">
-              <p class="text-xs mb-1 text-color-muted">สถานะฐาน |1&gt;</p>
+              <p class="text-xs mb-1 text-color-muted">Basis State |1&gt;</p>
               <p id="state-1" class="text-lg font-bold text-blue-400">50%</p>
-              <p class="text-sm text-color-muted mt-2">แอมพลิจูด: <span id="amp-1" class="inline-ket">0.707</span></p>
+              <p class="text-sm text-color-muted mt-2">Amplitude: <span id="amp-1" class="inline-ket">0.707</span></p>
             </div>
           </div>
         </section>
@@ -151,15 +151,15 @@ const lessonsData = [
     `,
   },
   {
-    category: "พื้นฐานควอนตัม",
-    title: "ซูเปอร์โพซิชัน",
-    header: "ทำไมคิวบิตจึงอยู่ได้ทั้ง 0 และ 1?",
+    category: "Quantum Basics",
+    title: "Superposition",
+    header: "Why Can a Qubit Be Both 0 and 1?",
     explanation:
       "ซูเปอร์โพซิชันหมายถึงการเตรียมคิวบิตให้มีแอมพลิจูดอยู่บนทั้งสองสถานะฐานพร้อมกัน นั่นไม่ได้แปลว่าเราอ่านได้สองคำตอบพร้อมกัน แต่หมายความว่าแอมพลิจูดเหล่านี้พัฒนาไปด้วยกันจนกว่าจะมีการวัด ทำให้เกตในลำดับถัดไปสามารถเสริมและหักล้างผลลัพธ์กันได้",
     workspaceHTML: `
       <div class="workspace-stack">
         <section class="rounded-[1.5rem] p-7 interactive-container">
-          <p class="subtle-kicker">ตัวอย่างการวัด</p>
+          <p class="subtle-kicker">Measurement Simulator</p>
           <div class="measure-shell text-center">
             <div class="measure-orb">
               <span>|psi&gt;</span>
@@ -172,15 +172,15 @@ const lessonsData = [
 
         <section class="lesson-grid">
           <article class="lesson-card">
-            <h3>ไม่ใช่แค่ความไม่แน่นอน</h3>
+            <h3>Not Classical Uncertainty</h3>
             <p>เหรียญที่ยังไม่ได้เปิดดูมีผลลัพธ์จริงซ่อนอยู่แล้ว แต่คิวบิตในซูเปอร์โพซิชันถูกอธิบายด้วยแอมพลิจูดทั้งสองส่วนอย่างแท้จริง</p>
           </article>
           <article class="lesson-card">
-            <h3>การแทรกสอดสำคัญมาก</h3>
+            <h3>Interference Matters</h3>
             <p>แอมพลิจูดเป็นจำนวนเชิงซ้อน จึงสามารถเสริมกันหรือหักล้างกันได้ นี่คือหัวใจของอัลกอริทึมควอนตัมจำนวนมาก</p>
           </article>
           <article class="lesson-card">
-            <h3>การวัดทำให้สถานะยุบ</h3>
+            <h3>Measurement Collapse</h3>
             <p>หลังการวัด คิวบิตจะไม่อยู่ในซูเปอร์โพซิชันของ basis เดิมอีกต่อไป แต่กลายเป็นผลลัพธ์แบบคลาสสิกที่นำไปใช้งานต่อได้</p>
           </article>
         </section>
@@ -188,33 +188,33 @@ const lessonsData = [
     `,
   },
   {
-    category: "พื้นฐานควอนตัม",
-    title: "เอนแทงเกิลเมนต์",
-    header: "ทำไมคิวบิตสองตัวจึงต้องอธิบายเป็นระบบเดียวกัน?",
+    category: "Quantum Basics",
+    title: "Entanglement",
+    header: "Why Must Two Qubits Be Described Together?",
     explanation:
       "เอนแทงเกิลเมนต์เกิดขึ้นเมื่อสถานะของหลายคิวบิตไม่สามารถแยกอธิบายเป็นแต่ละตัวแบบอิสระได้อีกต่อไป เราจึงต้องอธิบายระบบทั้งหมดพร้อมกัน และเมื่อมีการวัด ผลลัพธ์จะสัมพันธ์กันในแบบที่สัญชาตญาณเชิงคลาสสิกอธิบายได้ยาก",
     workspaceHTML: `
       <div class="workspace-stack">
         <section class="rounded-[1.5rem] p-7 visual-container">
-          <p class="subtle-kicker">เรื่องราวของ Bell Pair</p>
+          <p class="subtle-kicker">Bell Pair Story</p>
           <div class="lesson-grid">
             <article class="lesson-card">
-              <h3>ขั้นที่ 1</h3>
+              <h3>Step 1</h3>
               <p>เริ่มด้วยคิวบิตสองตัวในสถานะ <span class="inline-ket">|00&gt;</span> แล้วใช้ Hadamard กับคิวบิตตัวแรกเพื่อสร้างซูเปอร์โพซิชัน</p>
             </article>
             <article class="lesson-card">
-              <h3>ขั้นที่ 2</h3>
+              <h3>Step 2</h3>
               <p>ใช้ controlled-X เพื่อให้คิวบิตตัวที่สองตามตัวแรก สถานะจะกลายเป็น <span class="inline-ket">( |00&gt; + |11&gt; ) / sqrt(2)</span></p>
             </article>
             <article class="lesson-card">
-              <h3>ขั้นที่ 3</h3>
+              <h3>Step 3</h3>
               <p>เมื่อวัดคิวบิตตัวใดตัวหนึ่ง ผลลัพธ์ของทั้งคู่จะสัมพันธ์กัน แม้แต่ละตัวจะดูสุ่มเมื่อมองแยกกัน</p>
             </article>
           </div>
         </section>
 
         <section class="rounded-[1.5rem] p-7 interactive-container">
-          <p class="subtle-kicker">สิ่งที่เอนแทงเกิลเมนต์เปลี่ยนไป</p>
+          <p class="subtle-kicker">What Entanglement Changes</p>
           <ul class="bullet-list">
             <li>สถานะของระบบต้องเขียนเป็นเวกเตอร์ร่วม ไม่ใช่เรื่องเล่าของคิวบิตแต่ละตัวแบบแยกขาด</li>
             <li>ความสัมพันธ์ที่เห็นไม่ได้เกิดจากการส่งสัญญาณคลาสสิกหลังการวัด แต่เกิดจากโครงสร้างของสถานะควอนตัมตั้งแต่ต้น</li>
@@ -228,30 +228,30 @@ const lessonsData = [
     `,
   },
   {
-    category: "เกตควอนตัม",
-    title: "เกต Pauli",
-    header: "เกตเดี่ยวพื้นฐานทำงานอย่างไร?",
+    category: "Quantum Gates",
+    title: "Pauli Gates",
+    header: "How Do the Basic Single-Qubit Gates Work?",
     explanation:
       "เกต Pauli ได้แก่ X, Y และ Z เป็นเกตพื้นฐานที่กำหนดเรขาคณิตของการเคลื่อนที่ของคิวบิตเดี่ยวบน Bloch sphere แม้มันจะดูเรียบง่าย แต่แทบทุกวงจรที่ซับซ้อนกว่าล้วนสร้างต่อยอดจากเกตชุดนี้",
     workspaceHTML: `
       <div class="workspace-stack">
         <section class="rounded-[1.5rem] p-7 visual-container">
-          <p class="subtle-kicker">เลือกเกตที่ต้องการศึกษา</p>
+          <p class="subtle-kicker">Choose a Gate</p>
           <div class="gate-grid">
             <button class="gate-card" data-gate="X" onclick="showGateDetails('X')">
               <span class="gate-symbol">X</span>
               <h3>Pauli-X</h3>
-              <p>พลิกสถานะระหว่าง |0&gt; กับ |1&gt;</p>
+              <p>Bit flip between |0&gt; and |1&gt;</p>
             </button>
             <button class="gate-card" data-gate="Y" onclick="showGateDetails('Y')">
               <span class="gate-symbol">Y</span>
               <h3>Pauli-Y</h3>
-              <p>พลิกสถานะพร้อมปรับเฟส</p>
+              <p>Bit flip with an added phase change</p>
             </button>
             <button class="gate-card" data-gate="Z" onclick="showGateDetails('Z')">
               <span class="gate-symbol">Z</span>
               <h3>Pauli-Z</h3>
-              <p>เปลี่ยนเฟสขององค์ประกอบ |1&gt;</p>
+              <p>Phase flip on the |1&gt; component</p>
             </button>
           </div>
         </section>
@@ -267,34 +267,34 @@ const lessonsData = [
     `,
   },
   {
-    category: "เกตควอนตัม",
-    title: "เกตหมุน",
-    header: "ทำไมเกตหมุนจึงยืดหยุ่นกว่าเกตคงที่?",
+    category: "Quantum Gates",
+    title: "Rotation Gates",
+    header: "Why Are Rotation Gates More Flexible?",
     explanation:
       "เกตหมุนช่วยให้เราหมุนคิวบิตได้ตามมุมที่ต้องการรอบแกนที่เลือก มันเป็นการขยายแนวคิดจากเกต Pauli ทำให้วงจรสามารถเตรียมสถานะได้อย่างละเอียด ไม่ได้จำกัดอยู่แค่การพลิกครึ่งรอบแบบเต็ม ๆ",
     workspaceHTML: `
       <div class="workspace-stack">
         <section class="rounded-[1.5rem] p-7 interactive-container">
-          <p class="subtle-kicker">สนามทดลองของเกตหมุน</p>
+          <p class="subtle-kicker">Rotation Playground</p>
           <div class="math-chip-row mb-6">
             <button class="gate-card is-active" data-axis="x" onclick="setRotationAxis('x')">
               <span class="gate-symbol">Rx</span>
-              <h3>หมุนรอบแกน X</h3>
-              <p>ทำให้สถานะเคลื่อนผ่านระนาบ YZ</p>
+              <h3>Rotate Around X</h3>
+              <p>Moves the state through the YZ plane</p>
             </button>
             <button class="gate-card" data-axis="y" onclick="setRotationAxis('y')">
               <span class="gate-symbol">Ry</span>
-              <h3>หมุนรอบแกน Y</h3>
-              <p>ทำให้สถานะเคลื่อนผ่านระนาบ XZ</p>
+              <h3>Rotate Around Y</h3>
+              <p>Moves the state through the XZ plane</p>
             </button>
             <button class="gate-card" data-axis="z" onclick="setRotationAxis('z')">
               <span class="gate-symbol">Rz</span>
-              <h3>หมุนรอบแกน Z</h3>
-              <p>ปรับเฟสโดยหมุนรอบแกนตั้ง</p>
+              <h3>Rotate Around Z</h3>
+              <p>Adjusts phase around the vertical axis</p>
             </button>
           </div>
 
-          <label class="text-sm font-medium text-color-main" for="rotation-slider">มุมที่ต้องการหมุน</label>
+          <label class="text-sm font-medium text-color-main" for="rotation-slider">Rotation Angle</label>
           <div class="slider-row mt-3">
             <input id="rotation-slider" type="range" min="0" max="180" value="90" class="w-full h-2 rounded-lg custom-slider" oninput="updateRotationDemo(this.value)">
             <span class="slider-value"><span id="rotation-angle">90</span> องศา</span>
@@ -306,18 +306,18 @@ const lessonsData = [
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             <div class="state-box rounded-xl p-4">
-              <p class="text-xs text-color-muted mb-1">เกตปัจจุบัน</p>
+              <p class="text-xs text-color-muted mb-1">Current Gate</p>
               <p id="rotation-gate-label" class="text-lg font-bold prob-text">Rx(90 deg)</p>
             </div>
             <div class="state-box rounded-xl p-4">
-              <p class="text-xs text-color-muted mb-1">คำอธิบาย</p>
+              <p class="text-xs text-color-muted mb-1">Interpretation</p>
               <p id="rotation-description" class="text-sm leading-7 text-color-muted">การหมุนหนึ่งในสี่รอบทำให้สถานะเปลี่ยนอย่างชัดเจน แต่ยังไม่ถึงขั้วตรงข้ามของทรงกลม</p>
             </div>
           </div>
         </section>
 
         <section class="rounded-[1.5rem] p-7 visual-container">
-          <p class="subtle-kicker">ทำไมเกตนี้จึงสำคัญ</p>
+          <p class="subtle-kicker">Why This Matters</p>
           <ul class="bullet-list">
             <li>เกตหมุนช่วยเตรียมสถานะคิวบิตได้หลากหลายกว่าการใช้เพียงเกตพื้นฐานแบบเต็มรอบ</li>
             <li>มุมที่ละเอียดมีความสำคัญต่อ variational algorithms การคาลิเบรต และการควบคุมฮาร์ดแวร์จริง</li>

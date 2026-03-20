@@ -13,7 +13,7 @@
     <section class="hero-panel">
       <div class="hero-copy">
         <a class="back-link" href="/index.html">Back Home</a>
-        <p class="eyebrow">ภาพประกอบควอนตัมแบบโต้ตอบ</p>
+        <p class="eyebrow">Interactive Quantum Visualization</p>
         <h1>Bloch Sphere Lab</h1>
         <p class="hero-text">
           สำรวจสถานะของคิวบิตเดี่ยวจากหลายมุมมอง กดเกต หมุนทรงกลม และอ่านค่าพิกัดรวมถึงเฟสของสถานะได้ในหน้าเดียว
@@ -22,11 +22,11 @@
 
       <div class="hero-stats">
         <div class="hero-stat">
-          <span>ปุ่มลัด</span>
+          <span>Keyboard</span>
           <strong>X / Y / Z / H</strong>
         </div>
         <div class="hero-stat">
-          <span>สถานะเริ่มต้น</span>
+          <span>Default State</span>
           <strong>|0&gt;</strong>
         </div>
       </div>
@@ -36,10 +36,10 @@
       <article class="viewer-panel">
         <div class="panel-head">
           <div>
-            <p class="panel-kicker">ฉากปัจจุบัน</p>
-            <h2>Bloch Sphere แบบ 3 มิติ</h2>
+            <p class="panel-kicker">Live Scene</p>
+            <h2>3D Bloch Sphere</h2>
           </div>
-          <p class="panel-hint">ลากเพื่อหมุน ใช้ล้อเมาส์เพื่อซูม</p>
+          <p class="panel-hint">Drag to orbit, scroll to zoom</p>
         </div>
 
         <div class="canvas-shell">
@@ -48,16 +48,16 @@
 
         <div class="quick-stats">
           <div class="quick-card">
-            <span>สถานะ</span>
+            <span>State</span>
             <strong id="lbl">|0&gt;</strong>
           </div>
           <div class="quick-card">
             <span>Theta</span>
-            <strong><span id="th">0.0</span> องศา</strong>
+            <strong><span id="th">0.0</span> deg</strong>
           </div>
           <div class="quick-card">
             <span>Phi</span>
-            <strong><span id="ph">0.0</span> องศา</strong>
+            <strong><span id="ph">0.0</span> deg</strong>
           </div>
         </div>
       </article>
@@ -65,8 +65,8 @@
       <aside class="control-panel">
         <div class="panel-head">
           <div>
-            <p class="panel-kicker">การควบคุม</p>
-            <h2>การใช้เกต</h2>
+            <p class="panel-kicker">Controls</p>
+            <h2>Gate Actions</h2>
           </div>
         </div>
 
@@ -80,7 +80,7 @@
         <button id="reset" class="reset-btn">Reset to |0&gt;</button>
 
         <div class="vector-panel">
-          <p class="panel-kicker">พิกัดเวกเตอร์</p>
+          <p class="panel-kicker">Vector Coordinates</p>
           <div class="vector-row">
             <span>X</span>
             <strong id="x">0</strong>
@@ -96,7 +96,7 @@
         </div>
 
         <div class="note-panel">
-          <p class="panel-kicker">จุดที่ควรสังเกต</p>
+          <p class="panel-kicker">What To Watch</p>
           <p>
             ลองใช้ <strong>H</strong> เพื่อสร้างซูเปอร์โพซิชัน แล้วเปรียบเทียบว่า
             <strong>X</strong>, <strong>Y</strong> และ <strong>Z</strong> พาสถานะเคลื่อนที่บนทรงกลมอย่างไร

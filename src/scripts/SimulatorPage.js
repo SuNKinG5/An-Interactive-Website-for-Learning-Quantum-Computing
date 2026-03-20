@@ -133,7 +133,7 @@ function updateStateVector() {
 
 function renderHistory() {
   if (!history.length) {
-    elements.gateSequence.innerHTML = '<span class="section-help">ยังไม่มีเกตที่ถูกใช้</span>';
+    elements.gateSequence.innerHTML = '<span class="section-help">No gates applied yet</span>';
     return;
   }
 
