@@ -41,7 +41,7 @@
         </a>
       </div>
 
-      <nav class="flex-1 overflow-y-auto px-4 py-6 flex flex-col gap-2">
+      <nav class="flex-1 overflow-y-auto px-4 py-6 flex flex-col">
         <div class="text-xs font-semibold mb-2 px-2 text-color-muted">Quantum Basics</div>
 
         <button class="nav-btn nav-item-active" onclick="loadLesson(0)">
@@ -71,7 +71,7 @@
         <div class="lesson-note compact-note">
           <p class="note-title">How To Use</p>
           <p class="text-sm text-color-muted">
-            อ่านสรุปแนวคิดก่อน แล้วค่อยใช้บล็อกแบบโต้ตอบด้านล่างเพื่อเชื่อมคณิตศาสตร์เข้ากับภาพและความเข้าใจเชิงสัญชาตญาณ
+            อ่านสรุปแนวคิดก่อน แล้วค่อยใช้ส่วนของ workspace เพื่อทดลองเล่นกับแนวคิดนั้นๆ ได้เลย!
           </p>
         </div>
       </div>
@@ -81,7 +81,7 @@
       <header class="w-full border-b sticky top-0 z-20 header-bg">
         <div class="px-8 py-5 flex items-center justify-between gap-4">
           <div>
-            <p id="lesson-meta" class="text-xs uppercase tracking-[0.22em] text-color-muted">Quantum Basics</p>
+            <p id="lesson-meta" class="text-xs text-color-muted">Quantum Basics</p>
             <h1 id="lesson-title" class="text-2xl font-bold mt-2">Quantum Computing Foundations</h1>
           </div>
           <button id="mobile-toggle" class="md:hidden p-2 rounded-lg mobile-btn"
@@ -94,9 +94,11 @@
       <div class="flex-1 overflow-auto">
         <div class="max-w-5xl mx-auto px-8 py-8">
           <section class="mb-10">
-            <h2 id="lesson-header" class="text-lg font-semibold mb-4 text-color-main">What Makes Quantum Computing Different?</h2>
+            <h2 id="lesson-header" class="text-lg font-semibold mb-4 text-color-main">What Makes Quantum Computing
+              Different?</h2>
             <p id="lesson-explanation" class="text-base leading-relaxed text-color-muted">
-              คอมพิวเตอร์ควอนตัมใช้คิวบิตแทนบิตแบบคลาสสิก ทำให้สามารถแทนข้อมูลด้วยซูเปอร์โพซิชันและการแทรกสอด ซึ่งเปิดทางให้เกิดวิธีแก้ปัญหาแบบใหม่ในบางโจทย์
+              คอมพิวเตอร์ควอนตัมใช้คิวบิตแทนบิตแบบคลาสสิก ทำให้สามารถแทนข้อมูลด้วยซูเปอร์โพซิชันและการแทรกสอด
+              ซึ่งเปิดทางให้เกิดวิธีแก้ปัญหาแบบใหม่ในบางโจทย์
             </p>
           </section>
 
