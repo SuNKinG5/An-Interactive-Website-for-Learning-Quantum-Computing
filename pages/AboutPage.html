@@ -1,118 +1,147 @@
 <!doctype html>
-<html lang="th">
+<html lang="en" class="h-full">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Quantum Learn</title>
+  <title>About Us - Quantum Learning Platform</title>
 
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
-    rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link
     href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
     rel="stylesheet">
+
   <link rel="stylesheet" href="/src/styles/AboutPage.css">
 </head>
 
-<body>
-  <main class="about-shell">
-    <header class="about-header">
-      <a class="back-link" href="/index.html">
-        <i data-lucide="arrow-left" class="w-4 h-4"></i>
-        Back Home
-      </a>
-      <a class="ghost-link" href="/pages/LearnPage.html">Start with Lessons</a>
+<body class="h-full bg-white text-[#1e293b] font-['Google_Sans']">
+  <div id="app-wrapper" class="w-full h-full flex flex-col overflow-auto bg-white">
+
+    <header class="w-full border-b border-[#e8eef6] px-8 py-4 bg-white">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <a href="/index.html">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="13" stroke="#3b82f6" stroke-width="2" fill="none" />
+              <circle cx="16" cy="16" r="5" fill="#3b82f6" />
+              <circle cx="16" cy="4" r="3" fill="#60a5fa" />
+              <circle cx="16" cy="28" r="3" fill="#60a5fa" />
+              <line x1="16" y1="7" x2="16" y2="11" stroke="#93c5fd" stroke-width="2" />
+              <line x1="16" y1="21" x2="16" y2="25" stroke="#93c5fd" stroke-width="2" />
+            </svg>
+          </a>
+          <div>
+            <h1 id="page-title" class="text-lg font-bold tracking-tight font-['Space_Mono'] page-title">Quantum Practice
+            </h1>
+            <p class="text-xs text-[#94a3b8]">Explore the Quantum World</p>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <section class="about-hero">
-      <p class="eyebrow">Project Overview</p>
-      <h1>Why This Website Exists</h1>
-      <p class="hero-copy">
-        Quantum Learn ถูกออกแบบให้เป็นเว็บไซต์สื่อการสอนด้าน Quantum Computing ที่ผสานคำอธิบายที่อ่านเข้าใจง่ายเข้ากับกราฟิกและเครื่องมือแบบโต้ตอบ เป้าหมายคือทำให้แนวคิดนามธรรมอย่างซูเปอร์โพซิชัน เฟส และการทำงานของเกต กลายเป็นสิ่งที่ผู้เรียนมองเห็นและทดลองได้จริง
-      </p>
-    </section>
+    <main class="flex-1 flex flex-col">
 
-    <section class="about-grid">
-      <article class="about-card">
-        <div class="icon-wrap"><i data-lucide="book-open" class="w-5 h-5"></i></div>
-        <h2>Guided Learning</h2>
-        <p>หน้า Learn ปูพื้นฐานแนวคิดก่อน เพื่อให้ผู้เรียนเห็นทั้งภาพรวมและความหมายเชิงคณิตศาสตร์ก่อนเข้าสู่การทดลอง</p>
-      </article>
-      <article class="about-card">
-        <div class="icon-wrap"><i data-lucide="circle-dot" class="w-5 h-5"></i></div>
-        <h2>3D Visualization</h2>
-        <p>หน้า Bloch sphere ช่วยเปลี่ยนสถานะของคิวบิตเดี่ยวให้กลายเป็นภาพเชิงเรขาคณิต ทำให้เข้าใจการเคลื่อนที่ของสถานะได้ชัดขึ้น</p>
-      </article>
-      <article class="about-card">
-        <div class="icon-wrap"><i data-lucide="cpu" class="w-5 h-5"></i></div>
-        <h2>Simulation</h2>
-        <p>หน้า Simulator เปิดโอกาสให้ผู้ใช้ลองกดเกต แล้วสังเกตสถานะเดิมผ่านหลายมุมมอง เช่น ความน่าจะเป็น แอมพลิจูด และการเคลื่อนที่บน Bloch sphere</p>
-      </article>
-      <article class="about-card">
-        <div class="icon-wrap"><i data-lucide="route" class="w-5 h-5"></i></div>
-        <h2>Algorithm Walkthroughs</h2>
-        <p>หน้า Algorithms แยกแต่ละขั้นของวงจรออกมาเพื่อให้เข้าใจเหตุผลของแต่ละ operation แทนที่จะเห็นเพียงผลลัพธ์สุดท้าย</p>
-      </article>
-    </section>
-
-    <section class="about-panel">
-      <div>
-        <p class="panel-kicker">Architecture</p>
-        <h3>How The Site Is Organized</h3>
-      </div>
-      <div class="panel-grid">
-        <div class="panel-item">
-          <strong>Pages</strong>
-          <p>แต่ละหน้าถูกแยกตามหน้าที่ชัดเจน เช่น บทเรียน ซิมูเลเตอร์ Bloch sphere อัลกอริทึม แบบฝึกหัด และข้อมูลโครงการ</p>
+      <section class="hero-section w-full px-8 py-16 border-b border-[#e8eef6] bg-gradient-hero">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-12">
+            <div class="flex-1">
+              <h2 id="about-heading" class="text-4xl font-bold mb-4 text-[#0f172a]">เกี่ยวกับแพลตฟอร์มของเรา</h2>
+              <p class="text-lg mb-6 text-[#475569]">
+                ยินดีต้อนรับสู่แพลตฟอร์มการเรียนรู้ควอนตัม – ประตูสู่ความเข้าใจควอนตัมคอมพิวติ้ง อัลกอริทึม
+                และหลักการที่ขับเคลื่อนอนาคตของการประมวลผล
+              </p>
+              <p class="text-[#64748b] leading-[1.8]">
+                ไม่ว่าคุณจะเป็นมือใหม่ที่สนใจกลศาสตร์ควอนตัม หรือนักพัฒนาที่ต้องการนำอัลกอริทึมควอนตัมไปใช้งาน
+                เครื่องมือการเรียนรู้แบบอินเทอร์แอกทีฟของเราจะช่วยให้แนวคิดที่ซับซ้อนเข้าใจง่ายและน่าสนใจยิ่งขึ้น
+              </p>
+            </div>
+            <div class="flex-shrink-0">
+              <div class="quantum-orbit">
+                <div class="orbit-dot dot-1"></div>
+                <div class="orbit-dot dot-2"></div>
+                <div class="orbit-dot dot-3"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="panel-item">
-          <strong>Scripts</strong>
-          <p>สคริปต์ของแต่ละหน้ารับผิดชอบ interaction ส่วน logic ที่ใช้ซ้ำได้ด้านควอนตัมและการเรนเดอร์ถูกเก็บไว้ในโมดูลร่วม</p>
-        </div>
-        <div class="panel-item">
-          <strong>Graphics</strong>
-          <p>มีการใช้ภาพแบบ WebGL เพื่อให้การเปลี่ยนสถานะของคิวบิตมองเห็นได้จริง แทนการปล่อยให้เป็นแค่สัญลักษณ์ทางคณิตศาสตร์</p>
-        </div>
-        <div class="panel-item">
-          <strong>Learning Flow</strong>
-          <p>อ่านแนวคิดก่อน แล้วลองตอบแบบฝึก จากนั้นค่อยไปจำลองและย้อนกลับมาดูภาพอีกครั้งจนความเข้าใจเริ่มนิ่งขึ้น</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="about-panel">
-      <div>
-        <p class="panel-kicker">Learning Philosophy</p>
-        <h3>What “Complete” Means Here</h3>
-      </div>
-      <ul class="about-list">
-        <li>แต่ละหัวข้อควรอธิบายได้ทั้งเชิงสัญชาตญาณและเชิงนิยามอย่างเป็นระบบ</li>
-        <li>องค์ประกอบแบบโต้ตอบควรช่วยเสริมบทเรียน ไม่ใช่ทำให้ผู้เรียนหลุดจากประเด็น</li>
-        <li>การเชื่อมระหว่างทฤษฎี ภาพ และการฝึกปฏิบัติควรเป็นธรรมชาติ</li>
-        <li>ผู้เรียนควรย้อนกลับมาดูแนวคิดเดิมจากหลายมุมได้ตลอดเวลา</li>
-      </ul>
-    </section>
+      <section class="w-full px-8 py-16 border-b border-[#e8eef6]">
+        <div class="max-w-4xl mx-auto">
+          <h3 id="mission-heading" class="text-2xl font-bold mb-6 text-[#0f172a]">พันธกิจของเรา</h3>
+          <div class="rounded-2xl p-8 bg-[#eff6ff] border-[1.5px] border-[#bfdbfe]">
+            <p id="mission-text" class="text-lg mb-4 text-[#1e293b] leading-[1.9]">
+              เพื่อกระจายความรู้ด้านควอนตัมคอมพิวติ้งผ่านประสบการณ์การเรียนรู้ที่ตอบโต้ได้ เห็นภาพ และเข้าใจง่าย
+              เราเชื่อว่าทุกคนควรเข้าถึงควอนตัมคอมพิวติ้งได้ – ตั้งแต่นักเรียนที่กำลังค้นหาความสนใจ
+              ไปจนถึงมืออาชีพที่กำลังสร้างแอปพลิเคชันควอนตัมแห่งอนาคต
+            </p>
+            <div class="mt-6 flex items-start gap-4">
+              <i data-lucide="zap" class="w-6 h-6 text-[#3b82f6] shrink-0 mt-0.5"></i>
+              <div>
+                <p class="font-semibold mb-1 text-[#1e293b]">เรียนรู้จากการลงมือทำ</p>
+                <p class="text-[#64748b]">ฝึกฝนกับวงจรควอนตัมและอัลกอริทึมของจริงผ่านแบบฝึกหัดและแบบจำลองสถานการณ์</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section class="about-cta">
-      <div class="cta-copy">
-        <p class="panel-kicker">Continue Exploring</p>
-        <h3>Choose The Learning Path That Fits You</h3>
-        <p>คุณสามารถเริ่มจากบทเรียนก่อน กระโดดไปที่ซิมูเลเตอร์ทันที หรือใช้ Bloch sphere เป็นภาพประกอบขณะอ่านทฤษฎีก็ได้</p>
-      </div>
-      <div class="cta-actions">
-        <a class="primary-link" href="/pages/LearnPage.html">Open Lessons</a>
-        <a class="secondary-link" href="/pages/SimulatorPage.html">Open Simulator</a>
-        <a class="secondary-link" href="/pages/BlochSphere.html">Open Bloch Sphere</a>
-      </div>
-    </section>
-  </main>
+      <section class="w-full px-8 py-16 bg-white">
+        <div class="max-w-4xl mx-auto">
+          <h3 id="features-heading" class="text-2xl font-bold mb-12 text-center text-[#0f172a]">สิ่งที่เรามอบให้</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-  <script>
-    lucide.createIcons();
-  </script>
+            <div class="feature-card rounded-2xl p-6 border border-[#e8eef6] bg-[#f8fbff]">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-[#eff6ff]">
+                <i data-lucide="book-open" class="w-6 h-6 text-[#3b82f6]"></i>
+              </div>
+              <h4 class="text-lg font-semibold mb-2 text-[#0f172a]">เครื่องมือสำรวจอัลกอริทึม</h4>
+              <p class="text-[#64748b] leading-[1.6]">แสดงภาพการทำงานของอัลกอริทึมควอนตัมแบบทีละขั้นตอน เช่น Deutsch,
+                Grover และ Quantum Teleportation ดูการทำงานพร้อมติดตามแอมพลิจูดแบบเรียลไทม์</p>
+            </div>
+
+            <div class="feature-card rounded-2xl p-6 border border-[#e8eef6] bg-[#f8fbff]">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-[#eff6ff]">
+                <i data-lucide="help-circle" class="w-6 h-6 text-[#3b82f6]"></i>
+              </div>
+              <h4 class="text-lg font-semibold mb-2 text-[#0f172a]">แบบทดสอบอินเทอร์แอกทีฟ</h4>
+              <p class="text-[#64748b] leading-[1.6]">ทดสอบความรู้ด้วยแบบทดสอบที่ครอบคลุม Quantum Gates, Superposition,
+                Measurement และอื่นๆ รับผลลัพธ์ทันทีพร้อมคำอธิบายโดยละเอียด</p>
+            </div>
+
+            <div class="feature-card rounded-2xl p-6 border border-[#e8eef6] bg-[#f8fbff]">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-[#eff6ff]">
+                <i data-lucide="layers" class="w-6 h-6 text-[#3b82f6]"></i>
+              </div>
+              <h4 class="text-lg font-semibold mb-2 text-[#0f172a]">แนวคิดหลัก</h4>
+              <p class="text-[#64748b] leading-[1.6]">เจาะลึกหลักการพื้นฐานของกลศาสตร์ควอนตัม เช่น superposition,
+                entanglement, measurement และ interference ผ่านการสาธิตที่เห็นภาพชัดเจน</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full px-8 py-16 border-t border-[#e8eef6] bg-gradient-cta">
+        <div class="max-w-4xl mx-auto text-center">
+          <h3 class="text-2xl font-bold mb-3 text-[#0f172a]">พร้อมที่จะเริ่มเรียนรู้หรือยัง?</h3>
+          <p class="mb-8 text-base text-[#64748b]">
+            เจาะลึกบทเรียนแบบอินเทอร์แอกทีฟและสำรวจอาณาจักรควอนตัมด้วยการลงมือปฏิบัติจริง</p>
+          <a href="/pages/LearnPage.html" target="_blank"
+            class="inline-block px-8 py-3 rounded-lg font-semibold bg-[#3b82f6] text-white transition-all duration-200 hover:bg-[#2563eb] hover:shadow-[0_4px_12px_rgba(59,130,246,0.3)]">
+            เริ่มเรียนรู้เลย
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="/src/scripts/AboutPage.js"></script>
 </body>
 
 </html>
