@@ -1,3 +1,5 @@
+import { gateDetails, lessonsData } from "./Lessons.js";
+
 const defaultConfig = {
   background_color: "#ffffff",
   surface_color: "#f8fbff",
@@ -12,322 +14,7 @@ const defaultConfig = {
   next_btn: "Next Lesson",
 };
 
-const gateDetails = {
-  X: {
-    name: "Pauli-X",
-    copy:
-      "เกต X สลับสถานะฐาน |0> กับ |1> จึงมักถูกมองว่าเป็น NOT gate ของโลกควอนตัม",
-    effect:
-      "บน Bloch sphere เกต X คือการหมุนมุม pi รอบแกน X",
-    matrix: "[0  1]\n[1  0]",
-  },
-  Y: {
-    name: "Pauli-Y",
-    copy:
-      "เกต Y พลิกสถานะเหมือน X แต่เพิ่มเฟสเข้ามาด้วย ทำให้มีผลต่อการแทรกสอดของสถานะในขั้นตอนถัดไป",
-    effect:
-      "บน Bloch sphere เกต Y คือการหมุนมุม pi รอบแกน Y",
-    matrix: "[0  -i]\n[i   0]",
-  },
-  Z: {
-    name: "Pauli-Z",
-    copy:
-      "เกต Z ไม่เปลี่ยน |0> แต่ใส่เครื่องหมายลบให้กับ |1> จึงเปลี่ยนเฟสสัมพัทธ์โดยไม่เปลี่ยนความน่าจะเป็นใน computational basis",
-    effect:
-      "บน Bloch sphere เกต Z คือการหมุนมุม pi รอบแกน Z",
-    matrix: "[1   0]\n[0  -1]",
-  },
-};
 
-const lessonsData = [
-  {
-    category: "Quantum Basics",
-    title: "Quantum Computing Foundations",
-    header: "What Makes Quantum Computing Different?",
-    explanation:
-      "Quantum computing คือการประมวลผลข้อมูลด้วยระบบทางควอนตัม แทนที่จะเก็บข้อมูลเป็นบิตที่มีค่าได้แค่ 0 หรือ 1 เราใช้คิวบิตซึ่งมีแอมพลิจูดและเฟส ทำให้เกิดซูเปอร์โพซิชัน การแทรกสอด และการคำนวณแบบใหม่ที่เหมาะกับปัญหาบางชนิด เช่น การจำลองระบบฟิสิกส์ การค้นหา และการเพิ่มประสิทธิภาพเชิงโครงสร้าง",
-    workspaceHTML: `
-      <div class="workspace-stack">
-        <section class="rounded-[1.5rem] p-7 interactive-container">
-          <p class="subtle-kicker">Core Idea</p>
-          <div class="comparison-table">
-            <div class="comparison-row">
-              <div class="comparison-label">Classical Bit</div>
-              <p class="comparison-copy">บิตแบบดั้งเดิมเก็บค่าได้เพียง 0 หรือ 1 ในช่วงเวลาใดเวลาหนึ่ง และเกตแบบคลาสสิกจะเปลี่ยนค่านั้นตามกฎเชิงตรรกะที่แน่นอน</p>
-            </div>
-            <div class="comparison-row">
-              <div class="comparison-label">Qubit</div>
-              <p class="comparison-copy">คิวบิตเก็บแอมพลิจูดของ |0> และ |1> พร้อมกันได้ ทำให้เส้นทางของการคำนวณมีความสำคัญพอ ๆ กับผลลัพธ์สุดท้าย</p>
-            </div>
-            <div class="comparison-row">
-              <div class="comparison-label">Advantage</div>
-              <p class="comparison-copy">คอมพิวเตอร์ควอนตัมไม่ได้เร็วกว่าในทุกโจทย์ แต่ในปัญหาที่มีโครงสร้างเหมาะสม มันสามารถแทนสถานะและแปลงข้อมูลได้อย่างมีประสิทธิภาพกว่า</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="lesson-grid">
-          <article class="lesson-card">
-            <h3>Representation</h3>
-            <p>สถานะควอนตัมอธิบายด้วยเวกเตอร์ แอมพลิจูด และเฟส ไม่ได้มีแค่คำตอบแบบจริงหรือเท็จเหมือนตรรกะคลาสสิก</p>
-          </article>
-          <article class="lesson-card">
-            <h3>Evolution</h3>
-            <p>เกตควอนตัมคือเมทริกซ์ยูนิตารีที่หมุนและผสมแอมพลิจูดของสถานะอย่างย้อนกลับได้</p>
-          </article>
-          <article class="lesson-card">
-            <h3>Measurement</h3>
-            <p>เมื่อวัดคิวบิต เราจะได้ผลลัพธ์แบบคลาสสิก และแอมพลิจูดจะกลายเป็นความน่าจะเป็นของผลที่สังเกตได้</p>
-          </article>
-        </section>
-
-        <section class="rounded-[1.5rem] p-7 visual-container">
-          <p class="subtle-kicker">Learning Roadmap</p>
-          <ul class="bullet-list">
-            <li>เริ่มจากคิวบิตเดี่ยวและทำความเข้าใจว่ามันถูกมองบน Bloch sphere อย่างไร</li>
-            <li>ต่อด้วยซูเปอร์โพซิชันและเอนแทงเกิลเมนต์ ซึ่งอธิบายว่าทำไมระบบควอนตัมจึงต่างจากระบบคลาสสิก</li>
-            <li>จากนั้นจึงไปสู่เกตและอัลกอริทึม เพื่อเชื่อมแนวคิดเข้ากับการจำลองแบบโต้ตอบ</li>
-          </ul>
-        </section>
-      </div>
-    `,
-  },
-  {
-    category: "Quantum Basics",
-    title: "Understanding the Qubit",
-    header: "What Is a Qubit?",
-    explanation:
-      "คิวบิตคือหน่วยข้อมูลพื้นฐานของระบบควอนตัม มันสามารถอธิบายได้เป็นเวกเตอร์ที่มีสองทิศฐานคือ |0> และ |1> ก่อนการวัด จุดของสถานะสามารถอยู่ระหว่างสองขั้วนี้ได้ ซึ่งหมายความว่ามันไม่จำเป็นต้องเป็นค่าแบบคลาสสิกเพียงค่าเดียว",
-    workspaceHTML: `
-      <div class="workspace-stack">
-        <section class="rounded-[1.5rem] p-7 visual-container">
-          <p class="subtle-kicker">Bloch Sphere Intuition</p>
-          <div class="flex flex-col lg:flex-row items-center gap-8">
-            <div class="flex-1 flex justify-center">
-              <svg class="bloch-sphere" viewBox="0 0 320 320" width="300" height="300" fill="none">
-                <circle cx="160" cy="160" r="112" stroke="#bfdbfe" stroke-width="2" />
-                <ellipse cx="160" cy="160" rx="112" ry="42" stroke="#dbeafe" stroke-width="2" />
-                <line x1="160" y1="48" x2="160" y2="272" stroke="#dbeafe" stroke-width="2" stroke-dasharray="5 5" />
-                <line x1="160" y1="160" x2="224" y2="112" stroke="#2563eb" stroke-width="3" />
-                <circle cx="224" cy="112" r="6" fill="#2563eb" />
-                <text x="160" y="34" text-anchor="middle" fill="#2563eb" class="sphere-text">|0&gt;</text>
-                <text x="160" y="294" text-anchor="middle" fill="#2563eb" class="sphere-text">|1&gt;</text>
-                <text x="52" y="164" text-anchor="middle" fill="#60a5fa" class="sphere-text">-x</text>
-                <text x="268" y="164" text-anchor="middle" fill="#60a5fa" class="sphere-text">+x</text>
-              </svg>
-            </div>
-            <div class="flex-1 space-y-4">
-              <p class="text-sm leading-7 text-color-muted">ขั้วเหนือของทรงกลมแทน <span class="inline-ket">|0&gt;</span> ส่วนขั้วใต้แทน <span class="inline-ket">|1&gt;</span> สถานะบริสุทธิ์ของคิวบิตเดี่ยวสามารถแทนได้ด้วยจุดหนึ่งบนผิวทรงกลมนี้</p>
-              <div class="math-chip-row">
-                <span class="math-chip">|psi&gt; = alpha|0&gt; + beta|1&gt;</span>
-                <span class="math-chip">|alpha|^2 + |beta|^2 = 1</span>
-              </div>
-              <p class="text-sm leading-7 text-color-muted">การเปลี่ยนมุมจะเปลี่ยนสัดส่วนระหว่าง |0&gt; กับ |1&gt; ส่วนการเปลี่ยนเฟสจะส่งผลต่อการแทรกสอดเมื่อผ่านเกตในขั้นตอนต่อไป</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="rounded-[1.5rem] p-7 interactive-container">
-          <p class="subtle-kicker">Probability Explorer</p>
-          <div class="flex items-center justify-between mb-3">
-            <label class="text-sm font-medium text-color-main" for="probability-slider">ความน่าจะเป็นของ |0&gt;</label>
-            <span id="prob-0" class="text-sm font-semibold prob-text">50%</span>
-          </div>
-          <input id="probability-slider" type="range" min="0" max="100" value="50" class="w-full h-2 rounded-lg custom-slider" oninput="updateProbability(this.value)">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <div class="rounded-xl p-4 state-box">
-              <p class="text-xs mb-1 text-color-muted">Basis State |0&gt;</p>
-              <p id="state-0" class="text-lg font-bold prob-text">50%</p>
-              <p class="text-sm text-color-muted mt-2">Amplitude: <span id="amp-0" class="inline-ket">0.707</span></p>
-            </div>
-            <div class="rounded-xl p-4 state-box">
-              <p class="text-xs mb-1 text-color-muted">Basis State |1&gt;</p>
-              <p id="state-1" class="text-lg font-bold text-blue-400">50%</p>
-              <p class="text-sm text-color-muted mt-2">Amplitude: <span id="amp-1" class="inline-ket">0.707</span></p>
-            </div>
-          </div>
-        </section>
-      </div>
-    `,
-  },
-  {
-    category: "Quantum Basics",
-    title: "Superposition",
-    header: "Why Can a Qubit Be Both 0 and 1?",
-    explanation:
-      "ซูเปอร์โพซิชันหมายถึงการเตรียมคิวบิตให้มีแอมพลิจูดอยู่บนทั้งสองสถานะฐานพร้อมกัน นั่นไม่ได้แปลว่าเราอ่านได้สองคำตอบพร้อมกัน แต่หมายความว่าแอมพลิจูดเหล่านี้พัฒนาไปด้วยกันจนกว่าจะมีการวัด ทำให้เกตในลำดับถัดไปสามารถเสริมและหักล้างผลลัพธ์กันได้",
-    workspaceHTML: `
-      <div class="workspace-stack">
-        <section class="rounded-[1.5rem] p-7 interactive-container">
-          <p class="subtle-kicker">Measurement Simulator</p>
-          <div class="measure-shell text-center">
-            <div class="measure-orb">
-              <span>|psi&gt;</span>
-            </div>
-            <p class="text-sm leading-7 text-color-muted">คิวบิตนี้อยู่ในซูเปอร์โพซิชันแบบสมดุล ซึ่งมักสร้างได้โดยใช้ Hadamard gate กับ <span class="inline-ket">|0&gt;</span> เมื่อทำการวัด สถานะจะยุบลงเป็นผลลัพธ์แบบคลาสสิกเพียงค่าเดียว</p>
-            <button class="measure-btn" onclick="measureQubit()">Measure Qubit</button>
-            <div id="measurement-result" class="result-banner">ยังไม่ได้วัด สถานะนี้มีโอกาสออก |0&gt; และ |1&gt; อย่างละ 50%</div>
-          </div>
-        </section>
-
-        <section class="lesson-grid">
-          <article class="lesson-card">
-            <h3>Not Classical Uncertainty</h3>
-            <p>เหรียญที่ยังไม่ได้เปิดดูมีผลลัพธ์จริงซ่อนอยู่แล้ว แต่คิวบิตในซูเปอร์โพซิชันถูกอธิบายด้วยแอมพลิจูดทั้งสองส่วนอย่างแท้จริง</p>
-          </article>
-          <article class="lesson-card">
-            <h3>Interference Matters</h3>
-            <p>แอมพลิจูดเป็นจำนวนเชิงซ้อน จึงสามารถเสริมกันหรือหักล้างกันได้ นี่คือหัวใจของอัลกอริทึมควอนตัมจำนวนมาก</p>
-          </article>
-          <article class="lesson-card">
-            <h3>Measurement Collapse</h3>
-            <p>หลังการวัด คิวบิตจะไม่อยู่ในซูเปอร์โพซิชันของ basis เดิมอีกต่อไป แต่กลายเป็นผลลัพธ์แบบคลาสสิกที่นำไปใช้งานต่อได้</p>
-          </article>
-        </section>
-      </div>
-    `,
-  },
-  {
-    category: "Quantum Basics",
-    title: "Entanglement",
-    header: "Why Must Two Qubits Be Described Together?",
-    explanation:
-      "เอนแทงเกิลเมนต์เกิดขึ้นเมื่อสถานะของหลายคิวบิตไม่สามารถแยกอธิบายเป็นแต่ละตัวแบบอิสระได้อีกต่อไป เราจึงต้องอธิบายระบบทั้งหมดพร้อมกัน และเมื่อมีการวัด ผลลัพธ์จะสัมพันธ์กันในแบบที่สัญชาตญาณเชิงคลาสสิกอธิบายได้ยาก",
-    workspaceHTML: `
-      <div class="workspace-stack">
-        <section class="rounded-[1.5rem] p-7 visual-container">
-          <p class="subtle-kicker">Bell Pair Story</p>
-          <div class="lesson-grid">
-            <article class="lesson-card">
-              <h3>Step 1</h3>
-              <p>เริ่มด้วยคิวบิตสองตัวในสถานะ <span class="inline-ket">|00&gt;</span> แล้วใช้ Hadamard กับคิวบิตตัวแรกเพื่อสร้างซูเปอร์โพซิชัน</p>
-            </article>
-            <article class="lesson-card">
-              <h3>Step 2</h3>
-              <p>ใช้ controlled-X เพื่อให้คิวบิตตัวที่สองตามตัวแรก สถานะจะกลายเป็น <span class="inline-ket">( |00&gt; + |11&gt; ) / sqrt(2)</span></p>
-            </article>
-            <article class="lesson-card">
-              <h3>Step 3</h3>
-              <p>เมื่อวัดคิวบิตตัวใดตัวหนึ่ง ผลลัพธ์ของทั้งคู่จะสัมพันธ์กัน แม้แต่ละตัวจะดูสุ่มเมื่อมองแยกกัน</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="rounded-[1.5rem] p-7 interactive-container">
-          <p class="subtle-kicker">What Entanglement Changes</p>
-          <ul class="bullet-list">
-            <li>สถานะของระบบต้องเขียนเป็นเวกเตอร์ร่วม ไม่ใช่เรื่องเล่าของคิวบิตแต่ละตัวแบบแยกขาด</li>
-            <li>ความสัมพันธ์ที่เห็นไม่ได้เกิดจากการส่งสัญญาณคลาสสิกหลังการวัด แต่เกิดจากโครงสร้างของสถานะควอนตัมตั้งแต่ต้น</li>
-            <li>แนวคิดนี้เป็นพื้นฐานของ quantum teleportation, error correction และวงจรที่ต้องอาศัยการประสานสถานะหลายคิวบิต</li>
-          </ul>
-          <div class="timeline-note mt-6">
-            ถ้าคู่คิวบิตเอนแทงเกิลกันอย่างเต็มที่ การรู้ผลของตัวแรกจะบอกข้อจำกัดของผลลัพธ์ที่เป็นไปได้ของตัวที่สองใน basis เดียวกันทันที
-          </div>
-        </section>
-      </div>
-    `,
-  },
-  {
-    category: "Quantum Gates",
-    title: "Pauli Gates",
-    header: "How Do the Basic Single-Qubit Gates Work?",
-    explanation:
-      "เกต Pauli ได้แก่ X, Y และ Z เป็นเกตพื้นฐานที่กำหนดเรขาคณิตของการเคลื่อนที่ของคิวบิตเดี่ยวบน Bloch sphere แม้มันจะดูเรียบง่าย แต่แทบทุกวงจรที่ซับซ้อนกว่าล้วนสร้างต่อยอดจากเกตชุดนี้",
-    workspaceHTML: `
-      <div class="workspace-stack">
-        <section class="rounded-[1.5rem] p-7 visual-container">
-          <p class="subtle-kicker">Choose a Gate</p>
-          <div class="gate-grid">
-            <button class="gate-card" data-gate="X" onclick="showGateDetails('X')">
-              <span class="gate-symbol">X</span>
-              <h3>Pauli-X</h3>
-              <p>Bit flip between |0&gt; and |1&gt;</p>
-            </button>
-            <button class="gate-card" data-gate="Y" onclick="showGateDetails('Y')">
-              <span class="gate-symbol">Y</span>
-              <h3>Pauli-Y</h3>
-              <p>Bit flip with an added phase change</p>
-            </button>
-            <button class="gate-card" data-gate="Z" onclick="showGateDetails('Z')">
-              <span class="gate-symbol">Z</span>
-              <h3>Pauli-Z</h3>
-              <p>Phase flip on the |1&gt; component</p>
-            </button>
-          </div>
-        </section>
-
-        <section class="detail-card">
-          <h4 id="gate-detail-name">Pauli-X</h4>
-          <p id="gate-detail-copy">เกต X สลับสถานะฐานของคิวบิต และทำหน้าที่คล้าย NOT gate ในโลกควอนตัม</p>
-          <div id="gate-detail-matrix" class="detail-matrix">[0  1]
-[1  0]</div>
-          <p id="gate-detail-effect" class="text-sm text-color-muted mt-3">บน Bloch sphere เกต X คือการหมุนมุม pi รอบแกน X</p>
-        </section>
-      </div>
-    `,
-  },
-  {
-    category: "Quantum Gates",
-    title: "Rotation Gates",
-    header: "Why Are Rotation Gates More Flexible?",
-    explanation:
-      "เกตหมุนช่วยให้เราหมุนคิวบิตได้ตามมุมที่ต้องการรอบแกนที่เลือก มันเป็นการขยายแนวคิดจากเกต Pauli ทำให้วงจรสามารถเตรียมสถานะได้อย่างละเอียด ไม่ได้จำกัดอยู่แค่การพลิกครึ่งรอบแบบเต็ม ๆ",
-    workspaceHTML: `
-      <div class="workspace-stack">
-        <section class="rounded-[1.5rem] p-7 interactive-container">
-          <p class="subtle-kicker">Rotation Playground</p>
-          <div class="math-chip-row mb-6">
-            <button class="gate-card is-active" data-axis="x" onclick="setRotationAxis('x')">
-              <span class="gate-symbol">Rx</span>
-              <h3>Rotate Around X</h3>
-              <p>Moves the state through the YZ plane</p>
-            </button>
-            <button class="gate-card" data-axis="y" onclick="setRotationAxis('y')">
-              <span class="gate-symbol">Ry</span>
-              <h3>Rotate Around Y</h3>
-              <p>Moves the state through the XZ plane</p>
-            </button>
-            <button class="gate-card" data-axis="z" onclick="setRotationAxis('z')">
-              <span class="gate-symbol">Rz</span>
-              <h3>Rotate Around Z</h3>
-              <p>Adjusts phase around the vertical axis</p>
-            </button>
-          </div>
-
-          <label class="text-sm font-medium text-color-main" for="rotation-slider">Rotation Angle</label>
-          <div class="slider-row mt-3">
-            <input id="rotation-slider" type="range" min="0" max="180" value="90" class="w-full h-2 rounded-lg custom-slider" oninput="updateRotationDemo(this.value)">
-            <span class="slider-value"><span id="rotation-angle">90</span> องศา</span>
-          </div>
-
-          <div class="rotation-meter mt-5">
-            <div id="rotation-fill" class="rotation-fill"></div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <div class="state-box rounded-xl p-4">
-              <p class="text-xs text-color-muted mb-1">Current Gate</p>
-              <p id="rotation-gate-label" class="text-lg font-bold prob-text">Rx(90 deg)</p>
-            </div>
-            <div class="state-box rounded-xl p-4">
-              <p class="text-xs text-color-muted mb-1">Interpretation</p>
-              <p id="rotation-description" class="text-sm leading-7 text-color-muted">การหมุนหนึ่งในสี่รอบทำให้สถานะเปลี่ยนอย่างชัดเจน แต่ยังไม่ถึงขั้วตรงข้ามของทรงกลม</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="rounded-[1.5rem] p-7 visual-container">
-          <p class="subtle-kicker">Why This Matters</p>
-          <ul class="bullet-list">
-            <li>เกตหมุนช่วยเตรียมสถานะคิวบิตได้หลากหลายกว่าการใช้เพียงเกตพื้นฐานแบบเต็มรอบ</li>
-            <li>มุมที่ละเอียดมีความสำคัญต่อ variational algorithms การคาลิเบรต และการควบคุมฮาร์ดแวร์จริง</li>
-            <li>บนฮาร์ดแวร์หลายแบบ เกตพื้นฐานระดับเครื่องถูกสร้างขึ้นมาในรูปของการหมุนรอบแกนต่าง ๆ อยู่แล้ว</li>
-          </ul>
-        </section>
-      </div>
-    `,
-  },
-];
 
 let currentLessonIndex = 0;
 let activeRotationAxis = "x";
@@ -522,6 +209,19 @@ function initLessonInteractions(index) {
     setRotationAxis("x");
     updateRotationDemo(document.getElementById("rotation-slider")?.value || "90");
   }
+
+  if (index === 3) {
+    // รีเซ็ตค่าเริ่มต้นเสมอเมื่อเปิดบทเรียนใหม่
+    l4_qx = 0; l4_qy = 0; l4_qz = 1; 
+    l4_sphereRotX = -15; l4_sphereRotY = -30;
+    
+    // ตั้งเวลาหน่วงนิดนึงให้ DOM โหลดเสร็จก่อนจับ Event ลากหมุน
+    setTimeout(() => {
+      initL4Drag();
+      updateL4Vector();
+      lucide.createIcons();
+    }, 100);
+  }
 }
 
 function loadLesson(index) {
@@ -552,6 +252,408 @@ function goToNextLesson() {
   loadLesson(currentLessonIndex + 1);
 }
 
+// --- Lesson 1 Interactive Functions ---
+
+function toggleBit(elementId) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  // สลับค่า 0 กับ 1
+  if (el.textContent === "0") {
+    el.textContent = "1";
+    el.classList.remove("text-slate-800");
+    el.classList.add("text-blue-600");
+  } else {
+    el.textContent = "0";
+    el.classList.remove("text-blue-600");
+    el.classList.add("text-slate-800");
+  }
+}
+
+function updateQubitSlider(value) {
+  const q0 = 100 - value;
+  const q1 = value;
+
+  document.getElementById("sim2-q0").textContent = q0;
+  document.getElementById("sim2-q1").textContent = q1;
+  document.getElementById("sim2-bar0").style.width = `${q0}%`;
+  document.getElementById("sim2-bar1").style.width = `${q1}%`;
+}
+
+// ตัวแปรสำหรับเช็คสถานะ Animation ป้องกันการกดซ้ำ
+let isSearching = false;
+
+function resetSearchBoxes() {
+  const boxes = ['box-1', 'box-5', 'box-9', 'box-12', 'box-20'];
+  boxes.forEach(id => {
+    const el = document.getElementById(id);
+    el.className = "w-12 h-12 flex items-center justify-center border-2 rounded-xl bg-white text-lg font-bold text-slate-400 transition-all";
+  });
+}
+
+function runClassicalSearch() {
+  if (isSearching) return;
+  isSearching = true;
+  resetSearchBoxes();
+
+  const statusEl = document.getElementById("search-status");
+  statusEl.textContent = "กำลังไล่หาทีละกล่อง...";
+  statusEl.className = "text-sm font-medium text-slate-600 bg-slate-100 inline-block px-4 py-1.5 rounded-full";
+
+  const sequence = ['box-1', 'box-5', 'box-9']; // สมมติว่าเจอที่กล่องที่ 3
+
+  sequence.forEach((boxId, index) => {
+    setTimeout(() => {
+      const el = document.getElementById(boxId);
+      // ไฮไลท์ตอนกำลังตรวจ
+      el.classList.add("border-amber-400", "text-amber-600", "bg-amber-50");
+
+      setTimeout(() => {
+        if (boxId === 'box-9') {
+          // เจอแล้ว
+          el.className = "w-12 h-12 flex items-center justify-center border-2 rounded-xl bg-green-500 text-lg font-bold text-white shadow-lg transform scale-110 transition-all";
+          statusEl.innerHTML = `เจอเลข 9 แล้ว! <span class="text-amber-600">ใช้เวลาหา 3 รอบ</span> (ไล่ทีละตัว)`;
+          isSearching = false;
+        } else {
+          // ไม่ใช่ ให้เป็นสีเทาไป
+          el.className = "w-12 h-12 flex items-center justify-center border-2 rounded-xl bg-slate-100 text-lg font-bold text-slate-300 transition-all opacity-50";
+        }
+      }, 400); // ระยะเวลาที่สว่างขึ้นมา
+    }, index * 800); // หน่วงเวลาแต่ละกล่อง 0.8 วินาที
+  });
+}
+
+function runQuantumSearch() {
+  if (isSearching) return;
+  isSearching = true;
+  resetSearchBoxes();
+
+  const statusEl = document.getElementById("search-status");
+  statusEl.textContent = "Qubits กำลังประมวลผลทุกกล่องพร้อมกัน (Superposition)...";
+  statusEl.className = "text-sm font-medium text-blue-600 bg-blue-50 inline-block px-4 py-1.5 rounded-full";
+
+  // Step 1: สว่างทุกกล่องพร้อมกัน (Superposition)
+  setTimeout(() => {
+    const allBoxes = ['box-1', 'box-5', 'box-9', 'box-12', 'box-20'];
+    allBoxes.forEach(id => {
+      document.getElementById(id).className = "w-12 h-12 flex items-center justify-center border-2 border-blue-300 rounded-xl bg-blue-50 text-lg font-bold text-blue-500 transition-all shadow-[0_0_15px_rgba(59,130,246,0.5)]";
+    });
+
+    // Step 2: คำตอบโผล่ขึ้นมาทันที (Interference/Grover's)
+    setTimeout(() => {
+      allBoxes.forEach(id => {
+        const el = document.getElementById(id);
+        if (id === 'box-9') {
+          el.className = "w-12 h-12 flex items-center justify-center border-2 rounded-xl bg-blue-600 text-lg font-bold text-white shadow-lg shadow-blue-300 transform scale-110 transition-all";
+        } else {
+          el.className = "w-12 h-12 flex items-center justify-center border-2 rounded-xl bg-slate-50 text-lg font-bold text-slate-200 transition-all opacity-30";
+        }
+      });
+      statusEl.innerHTML = `เจอเลข 9 แล้ว! <span class="text-blue-600">เจอได้ในพริบตา</span> เพราะประมวลผลพร้อมกัน`;
+      isSearching = false;
+    }, 1000); // โชว์ superposition 1 วินาที
+  }, 100);
+}
+
+// --- Lesson 2 Interactive Functions ---
+
+function toggleL2Bit() {
+  const el = document.getElementById("l2-bit-display");
+  if (!el) return;
+  if (el.textContent === "0") {
+    el.textContent = "1";
+    el.classList.replace("text-slate-400", "text-slate-800");
+  } else {
+    el.textContent = "0";
+    el.classList.replace("text-slate-800", "text-slate-400");
+  }
+}
+
+let isCoinSpinning = true;
+let spinInterval;
+
+function spinCoin() {
+  const coin = document.getElementById("coin-element");
+  const text = document.getElementById("coin-text");
+  const status = document.getElementById("coin-status");
+
+  if (!coin) return;
+
+  isCoinSpinning = true;
+  // เปลี่ยน animate-spin เป็น animate-coin-flip
+  coin.classList.add("animate-coin-flip", "border-dashed", "bg-yellow-300");
+  coin.classList.remove("bg-yellow-200");
+
+  text.textContent = "0/1";
+  text.classList.remove("text-4xl");
+  text.classList.add("text-2xl");
+  status.textContent = "เหรียญกำลังหมุน! เป็นทั้ง 0 และ 1 พร้อมกัน (Superposition)";
+  status.className = "text-sm font-medium text-blue-600 mt-4 h-6";
+}
+
+function stopCoin() {
+  const coin = document.getElementById("coin-element");
+  const text = document.getElementById("coin-text");
+  const status = document.getElementById("coin-status");
+
+  if (!coin || !isCoinSpinning) return;
+
+  isCoinSpinning = false;
+  // ถอด animate-coin-flip ออกเมื่อกดหยุด
+  coin.classList.remove("animate-coin-flip", "border-dashed", "bg-yellow-300");
+  coin.classList.add("bg-yellow-200");
+
+  // สุ่ม 0 หรือ 1
+  const result = Math.random() < 0.5 ? "0" : "1";
+  text.textContent = result;
+  text.classList.remove("text-2xl");
+  text.classList.add("text-4xl");
+
+  status.textContent = `เหรียญหยุดแล้ว! ออกผลลัพธ์เป็น ${result}`;
+  status.className = "text-sm font-bold text-rose-600 mt-4 h-6";
+}
+
+// ค่าเริ่มต้นของ Probability
+let currentProb0 = 70;
+
+function updateL2Probability(value) {
+  currentProb0 = Number(value);
+  const prob1 = 100 - currentProb0;
+
+  // Update Text
+  document.getElementById("prob-val-0").textContent = currentProb0;
+  document.getElementById("prob-val-1").textContent = prob1;
+
+  // Update Bars
+  document.getElementById("prob-bar-0").style.width = `${currentProb0}%`;
+  document.getElementById("prob-bar-1").style.width = `${prob1}%`;
+
+  // ซ่อน Overlay ถ้ายูสเซอร์เลื่อน Slider ใหม่ (เตรียมวัดค่าใหม่)
+  document.getElementById("measure-overlay").classList.add("hidden");
+  document.getElementById("measure-overlay").classList.remove("flex");
+}
+
+function measureL2Qubit() {
+  const overlay = document.getElementById("measure-overlay");
+  const resultText = document.getElementById("measure-result");
+
+  if (!overlay) return;
+
+  // สุ่มตัวเลข 0-100 เทียบกับโอกาสของ 0
+  const randomRoll = Math.random() * 100;
+  const finalResult = randomRoll < currentProb0 ? "0" : "1";
+
+  // แสดงผล
+  resultText.textContent = finalResult;
+  overlay.classList.remove("hidden");
+  overlay.classList.add("flex");
+
+  // Animation เล็กน้อยให้ดู Impact
+  overlay.animate([
+    { opacity: 0, transform: 'scale(0.95)' },
+    { opacity: 1, transform: 'scale(1)' }
+  ], { duration: 200, easing: 'ease-out' });
+}
+
+// Register Window Functions สำหรับ Lesson 2
+window.toggleL2Bit = toggleL2Bit;
+window.spinCoin = spinCoin;
+window.stopCoin = stopCoin;
+window.updateL2Probability = updateL2Probability;
+window.measureL2Qubit = measureL2Qubit;
+
+// ตอน Load บทเรียน อย่าลืมสั่งหมุนเหรียญเป็นค่าเริ่มต้น
+const originalLoadLesson = window.loadLesson;
+window.loadLesson = function (index) {
+  originalLoadLesson(index);
+  if (index === 1) { // ถ้าเป็นบทที่ 2 (index 1)
+    setTimeout(() => {
+      spinCoin();
+      lucide.createIcons(); // วาด icon ใหม่
+    }, 100);
+  }
+};
+
+// --- Lesson 3 Interactive Functions ---
+
+let l3Prob0 = 70; // ค่าเริ่มต้น P(0)
+
+function updateL3Slider(value) {
+  l3Prob0 = parseInt(value);
+  const l3Prob1 = 100 - l3Prob0;
+  
+  // อัปเดตตัวเลขเปอร์เซ็นต์
+  document.getElementById("l3-val-0").textContent = l3Prob0;
+  document.getElementById("l3-val-1").textContent = l3Prob1;
+  
+  // อัปเดตกราฟแท่ง (Probability)
+  document.getElementById("l3-bar-0").style.width = `${l3Prob0}%`;
+  document.getElementById("l3-bar-1").style.width = `${l3Prob1}%`;
+  
+  // รีเซ็ตผลการทดลอง (เผื่อผู้ใช้เปลี่ยนค่ากลางคัน)
+  document.getElementById("l3-single-result").textContent = "?";
+  document.getElementById("l3-single-result").className = "text-5xl font-bold text-slate-300 font-['Space_Mono'] transition-all";
+  
+  document.getElementById("l3-multi-count-0").textContent = "0";
+  document.getElementById("l3-multi-count-1").textContent = "0";
+  document.getElementById("l3-multi-bar-0").style.width = "0%";
+  document.getElementById("l3-multi-bar-1").style.width = "0%";
+  document.getElementById("l3-multi-insight").textContent = "คุณเปลี่ยนความน่าจะเป็น ลองรันการทดลองใหม่ดูสิ!";
+}
+
+function measureL3Single() {
+  const resultEl = document.getElementById("l3-single-result");
+  
+  // สุ่ม 0-100 เทียบกับ l3Prob0
+  const randomRoll = Math.random() * 100;
+  const finalResult = randomRoll < l3Prob0 ? "0" : "1";
+  
+  // แสดงผล
+  resultEl.textContent = finalResult;
+  resultEl.className = `text-6xl font-bold font-['Space_Mono'] transition-all transform scale-110 ${finalResult === "0" ? "text-slate-700" : "text-blue-600"}`;
+  
+  // เด้งกลับขนาดเดิม
+  setTimeout(() => {
+    resultEl.classList.remove("scale-110", "text-6xl");
+    resultEl.classList.add("text-5xl");
+  }, 200);
+}
+
+function runL3Multi(times) {
+  let count0 = 0;
+  let count1 = 0;
+  
+  // จำลองการวัดผลหลายรอบ
+  for (let i = 0; i < times; i++) {
+    const randomRoll = Math.random() * 100;
+    if (randomRoll < l3Prob0) {
+      count0++;
+    } else {
+      count1++;
+    }
+  }
+  
+  // คำนวณความยาวของกราฟผลลัพธ์ (เทียบจากจำนวนครั้งทั้งหมด)
+  const pct0 = (count0 / times) * 100;
+  const pct1 = (count1 / times) * 100;
+  
+  // อัปเดต UI
+  document.getElementById("l3-multi-count-0").textContent = count0;
+  document.getElementById("l3-multi-count-1").textContent = count1;
+  document.getElementById("l3-multi-bar-0").style.width = `${pct0}%`;
+  document.getElementById("l3-multi-bar-1").style.width = `${pct1}%`;
+  
+  // แสดง Insight สรุป
+  const insightEl = document.getElementById("l3-multi-insight");
+  if (times >= 50) {
+    insightEl.innerHTML = `สังเกตไหมว่าสัดส่วนผลลัพธ์ <strong class="text-white">${pct0.toFixed(0)}% / ${pct1.toFixed(0)}%</strong> ใกล้เคียงกับ P(0)=${l3Prob0}% / P(1)=${100-l3Prob0}% ที่เราตั้งไว้มาก!`;
+  } else {
+    insightEl.textContent = "รันจำนวนน้อยครั้ง ผลลัพธ์อาจจะยังแกว่งอยู่ ลองรัน 100 ครั้งดูสิ!";
+  }
+}
+
+// --- Lesson 4 Interactive Functions (Bloch Sphere) ---
+
+// พิกัด 3D ของ Quantum State (เริ่มที่ขั้วเหนือ |0>)
+let l4_qx = 0; 
+let l4_qy = 0; 
+let l4_qz = 1;
+
+// ตัวแปรสำหรับหมุนมุมกล้องของลูกบอล
+let l4_isDragging = false;
+let l4_prevMousePos = { x: 0, y: 0 };
+let l4_sphereRotX = -15;
+let l4_sphereRotY = -30;
+
+function initL4Drag() {
+  const container = document.getElementById('l4-sphere-container');
+  if(!container) return;
+  
+  // ลบ Event Listener เก่าทิ้งก่อน (ป้องกันการผูกซ้ำถ้าโหลดบทเรียนซ้ำ)
+  container.onmousedown = null;
+  window.onmouseup = null;
+  window.onmousemove = null;
+
+  container.onmousedown = (e) => {
+    l4_isDragging = true;
+    l4_prevMousePos = { x: e.clientX, y: e.clientY };
+    container.classList.add('cursor-grabbing');
+  };
+
+  window.onmouseup = () => {
+    l4_isDragging = false;
+    if(container) container.classList.remove('cursor-grabbing');
+  };
+
+  window.onmousemove = (e) => {
+    if (!l4_isDragging) return;
+    const deltaX = e.clientX - l4_prevMousePos.x;
+    const deltaY = e.clientY - l4_prevMousePos.y;
+    
+    l4_sphereRotY += deltaX * 0.6;
+    l4_sphereRotX -= deltaY * 0.6; 
+    
+    // จำกัดการก้ม/เงย ไม่ให้ตีลังกา
+    l4_sphereRotX = Math.max(-80, Math.min(80, l4_sphereRotX));
+    
+    document.getElementById('l4-bloch-sphere').style.transform = `rotateX(${l4_sphereRotX}deg) rotateY(${l4_sphereRotY}deg)`;
+    l4_prevMousePos = { x: e.clientX, y: e.clientY };
+  };
+}
+
+function updateL4Vector() {
+  // Normalize (ป้องกันตัวเลขคลาดเคลื่อนจากการหมุนหลายรอบ)
+  const r = Math.sqrt(l4_qx*l4_qx + l4_qy*l4_qy + l4_qz*l4_qz);
+  l4_qx /= r; l4_qy /= r; l4_qz /= r;
+
+  // แปลงพิกัด 3D กลับเป็นมุม Theta (ขั้ว) และ Phi (เส้นศูนย์สูตร)
+  const theta = Math.acos(l4_qz) * 180 / Math.PI;
+  const phi = Math.atan2(l4_qy, l4_qx) * 180 / Math.PI;
+
+  const container = document.getElementById('l4-vector-container');
+  if(container) {
+    // การหมุน CSS: หมุนเส้นศูนย์สูตร (Y) ก่อน แล้วค่อยก้มลงมา (Z)
+    container.style.transform = `rotateY(${-phi}deg) rotateZ(${theta}deg)`;
+  }
+
+  // อัปเดตข้อความบอกสถานะ
+  const status = document.getElementById('l4-bloch-status');
+  if(status) {
+    if(l4_qz >= 0.99) status.innerHTML = "สถานะปัจจุบัน: <strong>|0⟩</strong> (ขั้วเหนือ)";
+    else if(l4_qz <= -0.99) status.innerHTML = "สถานะปัจจุบัน: <strong>|1⟩</strong> (ขั้วใต้)";
+    else if(Math.abs(l4_qz) < 0.05) status.innerHTML = "สถานะปัจจุบัน: <strong>Superposition</strong> 50/50 (เส้นศูนย์สูตร)";
+    else status.innerHTML = "สถานะปัจจุบัน: <strong>Superposition</strong> (ผสมในอัตราส่วนที่ไม่เท่ากัน)";
+  }
+}
+
+function setL4State(state) {
+  if(state === '0') { l4_qx = 0; l4_qy = 0; l4_qz = 1; }
+  if(state === '1') { l4_qx = 0; l4_qy = 0; l4_qz = -1; }
+  if(state === 'sup') { l4_qx = 1; l4_qy = 0; l4_qz = 0; }
+  updateL4Vector();
+}
+
+function rotateL4Bloch(axis) {
+  const rad = Math.PI / 2; // สั่งหมุนทีละ 90 องศาให้เห็นภาพง่ายๆ
+  const cos = Math.cos(rad);
+  const sin = Math.sin(rad);
+  let nx = l4_qx, ny = l4_qy, nz = l4_qz;
+
+  // สูตรหมุน 3D Matrix แบบง่ายๆ
+  if(axis === 'X') {
+    ny = l4_qy * cos - l4_qz * sin;
+    nz = l4_qy * sin + l4_qz * cos;
+  } else if(axis === 'Y') {
+    nx = l4_qx * cos + l4_qz * sin;
+    nz = -l4_qx * sin + l4_qz * cos;
+  } else if(axis === 'Z') {
+    nx = l4_qx * cos - l4_qy * sin;
+    ny = l4_qx * sin + l4_qy * cos;
+  }
+  
+  l4_qx = nx; l4_qy = ny; l4_qz = nz;
+  updateL4Vector();
+}
+
 window.loadLesson = loadLesson;
 window.goToNextLesson = goToNextLesson;
 window.updateProbability = updateProbability;
@@ -559,6 +661,15 @@ window.measureQubit = measureQubit;
 window.showGateDetails = showGateDetails;
 window.updateRotationDemo = updateRotationDemo;
 window.setRotationAxis = setRotationAxis;
+window.toggleBit = toggleBit;
+window.updateQubitSlider = updateQubitSlider;
+window.runClassicalSearch = runClassicalSearch;
+window.runQuantumSearch = runQuantumSearch;
+window.updateL3Slider = updateL3Slider;
+window.measureL3Single = measureL3Single;
+window.runL3Multi = runL3Multi;
+window.setL4State = setL4State;
+window.rotateL4Bloch = rotateL4Bloch;
 
 document.addEventListener("DOMContentLoaded", () => {
   loadLesson(0);

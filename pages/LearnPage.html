@@ -8,6 +8,8 @@
 
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
@@ -45,7 +47,7 @@
         <div class="text-xs font-semibold mb-2 px-2 text-color-muted">Quantum Basics</div>
 
         <button class="nav-btn nav-item-active" onclick="loadLesson(0)">
-          <i data-lucide="cpu" class="nav-icon"></i><span>Quantum Computing</span>
+          <i data-lucide="cpu" class="nav-icon"></i><span>Introduction to Quantum Computing</span>
         </button>
         <button class="nav-btn" onclick="loadLesson(1)">
           <i data-lucide="circle-dot" class="nav-icon"></i><span>Qubit</span>
@@ -54,7 +56,7 @@
           <i data-lucide="zap" class="nav-icon"></i><span>Superposition</span>
         </button>
         <button class="nav-btn" onclick="loadLesson(3)">
-          <i data-lucide="git-merge" class="nav-icon"></i><span>Entanglement</span>
+          <i data-lucide="git-merge" class="nav-icon"></i><span>Bloch Sphere</span>
         </button>
 
         <div class="text-xs font-semibold mt-5 mb-2 px-2 text-color-muted">Quantum Gates</div>
@@ -71,7 +73,7 @@
         <div class="lesson-note compact-note">
           <p class="note-title">How To Use</p>
           <p class="text-sm text-color-muted">
-            อ่านสรุปแนวคิดก่อน แล้วค่อยใช้ส่วนของ workspace เพื่อทดลองเล่นกับแนวคิดนั้นๆ ได้เลย!
+            อ่านสรุปแนวคิดก่อน แล้วค่อยใช้ส่วนของ simulator เพื่อทดลองเล่นกับแนวคิดนั้นๆ ได้เลย!
           </p>
         </div>
       </div>
@@ -94,12 +96,8 @@
       <div class="flex-1 overflow-auto">
         <div class="max-w-5xl mx-auto px-8 py-8">
           <section class="mb-10">
-            <h2 id="lesson-header" class="text-lg font-semibold mb-4 text-color-main">What Makes Quantum Computing
-              Different?</h2>
-            <p id="lesson-explanation" class="text-base leading-relaxed text-color-muted">
-              คอมพิวเตอร์ควอนตัมใช้คิวบิตแทนบิตแบบคลาสสิก ทำให้สามารถแทนข้อมูลด้วยซูเปอร์โพซิชันและการแทรกสอด
-              ซึ่งเปิดทางให้เกิดวิธีแก้ปัญหาแบบใหม่ในบางโจทย์
-            </p>
+            <h2 id="lesson-header" class="text-lg font-semibold mb-4 text-color-main"></h2>
+            <p id="lesson-explanation" class="text-base leading-relaxed text-color-muted"></p>
           </section>
 
           <div id="dynamic-workspace" class="mb-12"></div>
@@ -116,6 +114,7 @@
     </main>
   </div>
 
+  <script type="module" src="/src/scripts/Lessons.js"></script>
   <script type="module" src="/src/scripts/LearnPage.js"></script>
 </body>
 
