@@ -200,16 +200,6 @@ function initLessonInteractions(index) {
     updateProbability(document.getElementById("probability-slider")?.value || "50");
   }
 
-  if (index === 4) {
-    showGateDetails("X");
-  }
-
-  if (index === 5) {
-    activeRotationAxis = "x";
-    setRotationAxis("x");
-    updateRotationDemo(document.getElementById("rotation-slider")?.value || "90");
-  }
-
   if (index === 3) {
     // รีเซ็ตค่าเริ่มต้นเสมอเมื่อเปิดบทเรียนใหม่
     l4_qx = 0; l4_qy = 0; l4_qz = 1; 
@@ -222,6 +212,41 @@ function initLessonInteractions(index) {
       lucide.createIcons();
     }, 100);
   }
+
+  // เช็คของบทที่ 5
+  setTimeout(() => {
+    const l5Container = document.getElementById('l5-sphere-container');
+    if (l5Container) {
+      l5_qx = 0; l5_qy = 0; l5_qz = 1; // รีเซ็ตตำแหน่ง
+      l5_currentTheta = 0;             // รีเซ็ตมุมสะสม
+      l5_currentPhi = 0;               // รีเซ็ตมุมสะสม
+      initL5Drag();
+      updateL5Vector();
+    }
+  }, 100);
+
+  setTimeout(() => {
+    const l6Container = document.getElementById('l6-sphere-container');
+    if (l6Container) {
+      // รีเซ็ตค่าเมื่อเปลี่ยนหน้า
+      l6_int1_isSuperpos = false;
+      l6_bloch_isSuperpos = false;
+      l6_int4_step = 0;
+      
+      initL6Drag();
+    }
+  }, 100);
+
+  // เช็คของบทที่ 7 (Multiple Qubits)
+  setTimeout(() => {
+    const l7Display = document.getElementById('l7-int1-display');
+    if (l7Display) {
+      // รีเซ็ตค่ากลับเป็นค่าตั้งต้นทุกครั้งที่เปิดบทเรียนนี้
+      applyL7Reset();
+      document.querySelector('input[type="range"]').value = 2; // รีเซ็ต slider
+      updateL7Int2Slider(2);
+    }
+  }, 100);
 }
 
 function loadLesson(index) {
@@ -654,6 +679,320 @@ function rotateL4Bloch(axis) {
   updateL4Vector();
 }
 
+
+// Lesson 5: Quantum Gates Lab (CSS Sphere)
+
+let l5_rotX = -15, l5_rotY = -30; 
+let l5_qx = 0, l5_qy = 0, l5_qz = 1; // สถานะเริ่มต้น |0>
+
+// [เพิ่มใหม่] ตัวแปรเก็บมุมสะสม เพื่อป้องกัน CSS หมุนย้อนกลับ
+let l5_currentTheta = 0;
+let l5_currentPhi = 0;
+
+function initL5Drag() {
+  const container = document.getElementById('l5-sphere-container');
+  const sphere = document.getElementById('l5-bloch-sphere');
+  if (!container || !sphere) return;
+
+  let isDragging = false;
+  let prevPos = { x: 0, y: 0 };
+
+  container.onmousedown = null;
+  window.onmouseup = null;
+  window.onmousemove = null;
+
+  container.onmousedown = (e) => {
+    isDragging = true;
+    prevPos = { x: e.clientX, y: e.clientY };
+  };
+
+  window.addEventListener('mouseup', () => isDragging = false);
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - prevPos.x;
+    const deltaY = e.clientY - prevPos.y;
+
+    l5_rotY += deltaX * 0.5;
+    l5_rotX -= deltaY * 0.5;
+    l5_rotX = Math.max(-90, Math.min(90, l5_rotX)); 
+
+    sphere.style.transform = `rotateX(${l5_rotX}deg) rotateY(${l5_rotY}deg)`;
+    prevPos = { x: e.clientX, y: e.clientY };
+  });
+}
+
+// [เพิ่มใหม่] ฟังก์ชันคำนวณทิศทางการหมุน ให้เดินหน้าเสมอถ้าระยะทางเท่ากัน
+function getNextContinuousAngle(current, target) {
+  let diff = (target - (current % 360)) % 360;
+  if (diff < 0) diff += 360;
+  // ถ้าหมุนเกิน 180 องศา ให้เลือกทางที่สั้นกว่า (หมุนย้อนกลับ)
+  // **ยกเว้น** กรณีตั้งใจหมุน 180 องศาเป๊ะๆ (Gate X, Y, Z) ให้หมุนเดินหน้าต่อไป!
+  if (diff > 180 && diff !== 180) diff -= 360;
+  return current + diff;
+}
+
+function updateL5Vector() {
+  const vector = document.getElementById('l5-vector-container');
+  const status = document.getElementById('l5-bloch-status');
+  if (!vector || !status) return;
+
+  const length = Math.sqrt(l5_qx**2 + l5_qy**2 + l5_qz**2) || 1;
+  const nx = l5_qx / length, ny = l5_qy / length, nz = l5_qz / length;
+
+  // 1. คำนวณมุมเป้าหมายแบบ Absolute ปกติ
+  const targetTheta = Math.round(Math.acos(nz) * (180 / Math.PI));
+  const targetPhi = Math.round(Math.atan2(ny, nx) * (180 / Math.PI));
+
+  // 2. คอนเวิร์ตให้เป็น "มุมสะสมต่อเนื่อง" เพื่อหลอก CSS 
+  l5_currentTheta = getNextContinuousAngle(l5_currentTheta, targetTheta);
+  l5_currentPhi = getNextContinuousAngle(l5_currentPhi, targetPhi);
+
+  // 3. ใช้มุมที่สะสมแล้วสั่งหมุน
+  vector.style.transform = `rotateY(${l5_currentPhi}deg) rotateZ(${l5_currentTheta}deg)`;
+
+  // อัปเดตข้อความบอกสถานะคร่าวๆ
+  if (nz >= 0.99) status.innerHTML = "สถานะปัจจุบัน: <strong>|0⟩</strong> (ขั้วเหนือ)";
+  else if (nz <= -0.99) status.innerHTML = "สถานะปัจจุบัน: <strong>|1⟩</strong> (ขั้วใต้)";
+  else if (nx >= 0.99) status.innerHTML = "สถานะปัจจุบัน: <strong>|+⟩</strong> (ชี้มาแกน X แนวหน้า)";
+  else if (nx <= -0.99) status.innerHTML = "สถานะปัจจุบัน: <strong>|-⟩</strong> (ชี้ไปแกน -X แนวหลัง)";
+  else status.innerHTML = "สถานะปัจจุบัน: <strong>Superposition / Mixed</strong>";
+}
+
+function applyL5Gate(gate) {
+  if (gate === 'X') {
+    l5_qy = -l5_qy;
+    l5_qz = -l5_qz;
+  } else if (gate === 'Y') {
+    l5_qx = -l5_qx;
+    l5_qz = -l5_qz;
+  } else if (gate === 'Z') {
+    l5_qx = -l5_qx;
+    l5_qy = -l5_qy;
+  } else if (gate === 'H') {
+    let temp = l5_qx;
+    l5_qx = l5_qz;
+    l5_qz = temp;
+    l5_qy = -l5_qy;
+  } else if (gate === 'reset') {
+    l5_qx = 0; l5_qy = 0; l5_qz = 1;
+  }
+  
+  // สั่งอัปเดตตำแหน่งลูกศรทันที
+  updateL5Vector();
+}
+
+
+// Lesson 6: Hadamard Gate (H Gate)
+
+
+// Interactive 1: Create Superposition
+let l6_int1_isSuperpos = false;
+function toggleL6Int1() {
+  l6_int1_isSuperpos = !l6_int1_isSuperpos;
+  
+  const box = document.getElementById('l6-int1-box');
+  const stateTxt = document.getElementById('l6-int1-state');
+  const descTxt = document.getElementById('l6-int1-desc');
+  const bar0 = document.getElementById('l6-int1-bar0');
+  const bar1 = document.getElementById('l6-int1-bar1');
+  const val0 = document.getElementById('l6-int1-val0');
+  const val1 = document.getElementById('l6-int1-val1');
+
+  if (l6_int1_isSuperpos) {
+    box.className = "flex-1 bg-indigo-50/50 p-6 rounded-2xl border border-indigo-200 text-center relative overflow-hidden transition-all duration-500 shadow-inner";
+    stateTxt.innerText = "|+⟩";
+    stateTxt.className = "text-5xl font-bold text-rose-500 mb-2 font-mono transition-all scale-110";
+    descTxt.innerText = "Superposition (ผสม 0 และ 1)";
+    bar0.style.width = "50%";
+    bar1.style.width = "50%";
+    val0.innerText = "50%";
+    val1.innerText = "50%";
+  } else {
+    box.className = "flex-1 bg-slate-50 p-6 rounded-2xl border text-center relative overflow-hidden transition-all duration-500";
+    stateTxt.innerText = "|0⟩";
+    stateTxt.className = "text-5xl font-bold text-slate-800 mb-2 font-mono transition-all";
+    descTxt.innerText = "สถานะแน่นอน (100%)";
+    bar0.style.width = "100%";
+    bar1.style.width = "0%";
+    val0.innerText = "100%";
+    val1.innerText = "0%";
+  }
+}
+
+// Interactive 2: Bloch Sphere
+let l6_rotX = -15, l6_rotY = -30; 
+let l6_bloch_isSuperpos = false;
+
+function initL6Drag() {
+  const container = document.getElementById('l6-sphere-container');
+  const sphere = document.getElementById('l6-bloch-sphere');
+  if (!container || !sphere) return;
+
+  let isDragging = false;
+  let prevPos = { x: 0, y: 0 };
+
+  container.onmousedown = null;
+  window.onmouseup = null;
+  window.onmousemove = null;
+
+  container.onmousedown = (e) => {
+    isDragging = true;
+    prevPos = { x: e.clientX, y: e.clientY };
+  };
+
+  window.addEventListener('mouseup', () => isDragging = false);
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - prevPos.x;
+    const deltaY = e.clientY - prevPos.y;
+
+    l6_rotY += deltaX * 0.5;
+    l6_rotX -= deltaY * 0.5;
+    l6_rotX = Math.max(-90, Math.min(90, l6_rotX)); 
+
+    sphere.style.transform = `rotateX(${l6_rotX}deg) rotateY(${l6_rotY}deg)`;
+    prevPos = { x: e.clientX, y: e.clientY };
+  });
+}
+
+function applyL6BlochH() {
+  l6_bloch_isSuperpos = !l6_bloch_isSuperpos;
+  const vector = document.getElementById('l6-vector-container');
+  const status = document.getElementById('l6-bloch-status');
+  
+  if (!vector || !status) return;
+
+  // สำหรับ H Gate ง่ายๆ แค่หมุนลงมาตามแกน Z สู่แกน X
+  if (l6_bloch_isSuperpos) {
+    vector.style.transform = "rotateY(0deg) rotateZ(90deg)";
+    status.innerHTML = "สถานะปัจจุบัน: <strong>|+⟩</strong> (Superposition / เส้นศูนย์สูตร)";
+  } else {
+    vector.style.transform = "rotateY(0deg) rotateZ(0deg)";
+    status.innerHTML = "สถานะปัจจุบัน: <strong>|0⟩</strong> (ขั้วเหนือ / ค่าแน่นอน)";
+  }
+}
+
+// Interactive 3: Apply H Twice
+let l6_int4_step = 0;
+function applyL6Twice() {
+  const btn = document.getElementById('l6-int4-btn');
+  const state2 = document.getElementById('l6-int4-state2');
+  const state3 = document.getElementById('l6-int4-state3');
+  const arrow1 = document.getElementById('l6-int4-arrow1');
+  const arrow2 = document.getElementById('l6-int4-arrow2');
+
+  l6_int4_step = (l6_int4_step + 1) % 3;
+
+  if (l6_int4_step === 1) {
+    // 1st press
+    state2.innerText = "|+⟩";
+    state2.classList.remove('opacity-50');
+    arrow1.classList.remove('text-slate-500');
+    arrow1.classList.add('text-rose-500');
+    btn.innerText = "กด H Gate (ครั้งที่ 2)";
+    btn.className = "bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-bold shadow-md transition-all flex items-center gap-2 mx-auto";
+  } else if (l6_int4_step === 2) {
+    // 2nd press
+    state3.innerText = "|0⟩";
+    state3.classList.remove('opacity-50');
+    arrow2.classList.remove('text-slate-500');
+    arrow2.classList.add('text-blue-500');
+    btn.innerText = "รีเซ็ต (Reset)";
+    btn.className = "bg-slate-600 hover:bg-slate-700 text-white px-6 py-2 rounded-full font-bold shadow-md transition-all flex items-center gap-2 mx-auto";
+  } else {
+    // Reset
+    state2.innerText = "?";
+    state2.classList.add('opacity-50');
+    state3.innerText = "?";
+    state3.classList.add('opacity-50');
+    arrow1.classList.remove('text-rose-500');
+    arrow2.classList.remove('text-blue-500');
+    btn.innerText = "กด H Gate (ครั้งที่ 1)";
+    btn.className = "bg-rose-500 hover:bg-rose-600 text-white px-6 py-2 rounded-full font-bold shadow-md transition-all flex items-center gap-2 mx-auto";
+  }
+}
+
+
+// Lesson 7: Multiple Qubits Interactives
+
+
+// Interactive 1: State Explorer
+function setL7Int1State(state) {
+  const display = document.getElementById('l7-int1-display');
+  if (!display) return;
+  
+  // เด้ง Animation เล็กน้อยตอนเปลี่ยนค่า
+  display.classList.remove('scale-100');
+  display.classList.add('scale-110', 'text-blue-600');
+  display.innerText = `|${state}⟩`;
+  
+  setTimeout(() => {
+    display.classList.remove('scale-110', 'text-blue-600');
+    display.classList.add('scale-100');
+  }, 150);
+}
+
+// Interactive 2: Qubit Counter (Exponential Slider)
+function updateL7Int2Slider(qubits) {
+  const numStates = Math.pow(2, qubits);
+  
+  document.getElementById('l7-int2-qubits').innerText = qubits;
+  
+  // ฟอร์แมตตัวเลขให้มีคอมม่า (เช่น 1,024)
+  document.getElementById('l7-int2-states').innerText = numStates.toLocaleString();
+}
+
+// Interactive 3: Multi-State Superposition Bar Chart
+function applyL7Reset() {
+  updateL7BarChart(100, 0, 0, 0);
+  
+  document.getElementById('l7-int3-badge').innerText = "สถานะแน่นอน (Deterministic)";
+  document.getElementById('l7-int3-badge').className = "px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full transition-all";
+  document.getElementById('l7-int3-desc').innerHTML = "ระบบกลับมาเริ่มต้นที่สถานะ <strong>|00⟩</strong> 100%";
+}
+
+function applyL7HGateAll() {
+  // เมื่อใส่ H gate เข้าไป 2 ตัว จะได้ 25% เท่ากันหมด (1/4 probability)
+  updateL7BarChart(25, 25, 25, 25);
+  
+  document.getElementById('l7-int3-badge').innerText = "Superposition แบบสมบูรณ์";
+  document.getElementById('l7-int3-badge').className = "px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full transition-all";
+  document.getElementById('l7-int3-desc').innerHTML = "สุดยอด! ควอนตัมกำลังประมวลผล <strong>4 คำตอบ (สถานะ) พร้อมกันในเสี้ยววินาที</strong>";
+}
+
+// ฟังก์ชันช่วยเหลือสำหรับอัปเดตแท่งกราฟ
+function updateL7BarChart(v00, v01, v10, v11) {
+  const vals = [
+    { id: '00', val: v00 },
+    { id: '01', val: v01 },
+    { id: '10', val: v10 },
+    { id: '11', val: v11 }
+  ];
+  
+  vals.forEach(item => {
+    const bar = document.getElementById(`l7-int3-bar${item.id}`);
+    const text = document.getElementById(`l7-int3-val${item.id}`);
+    
+    if (bar && text) {
+      bar.style.height = `${item.val}%`;
+      text.innerText = `${item.val}%`;
+      
+      // เปลี่ยนสีตามค่าความน่าจะเป็น
+      if (item.val > 0) {
+        bar.classList.remove('bg-blue-200', 'shadow-none');
+        bar.classList.add('bg-blue-500', 'shadow-[0_0_15px_rgba(59,130,246,0.5)]');
+        text.classList.remove('text-slate-400');
+        text.classList.add('text-blue-600');
+      } else {
+        bar.classList.remove('bg-blue-500', 'shadow-[0_0_15px_rgba(59,130,246,0.5)]', 'bg-blue-500', 'shadow-[0_0_15px_rgba(99,102,241,0.4)]');
+        bar.classList.add('bg-blue-200');
+        text.classList.remove('text-blue-600', 'text-slate-500');
+        text.classList.add('text-slate-400');
+      }
+    }
+  });
+}
+
 window.loadLesson = loadLesson;
 window.goToNextLesson = goToNextLesson;
 window.updateProbability = updateProbability;
@@ -670,6 +1009,14 @@ window.measureL3Single = measureL3Single;
 window.runL3Multi = runL3Multi;
 window.setL4State = setL4State;
 window.rotateL4Bloch = rotateL4Bloch;
+window.applyL5Gate = applyL5Gate;
+window.toggleL6Int1 = toggleL6Int1;
+window.applyL6BlochH = applyL6BlochH;
+window.applyL6Twice = applyL6Twice;
+window.setL7Int1State = setL7Int1State;
+window.updateL7Int2Slider = updateL7Int2Slider;
+window.applyL7Reset = applyL7Reset;
+window.applyL7HGateAll = applyL7HGateAll;
 
 document.addEventListener("DOMContentLoaded", () => {
   loadLesson(0);
