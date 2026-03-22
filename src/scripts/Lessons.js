@@ -138,7 +138,7 @@ export const lessonsData = [
           </section>
 
           <section class="rounded-[1.5rem] p-7 visual-container bg-emerald-50/50">
-            <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5"></i> สรุปสั้นๆ (Summary)</h3>
+            <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5"></i> สรุป (Summary)</h3>
             <ul class="bullet-list text-emerald-900/80">
               <li><strong>คอมทั่วไป:</strong> ใช้ Bit (0 หรือ 1)</li>
               <li><strong>ควอนตัม:</strong> ใช้ Qubit (หลายสถานะพร้อมกัน)</li>
@@ -256,7 +256,7 @@ export const lessonsData = [
               <button onclick="measureL2Qubit()" class="px-8 py-3 bg-blue-600 text-white rounded-xl font-bold transition-all hover:bg-blue-700 shadow-md shadow-blue-200 flex items-center justify-center gap-2 mx-auto">
                 <i data-lucide="eye" class="w-5 h-5"></i> Measure (สังเกตการณ์)
               </button>
-              <p class="text-sm text-color-muted mt-3">กดเพื่อวัดค่า! Superposition จะหายไปและเหลือเพียงค่าเดียว</p>
+              <p class="text-sm text-color-muted mt-3">กดเพื่อวัดค่า Superposition จะหายไปและเหลือเพียงค่าเดียว</p>
             </div>
 
           </div>
@@ -271,7 +271,7 @@ export const lessonsData = [
             </ul>
           </section>
 
-          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border border-emerald-100">
+          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border">
             <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> สรุป (Summary)</h3>
             <ul class="bullet-list text-emerald-900/80">
               <li><strong>Bit:</strong> เป็น 0 หรือ 1 เท่านั้น</li>
@@ -285,7 +285,7 @@ export const lessonsData = [
     `,
   },
   {
-    category: "Quantum Deep Dive",
+    category: "Quantum Basics",
     title: "Superposition (Deep Dive)",
     header: "เจาะลึก Superposition",
     explanation: "ทำความเข้าใจสถานะทับซ้อนให้ลึกซึ้งยิ่งขึ้น พร้อมทดลองวัดค่า (Measurement) เพื่อดูว่า 'ความน่าจะเป็น' ทำงานอย่างไรในโลกควอนตัม",
@@ -397,7 +397,7 @@ export const lessonsData = [
             </div>
           </section>
 
-          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border border-emerald-100 col-span-1 md:col-span-2">
+          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border col-span-1 md:col-span-2">
             <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> สรุป (Summary)</h3>
             <ul class="bullet-list text-emerald-900/80">
               <li>Qubit สามารถอยู่ในหลายสถานะได้ตามสัดส่วนที่ต้องการ</li>
@@ -411,7 +411,7 @@ export const lessonsData = [
     `,
   },
   {
-    category: "Quantum Visualization",
+    category: "Quantum Basics",
     title: "Bloch Sphere Visualization",
     header: "มอง Qubit ให้เห็นภาพ 3 มิติ",
     explanation: "ก้าวข้ามขีดจำกัดของตัวเลขและเปอร์เซ็นต์ มาทำความรู้จักกับ 'Bloch Sphere' เครื่องมือ 3 มิติที่จะช่วยให้คุณเห็นภาพการหมุนเปลี่ยนสถานะของ Qubit ได้อย่างสมบูรณ์แบบ",
@@ -511,7 +511,7 @@ export const lessonsData = [
             </ul>
           </section>
 
-          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border border-emerald-100 col-span-1 md:col-span-2">
+          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border col-span-1 md:col-span-2">
             <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> สรุป (Summary)</h3>
             <ul class="bullet-list text-emerald-900/80">
               <li><strong>Bloch Sphere</strong> ใช้แสดงสถานะ Qubit ด้วยภาพ 3 มิติ</li>
@@ -629,7 +629,7 @@ export const lessonsData = [
             </ul>
           </section>
 
-          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border border-emerald-100">
+          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border">
             <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> สรุป (Summary)</h3>
             <ul class="bullet-list text-emerald-900/80">
               <li>Quantum Gate ใช้เปลี่ยนสถานะ Qubit</li>
@@ -802,7 +802,7 @@ export const lessonsData = [
             </ul>
           </section>
 
-          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border border-emerald-100 col-span-1 md:col-span-2">
+          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border col-span-1 md:col-span-2">
             <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> สรุป (Summary)</h3>
             <ul class="bullet-list text-emerald-900/80">
               <li><strong>H Gate</strong> ใช้สำหรับเปลี่ยนสถานะที่แน่นอน ให้กลายเป็น Superposition</li>
@@ -816,7 +816,7 @@ export const lessonsData = [
     `
   },
   {
-    category: "Quantum Basics",
+    category: "Intermediate Concepts",
     title: "Multiple Qubits",
     header: "พลังของการเชื่อมต่อหลาย Qubit",
     explanation:
@@ -882,7 +882,7 @@ export const lessonsData = [
 
             <input type="range" min="1" max="10" value="2" class="w-full h-3 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500" oninput="updateL7Int2Slider(this.value)">
             <div class="flex justify-between text-sm text-slate-300 mt-2 font-mono">
-              <span>1</span><span>10 Qubits (1,024 สถานะ!)</span>
+              <span>1</span><span>10 Qubits (1,024 สถานะ)</span>
             </div>
           </div>
         </section>
@@ -945,7 +945,7 @@ export const lessonsData = [
             </ul>
           </section>
 
-          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border border-emerald-100 col-span-1 md:col-span-2">
+          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border col-span-1 md:col-span-2">
             <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> สรุป (Summary)</h3>
             <ul class="bullet-list text-emerald-900/80">
               <li>ระบบ <strong>2 Qubits</strong> มี <strong>4 สถานะ</strong> (|00⟩, |01⟩, |10⟩, |11⟩)</li>
@@ -958,4 +958,578 @@ export const lessonsData = [
       </div>
     `
   },
+  {
+    category: "Intermediate Concepts",
+    title: "Entanglement",
+    header: "ความพัวพันเชิงควอนตัม",
+    explanation:
+      "เมื่อ Qubit สองตัวมีความเกี่ยวพันกันอย่างลึกซึ้ง (Entangled) สิ่งที่เกิดขึ้นกับตัวหนึ่ง จะส่งผลต่ออีกตัวหนึ่งในทันที ไม่ว่าพวกมันจะอยู่ห่างไกลกันแค่ไหนก็ตาม",
+    workspaceHTML: `
+      <div class="workspace-stack space-y-8">
+        
+        <section class="rounded-[1.5rem] p-7 visual-container bg-teal-50/50">
+          <p class="subtle-kicker text-blue-600">Learning Objective</p>
+          <h3 class="text-lg font-bold mb-2">หลังเรียนจบบทนี้ คุณจะได้</h3>
+          <ul class="bullet-list text-teal-900/80">
+            <li>เข้าใจว่า Entanglement (ความพัวพัน) คืออะไร</li>
+            <li>รู้ว่า Qubit สามารถ "เชื่อมโยงกัน" ได้อย่างไร</li>
+            <li>เห็นภาพว่าการวัดค่า Qubit ตัวหนึ่ง ส่งผลต่ออีกตัวทันทีได้อย่างไร</li>
+          </ul>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container">
+          <p class="subtle-kicker">1. Independent vs Linked</p>
+          <h3 class="text-lg font-bold mb-2">แล้วถ้ามัน "เชื่อมกัน" ล่ะ?</h3>
+          <p class="text-color-muted mb-4">ในบทก่อนหน้า เรารู้ว่า Qubit หลายตัวสามารถอยู่ในหลายสถานะพร้อมกันได้ แต่มันยังคง <strong>"เป็นอิสระต่อกัน"</strong> (ความเป็นไปได้ของตัวแรก ไม่เกี่ยวกับตัวที่สอง)</p>
+          <p class="text-color-muted mb-6">แต่ในโลกควอนตัม มีสิ่งที่แปลกประหลาดกว่านั้น เรียกว่า <strong>Entanglement</strong> คือการที่ Qubit สองตัว <strong>"เชื่อมกันแบบพิเศษ"</strong> จนไม่สามารถแยกพิจารณาทีละตัวได้อีกต่อไป</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 shadow-sm text-center">
+              <h4 class="font-bold text-slate-700 mb-2">อิสระต่อกัน (Independent)</h4>
+              <p class="text-sm text-slate-600">เหมือนโยนเหรียญ 2 เหรียญ เหรียญแรกออกหัว ไม่ได้แปลว่าเหรียญที่สองต้องออกหัวตาม</p>
+            </div>
+            <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5 shadow-sm text-center">
+              <h4 class="font-bold text-blue-800 mb-2">พัวพันกัน (Entangled)</h4>
+              <p class="text-sm text-blue-600">เหมือนกิ้งก่าเปลี่ยนสี ถ้าวัตถุที่กิ้งก่าเกาะอยู่เปลี่ยนสี กิ้งก่าจะเปลี่ยนสีตามทันที!</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container shadow-xl">
+          <p class="subtle-kicker">2. The Bell State</p>
+          <h3 class="text-lg font-bold mb-2">สร้างสถานะพัวพัน (Entanglement)</h3>
+          <p class="mb-6 text-muted">สถานะ Entangled ที่โด่งดังและง่ายที่สุดคือ <strong>Bell State (|00⟩ + |11⟩)</strong> แปลว่า คิวบิตทั้งสอง <strong>ต้องเป็น 0 พร้อมกัน หรือไม่ก็ต้องเป็น 1 พร้อมกันเท่านั้น</strong> (ไม่มีโอกาสเป็น 01 หรือ 10 เลย)</p>
+          
+          <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-sm flex flex-col items-center relative overflow-hidden">
+            <p class="font-semibold text-slate-400 mb-8 uppercase tracking-wider">Linked Qubits</p>
+            
+            <div class="flex items-center justify-center gap-12 w-full max-w-sm mb-10 relative">
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-2 bg-slate-700 rounded-full transition-all duration-700 overflow-hidden" id="l8-link-line">
+                <div id="l8-link-glow" class="w-full h-full bg-teal-400 opacity-0 shadow-[0_0_15px_rgba(45,212,191,1)] transition-all duration-700 translate-x-[-100%]"></div>
+              </div>
+
+              <div class="relative z-10 flex flex-col items-center">
+                <div id="l8-qa-ball" class="w-20 h-20 rounded-full bg-slate-700 border-4 border-slate-600 flex items-center justify-center shadow-lg transition-all duration-500">
+                  <span id="l8-qa-val" class="text-3xl font-mono font-bold text-slate-400">?</span>
+                </div>
+                <span class="mt-3 font-bold text-slate-300">Qubit A</span>
+              </div>
+
+              <div class="relative z-10 flex flex-col items-center">
+                <div id="l8-qb-ball" class="w-20 h-20 rounded-full bg-slate-700 border-4 border-slate-600 flex items-center justify-center shadow-lg transition-all duration-500">
+                  <span id="l8-qb-val" class="text-3xl font-mono font-bold text-slate-400">?</span>
+                </div>
+                <span class="mt-3 font-bold text-slate-300">Qubit B</span>
+              </div>
+            </div>
+
+            <div class="w-full max-w-sm space-y-3 mb-8">
+              <div class="flex items-center gap-3 text-xs font-bold text-slate-400">
+                <span class="w-8 text-right font-mono">|00⟩</span>
+                <div class="flex-1 bg-slate-700 rounded-full h-3 overflow-hidden">
+                  <div id="l8-bar-00" class="bg-teal-500 h-full w-full transition-all duration-700"></div>
+                </div>
+                <span id="l8-val-00" class="w-10 text-right">100%</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs font-bold text-slate-400">
+                <span class="w-8 text-right font-mono">|01⟩</span>
+                <div class="flex-1 bg-slate-700 rounded-full h-3 overflow-hidden">
+                  <div id="l8-bar-01" class="bg-slate-500 h-full w-0 transition-all duration-700"></div>
+                </div>
+                <span id="l8-val-01" class="w-10 text-right">0%</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs font-bold text-slate-400">
+                <span class="w-8 text-right font-mono">|10⟩</span>
+                <div class="flex-1 bg-slate-700 rounded-full h-3 overflow-hidden">
+                  <div id="l8-bar-10" class="bg-slate-500 h-full w-0 transition-all duration-700"></div>
+                </div>
+                <span id="l8-val-10" class="w-10 text-right">0%</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs font-bold text-slate-400">
+                <span class="w-8 text-right font-mono">|11⟩</span>
+                <div class="flex-1 bg-slate-700 rounded-full h-3 overflow-hidden">
+                  <div id="l8-bar-11" class="bg-teal-500 h-full w-0 transition-all duration-700"></div>
+                </div>
+                <span id="l8-val-11" class="w-10 text-right">0%</span>
+              </div>
+            </div>
+
+            <button id="l8-btn-entangle" onclick="createL8Entanglement()" class="px-8 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-full font-bold shadow-lg shadow-teal-900/50 flex items-center gap-2 transition-all hover:-translate-y-0.5 mb-2">
+              <i data-lucide="link" class="w-5 h-5"></i> Create Entangled State
+            </button>
+            <p id="l8-status-text" class="text-slate-400 text-sm mt-2 text-center h-5">ตอนนี้ Qubit ทั้งสองยังไม่ได้เชื่อมกัน (อยู่ในสถานะ |00⟩)</p>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container">
+          <p class="subtle-kicker">3. Spooky Action</p>
+          <h3 class="text-lg font-bold mb-2">การวัดค่า (Measurement)</h3>
+          <p class="text-muted mb-6">ความมหัศจรรย์ของ Entanglement จะแสดงออกมาเมื่อเรา <strong>ทำการวัด (Measure)</strong> <br>ถ้าเรานำ Qubit ที่พัวพันกันมาวัดผล <strong>แค่ตัวแรก</strong> มันจะสุ่มได้ 0 หรือ 1 แต่สิ่งที่ตามมาคือ <strong>Qubit ตัวที่สอง จะยุบตัว (Collapse) กลายเป็นค่าเดียวกันทันที!</strong></p>
+          
+          <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-sm text-center flex flex-col items-center">
+            <p class="text-sm font-bold text-blue-600 mb-4 uppercase tracking-wider">Measure One Qubit</p>
+            
+            <button id="l8-btn-measure" onclick="measureL8QubitA()" class="px-8 py-4 bg-slate-200 text-slate-400 cursor-not-allowed rounded-2xl font-bold flex flex-col items-center gap-1 transition-all w-full max-w-sm" disabled>
+              <i data-lucide="crosshair" class="w-6 h-6"></i> 
+              <span>Measure Qubit A</span>
+              <span class="text-sm font-normal opacity-80">(ต้องสร้าง Entanglement ก่อน)</span>
+            </button>
+            
+            <div class="mt-6 flex gap-4">
+               <button onclick="resetL8()" class="text-sm text-slate-500 hover:text-slate-800 underline flex items-center gap-1">
+                 <i data-lucide="refresh-cw" class="w-3 h-3"></i> รีเซ็ตการทดลอง
+               </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container">
+          <h3 class="text-xl font-bold mb-4 text-slate-800 flex items-center gap-2">ทำไม Entanglement ถึงพิเศษมาก?</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-50 rounded-2xl p-5 border shadow-sm">
+              <h4 class="font-bold text-slate-700 mb-2 border-b pb-2">สายเคเบิลปกติ (Classical)</h4>
+              <p class="text-sm text-slate-600">ข้อมูลต้องวิ่งผ่านสายสัญญาณจากจุด A ไป B ซึ่งต้องใช้เวลา (อย่างน้อยก็เท่ากับความเร็วแสง)</p>
+            </div>
+            <div class="bg-blue-50 rounded-2xl p-5 border border-blue-200 shadow-sm">
+              <h4 class="font-bold text-blue-800 mb-2 border-b border-blue-200 pb-2">Entanglement (Quantum)</h4>
+              <p class="text-sm text-blue-700"><strong>ไม่ต้องส่งข้อมูลหากันเลย!</strong> พอมองตัวหนึ่ง อีกตัวหนึ่งจะรู้ตัวและเปลี่ยนสถานะในพริบตา นี่คือสิ่งที่อัลเบิร์ต ไอน์สไตน์ เรียกว่า <em>"Spooky action at a distance"</em></p>
+            </div>
+          </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <section class="rounded-[1.5rem] p-6 visual-container bg-slate-50 border col-span-1 md:col-span-2">
+            <h3 class="text-lg font-bold mb-3 text-slate-800 flex items-center gap-2">Insight สำคัญ</h3>
+            <ul class="bullet-list text-slate-700">
+              <li>Entanglement <strong>ไม่ใช่แค่ Superposition</strong> (ไม่ใช่แค่ครึ่งๆ กลางๆ)</li>
+              <li>แต่มันคือ <strong>"ความสัมพันธ์" (Correlation)</strong> อันแนบแน่นระหว่าง Qubits</li>
+              <li>นี่คือหัวใจสำคัญที่ทำให้เกิดเทคโนโลยีอย่าง <strong>Quantum Teleportation</strong> และ <strong>Quantum Cryptography</strong> (การเข้ารหัสที่ไม่มีใครแฮ็กได้)</li>
+            </ul>
+          </section>
+
+          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border col-span-1 md:col-span-2">
+            <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> สรุป (Summary)</h3>
+            <ul class="bullet-list text-emerald-900/80">
+              <li>Qubits สามารถผูกชะตากรรมเข้าด้วยกันได้ เรียกว่า Entanglement</li>
+              <li>ในสถานะนี้ การ <strong>"วัด"</strong> Qubit ตัวหนึ่ง จะเป็นการบังคับให้ Qubit อีกตัวที่พัวพันกัน ยุบตัวไปสู่สถานะที่สอดคล้องกันทันที</li>
+              <li>ผลลัพธ์เกิดขึ้นในพริบตา โดยไม่ต้องมีการส่งข้อมูลใดๆ หากัน</li>
+            </ul>
+          </section>
+        </div>
+
+      </div>
+    `
+  },
+  {
+    category: "Advanced Concepts",
+    title: "Quantum Circuits",
+    header: "วงจรควอนตัม: โปรแกรมแห่งอนาคต",
+    explanation:
+      "การใช้ Gate เดี่ยวๆ อาจจะยังแก้ปัญหาใหญ่ๆ ไม่ได้ แต่เมื่อเรานำ Gate หลายตัวมาเรียงต่อกันเป็น 'Quantum Circuit' (วงจรควอนตัม) นั่นคือตอนที่เรากำลังเขียนโปรแกรมเพื่อสร้างความมหัศจรรย์",
+    workspaceHTML: `
+      <div class="workspace-stack space-y-8">
+        
+        <section class="rounded-[1.5rem] p-7 visual-container bg-violet-50/50">
+          <p class="subtle-kicker text-blue-600">Learning Objective</p>
+          <h3 class="text-lg font-bold mb-2">หลังเรียนจบบทนี้ คุณจะได้</h3>
+          <ul class="bullet-list text-violet-900/80">
+            <li>เข้าใจว่า Quantum Circuit คืออะไร และมีหน้าตาเป็นอย่างไร</li>
+            <li>เห็นภาพว่าเรานำ Gates มาต่อกันเพื่อสร้างคำสั่งได้อย่างไร</li>
+            <li>เข้าใจ Flow ของการคำนวณควอนตัม (จากซ้ายไปขวา)</li>
+            <li>สามารถสร้าง Circuit ของคุณเองได้!</li>
+          </ul>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container">
+          <p class="subtle-kicker">1. What is a Circuit?</p>
+          <h3 class="text-lg font-bold mb-2">จาก Gate สู่ Circuit</h3>
+          <p class="text-color-muted mb-4">ในบทก่อนๆ เราเรียนรู้ว่า <strong>Quantum Gate</strong> ทำหน้าที่เปลี่ยนสถานะของ Qubit แต่ในการทำงานจริง เราไม่ได้ใช้แค่ Gate เดียว เราใช้ <strong>"หลายๆ Gate มาเรียงต่อกัน"</strong> ซึ่งเรียกว่า <strong>Quantum Circuit</strong></p>
+          
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm mb-4">
+            <h4 class="font-bold text-slate-700 text-sm mb-4 border-b pb-2">วิธีอ่าน Quantum Circuit</h4>
+            <ul class="space-y-3 text-sm text-slate-600">
+              <li class="flex items-center gap-3"><div class="w-8 h-0.5 bg-slate-400"></div> <strong>เส้นตรง:</strong> แทนตัว Qubit 1 ตัว (เหมือนสายไฟ)</li>
+              <li class="flex items-center gap-3"><div class="w-8 h-8 bg-blue-200 border-2 border-blue-500 rounded flex items-center justify-center font-bold text-blue-700 text-xs">Gate</div> <strong>กล่อง:</strong> แทน Quantum Gate ที่มาประมวลผล</li>
+              <li class="flex items-center gap-3"><i data-lucide="arrow-right" class="text-slate-400"></i> <strong>ทิศทาง:</strong> อ่านจาก ซ้าย ไป ขวา เสมอ</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container shadow-xl">
+          <p class="subtle-kicker">2. Step-by-Step Flow</p>
+          <h3 class="text-lg font-bold mb-2">ตัวอย่าง Circuit และการทำงาน</h3>
+          <p class="text-muted mb-6">ลองดู Circuit พื้นฐานที่มี H Gate, X Gate และการวัดผล (Measurement) มาดูกันว่าสถานะเปลี่ยนไปอย่างไรในแต่ละก้าว</p>
+          
+          <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-sm overflow-hidden relative">
+            <p class="text-sm font-semibold text-slate-400 mb-6 uppercase tracking-wider text-center">Step-by-Step Simulation</p>
+            
+            <div class="flex items-center justify-between relative mb-12 px-4">
+              <div class="absolute left-4 right-4 h-1 bg-slate-700 top-1/2 -translate-y-1/2 z-0"></div>
+              
+              <div class="z-10 w-12 h-12 bg-slate-700 border-2 border-slate-500 rounded-lg flex items-center justify-center font-bold text-lg transition-all duration-300 text-slate-300">|0⟩</div>
+              <div id="l9-node-1" class="z-10 w-12 h-12 bg-slate-700 border-2 border-slate-500 rounded-lg flex items-center justify-center font-bold text-lg transition-all duration-300">H</div>
+              <div id="l9-node-2" class="z-10 w-12 h-12 bg-slate-700 border-2 border-slate-500 rounded-lg flex items-center justify-center font-bold text-lg transition-all duration-300">X</div>
+              <div id="l9-node-3" class="z-10 w-12 h-12 bg-slate-700 border-2 border-slate-500 rounded-full flex items-center justify-center transition-all duration-300"><i data-lucide="gauge" class="w-6 h-6 text-slate-400"></i></div>
+            </div>
+
+            <div class="bg-slate-900 rounded-xl p-4 mb-6 border border-slate-700 h-24 flex flex-col justify-center items-center text-center">
+              <span id="l9-step-label" class="text-blue-400 text-sm font-bold mb-1">จุดเริ่มต้น (Start)</span>
+              <p id="l9-step-desc" class="text-slate-200 text-sm">Qubit เริ่มต้นที่สถานะ <strong class="text-white">|0⟩</strong> แบบ 100%</p>
+            </div>
+
+            <div class="flex justify-center gap-4">
+              <button onclick="l9ResetStep()" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg text-sm font-bold transition-all">รีเซ็ต</button>
+              <button id="l9-btn-next" onclick="l9NextStep()" class="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm font-bold shadow-lg shadow-blue-900/50 flex items-center gap-2 transition-all">
+                Next Step <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container">
+          <p class="subtle-kicker">3. Multi-Qubit Circuit</p>
+          <h3 class="text-lg font-bold mb-2">การเชื่อมต่อ Qubits</h3>
+          <p class="text-color-muted mb-6">Circuit สามารถมีหลายเส้นได้ และเรามี <strong>Gate พิเศษที่เชื่อมระหว่าง 2 เส้น</strong> (เช่น CNOT Gate) ซึ่งเป็นวิธีที่เราสร้าง <strong>Entanglement</strong> (ความพัวพัน) ที่เรียนไปในบทก่อนนั่นเอง!</p>
+          
+          <div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 relative overflow-hidden flex flex-col items-center">
+            
+            <div class="flex flex-col gap-8 w-full max-w-sm mb-6">
+              
+              <div class="flex items-center z-10">
+                <span class="w-8 font-mono font-bold text-slate-600">|0⟩</span>
+                
+                <div class="flex-1 h-0.5 bg-slate-300 relative mx-2">
+                  
+                  <div class="absolute left-[30%] top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 bg-blue-100 border-2 border-blue-500 rounded flex items-center justify-center font-bold text-blue-700 text-xs z-10">H</div>
+                  
+                  <div class="absolute left-[75%] top-1/2 w-0.5 h-[4rem] bg-blue-600 -translate-x-1/2 z-0"></div>
+                  
+                  <div class="absolute left-[75%] top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full z-10"></div>
+                </div>
+                <span id="l9-out-0" class="w-12 font-mono font-bold text-blue-600 text-right opacity-0 transition-opacity">|0/1⟩</span>
+              </div>
+
+              <div class="flex items-center z-10">
+                <span class="w-8 font-mono font-bold text-slate-600">|0⟩</span>
+                <div class="flex-1 h-0.5 bg-slate-300 relative mx-2">
+                  
+                  <div class="absolute left-[75%] top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-6 bg-white border-2 border-blue-600 rounded-full flex items-center justify-center z-10">
+                    <i data-lucide="plus" class="w-4 h-4 text-blue-600"></i>
+                  </div>
+                </div>
+                <span id="l9-out-1" class="w-12 font-mono font-bold text-blue-600 text-right opacity-0 transition-opacity">|0/1⟩</span>
+              </div>
+            </div>
+
+            <button onclick="l9RunEntanglement()" class="px-6 py-2 bg-white border-2 border-blue-500 text-blue-700 rounded-full font-bold shadow-sm hover:bg-blue-50 transition-all text-sm">
+              <i data-lucide="zap" class="w-4 h-4 inline-block mr-1"></i> รันคำสั่งเชื่อม Qubits
+            </button>
+            <p id="l9-entangle-desc" class="text-sm text-slate-500 mt-4 text-center h-4"></p>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container bg-slate-50 border border-slate-200 shadow-inner">
+          <div class="flex items-center gap-2 mb-2">
+            <p class="subtle-kicker">4. Interactive Playground</p>
+          </div>
+          <h3 class="text-lg font-bold mb-2">Build Your Own Circuit!</h3>
+          <p class="text-muted mb-6">ลองสวมบทเป็นโปรแกรมเมอร์ควอนตัม เรียง Gate ตามใจชอบ แล้วกด Run ดูว่าผลลัพธ์จะเป็นอย่างไร (คำนวณจากคณิตศาสตร์ควอนตัมของจริง!)</p>
+          <p class="text-color-muted mb-6">หมายเหตุ: สามารถทดลองใช้ Quantum Circuit Simulator แบบลึกกว่า <a href="/pages/SimulatorPage.html" class="text-blue-500 hover:text-blue-700 underline">ได้ที่นี่</a></p>
+
+          <div class="bg-white rounded-2xl p-6 border shadow-sm flex flex-col">
+            
+            <div class="flex items-center mb-8 bg-slate-100 p-4 rounded-xl border border-slate-200 overflow-x-auto">
+              <span class="font-mono text-xl font-bold text-slate-800 mr-4">|0⟩</span>
+              <div class="h-1 bg-slate-400 w-8"></div>
+              
+              <div id="l9-slot-0" class="w-14 h-14 bg-white border-2 border-dashed border-slate-300 flex items-center justify-center font-bold text-xl text-slate-400 rounded-lg shrink-0">1</div>
+              <div class="h-1 bg-slate-400 w-8"></div>
+              
+              <div id="l9-slot-1" class="w-14 h-14 bg-white border-2 border-dashed border-slate-300 flex items-center justify-center font-bold text-xl text-slate-400 rounded-lg shrink-0">2</div>
+              <div class="h-1 bg-slate-400 w-8"></div>
+              
+              <div id="l9-slot-2" class="w-14 h-14 bg-white border-2 border-dashed border-slate-300 flex items-center justify-center font-bold text-xl text-slate-400 rounded-lg shrink-0">3</div>
+              <div class="h-1 bg-slate-400 w-8"></div>
+              
+              <div class="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center text-white shrink-0 shadow-inner">
+                <i data-lucide="gauge" class="w-5 h-5"></i>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+              <button onclick="l9AddGate('H')" class="py-3 bg-blue-50 hover:bg-blue-100 border-2 border-blue-200 text-blue-700 font-bold rounded-xl flex items-center justify-center gap-2 transition-all">
+                <span class="w-6 h-6 bg-blue-600 text-white rounded flex items-center justify-center text-xs">H</span> เพิ่ม H Gate
+              </button>
+              <button onclick="l9AddGate('X')" class="py-3 bg-emerald-50 hover:bg-emerald-100 border-2 border-emerald-200 text-emerald-700 font-bold rounded-xl flex items-center justify-center gap-2 transition-all">
+                <span class="w-6 h-6 bg-emerald-600 text-white rounded flex items-center justify-center text-xs">X</span> เพิ่ม X Gate
+              </button>
+              <button onclick="l9ClearCircuit()" class="py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl flex items-center justify-center gap-2 transition-all col-span-1 md:col-span-1">
+                <i data-lucide="trash-2" class="w-4 h-4"></i> ล้าง
+              </button>
+              <button onclick="l9RunCircuit()" class="py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-200 col-span-1 md:col-span-1 transform hover:-translate-y-0.5">
+                <i data-lucide="play" class="w-4 h-4 fill-current"></i> RUN
+              </button>
+            </div>
+
+            <div class="bg-slate-900 rounded-xl p-5 text-white">
+              <h4 class="text-sm text-slate-400 font-bold uppercase tracking-wider mb-3">ผลลัพธ์ความน่าจะเป็น (Probability)</h4>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 font-mono">|0⟩</span>
+                  <div class="flex-1 bg-slate-700 h-4 rounded-full overflow-hidden">
+                    <div id="l9-res-0" class="bg-blue-500 h-full w-full transition-all duration-500"></div>
+                  </div>
+                  <span id="l9-res-val-0" class="w-12 text-right font-mono text-sm">100%</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="w-8 font-mono">|1⟩</span>
+                  <div class="flex-1 bg-slate-700 h-4 rounded-full overflow-hidden">
+                    <div id="l9-res-1" class="bg-blue-500 h-full w-0 transition-all duration-500"></div>
+                  </div>
+                  <span id="l9-res-val-1" class="w-12 text-right font-mono text-sm">0%</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <section class="rounded-[1.5rem] p-6 visual-container bg-slate-50 border col-span-1 md:col-span-2">
+            <h3 class="text-lg font-bold mb-3 text-slate-800 flex items-center gap-2">Insight สำคัญ</h3>
+            <ul class="bullet-list text-slate-700">
+              <li><strong>Circuit = โปรแกรม:</strong> คอมพิวเตอร์ปกติใช้โค้ด (if, else, loop) แต่ควอนตัมใช้การเรียง Quantum Gates ให้เป็น Circuit เพื่อสร้าง Algorithm</li>
+              <li>ยิ่ง Circuit มีความซับซ้อน (จำนวน Qubit เยอะ และ Gate ต่อกันยาว) ควอนตัมคอมพิวเตอร์ยิ่งสามารถแก้ปัญหาที่ยากระดับจักรวาลได้</li>
+            </ul>
+          </section>
+
+          <section class="rounded-[1.5rem] p-6 visual-container bg-emerald-50 border col-span-1 md:col-span-2">
+            <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> สรุป (Summary)</h3>
+            <ul class="bullet-list text-emerald-900/80">
+              <li><strong>Quantum Circuit</strong> คือการนำ Gate หลายๆ ตัวมาเรียงต่อกัน</li>
+              <li>การทำงานจะประมวลผลตามลำดับ <strong>จากซ้ายไปขวา</strong> เสมอ</li>
+              <li>สามารถมีเส้น Qubit ได้หลายเส้น และใช้ Gate เชื่อมโยงกันได้ (สร้าง Entanglement)</li>
+            </ul>
+          </section>
+        </div>
+
+      </div>
+    `
+  },
+  {
+    category: "Advanced Concepts",
+    title: "Quantum Algorithms",
+    header: "อัลกอริทึมควอนตัม: กุญแจสู่ความเร็ว",
+    explanation:
+      "เมื่อเรานำ Qubit, Superposition, Entanglement และ Gates มาประกอบกันเป็น Circuit เพื่อแก้ปัญหาเฉพาะทางอย่างเป็นระบบ เราเรียกสิ่งนั้นว่า 'Quantum Algorithm'",
+    workspaceHTML: `
+      <div class="workspace-stack space-y-8">
+        
+        <section class="rounded-[1.5rem] p-7 visual-container bg-amber-50/50">
+          <p class="subtle-kicker text-blue-600">Learning Objective</p>
+          <h3 class="text-lg font-bold mb-2">หลังเรียนจบบทนี้ คุณจะได้</h3>
+          <ul class="bullet-list text-amber-900/80">
+            <li>เข้าใจว่า Quantum Algorithm คืออะไร แตกต่างจากคอมพิวเตอร์ทั่วไปอย่างไร</li>
+            <li>เห็นภาพการนำ Circuit ที่เรียนมาไปประยุกต์ใช้เพื่อค้นหาคำตอบ</li>
+            <li>เข้าใจภาพรวมว่าทำไมควอนตัมถึงแก้ปัญหาบางอย่างได้เร็วแบบก้าวกระโดด</li>
+          </ul>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container">
+          <p class="subtle-kicker">1. Classical vs Quantum</p>
+          <h3 class="text-lg font-bold mb-2">Algorithm คืออะไร?</h3>
+          <p class="text-color-muted mb-4">ในคอมพิวเตอร์ทั่วไป <strong>Algorithm</strong> คือ "ขั้นตอนวิธีแก้ปัญหา" (Step-by-step)<br>ในโลกควอนตัม <strong>Quantum Algorithm</strong> ก็คือ "Quantum Circuit" ที่ถูกออกแบบมาเพื่อแก้ปัญหานั้นๆ โดยเฉพาะ</p>
+          
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm mb-4">
+            <h4 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+              <i data-lucide="search" class="w-5 h-5 text-blue-500"></i> ปัญหาตัวอย่าง: การค้นหาข้อมูล (Search Problem)
+            </h4>
+            <p class="text-sm text-slate-600 mb-6">สมมติว่าเรามีรายการตัวเลข 4 ตัว <strong>[ 3, 7, 2, 9 ]</strong> และเราต้องการหาว่า <strong>"เลข 9 อยู่ที่กล่องใบไหน?"</strong></p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-5 rounded-xl border shadow-sm">
+                <h5 class="font-bold text-slate-700 mb-2 border-b pb-2 flex items-center gap-2"><i data-lucide="monitor" class="w-4 h-4"></i> Classical Computer</h5>
+                <p class="text-sm text-slate-500 mb-3">ต้องเปิดดูทีละกล่องตามลำดับ (เช็ค 3 -> เช็ค 7 -> เช็ค 2 -> เจอ 9) ยิ่งกล่องเยอะ ยิ่งใช้เวลานาน</p>
+              </div>
+              <div class="bg-blue-50 p-5 rounded-xl border border-blue-200 shadow-sm">
+                <h5 class="font-bold text-blue-800 mb-2 border-b border-blue-200 pb-2 flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4"></i> Quantum Computer</h5>
+                <p class="text-sm text-blue-700/80 mb-3">ใช้ Superposition เพื่อ <strong>"ตรวจสอบทุกกล่องพร้อมกันในครั้งเดียว"</strong> แล้วทำให้คำตอบที่ถูกต้องเด่นชัดขึ้นมา!</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container">
+          <p class="subtle-kicker">2. The Speed Difference</p>
+          <h3 class="text-lg font-bold mb-6 text-center">ทดลองเปรียบเทียบความเร็วการค้นหา</h3>
+          
+          <div class="flex flex-col items-center">
+            <div class="flex gap-2 sm:gap-4 mb-8">
+              <div id="l10-box-0" class="w-14 h-16 sm:w-20 sm:h-24 bg-slate-800 border-2 border-slate-600 rounded-xl flex items-center justify-center text-2xl sm:text-4xl font-bold text-slate-400 transition-all duration-300 relative overflow-hidden">3</div>
+              <div id="l10-box-1" class="w-14 h-16 sm:w-20 sm:h-24 bg-slate-800 border-2 border-slate-600 rounded-xl flex items-center justify-center text-2xl sm:text-4xl font-bold text-slate-400 transition-all duration-300 relative overflow-hidden">7</div>
+              <div id="l10-box-2" class="w-14 h-16 sm:w-20 sm:h-24 bg-slate-800 border-2 border-slate-600 rounded-xl flex items-center justify-center text-2xl sm:text-4xl font-bold text-slate-400 transition-all duration-300 relative overflow-hidden">2</div>
+              <div id="l10-box-3" class="w-14 h-16 sm:w-20 sm:h-24 bg-slate-800 border-2 border-slate-600 rounded-xl flex items-center justify-center text-2xl sm:text-4xl font-bold text-slate-400 transition-all duration-300 relative overflow-hidden shadow-[0_0_0_rgba(245,158,11,0)]">9</div>
+            </div>
+
+            <p id="l10-search-status" class="text-slate-500 text-sm mb-6 h-5 font-mono">กำลังรอคำสั่ง...</p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+              <button onclick="l10RunClassical()" class="px-6 py-3 bg-slate-700 hover:bg-slate-600 border border-slate-500 text-white rounded-xl font-bold shadow-md transition-all flex items-center gap-2">
+                <i data-lucide="monitor" class="w-5 h-5"></i> ค้นหาแบบ Classical
+              </button>
+              <button onclick="l10RunQuantum()" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-700 text-white rounded-xl font-bold shadow-lg shadow-blue-900/50 flex items-center gap-2 transform hover:-translate-y-0.5 transition-all">
+                <i data-lucide="zap" class="w-5 h-5 fill-current"></i> ค้นหาแบบ Quantum
+              </button>
+            </div>
+            <button onclick="l10ResetSearch()" class="mt-6 text-xs text-slate-500 hover:text-slate-300 underline"><i data-lucide="rotate-ccw" class="w-3 h-3 inline"></i> รีเซ็ตการเปรียบเทียบ</button>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container">
+          <p class="subtle-kicker">3. How it actually works</p>
+          <h3 class="text-lg font-bold mb-2">ทำไมควอนตัมถึงหาเจอเร็วกว่า?</h3>
+          <p class="text-color-muted mb-6">Quantum Algorithm ไม่ได้ <strong>"เดาสุ่มแบบมั่วๆ"</strong> แต่มันใช้กระบวนการที่เรียกว่า <strong>Grover's Algorithm</strong> โดยมีขั้นตอนดังนี้:</p>
+          
+          <div class="grid gap-4 md:grid-cols-3 mb-8">
+            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+              <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold mb-3">1</div>
+              <h4 class="font-bold text-slate-800 mb-1">Superposition</h4>
+              <p class="text-sm text-slate-700">ใช้ H Gate เพื่อกระจายตัวไปเช็คทุกๆ กล่อง <strong>"พร้อมกัน"</strong> ด้วยความน่าจะเป็นที่เท่ากันทั้งหมด</p>
+            </div>
+            <div class="bg-amber-50 p-4 rounded-xl border border-amber-100">
+              <div class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold mb-3">2</div>
+              <h4 class="font-bold text-slate-800 mb-1">Interference</h4>
+              <p class="text-sm text-slate-700">ใช้ Gate พิเศษ <strong>"ขยาย (Amplify)"</strong> ความน่าจะเป็นของกล่องที่ถูกต้อง และหักล้างกล่องที่ผิดทิ้งไป</p>
+            </div>
+            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+              <div class="w-8 h-8 bg-emerald-500 text-white rounded-full flex items-center justify-center font-bold mb-3">3</div>
+              <h4 class="font-bold text-slate-800 mb-1">Measurement</h4>
+              <p class="text-sm text-slate-700">ทำการ <strong>"วัดผล"</strong> ระบบจะยุบตัวลงไปสู่คำตอบที่ถูกต้องด้วยความน่าจะเป็นที่เกือบจะเป็น 100%</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] p-7 interactive-container bg-slate-50 border shadow-inner">
+          <div class="flex items-center gap-2 mb-2">
+            <p class="subtle-kicker">4. Grover's Magic</p>
+          </div>
+          <h3 class="text-lg font-bold mb-2 text-slate-800">Probability Amplification</h3>
+          <p class="text-color-muted mb-6">จำลองการทำงานของ <strong>Grover's Algorithm</strong> บนข้อมูล 8 ชิ้น (3 Qubits) เป้าหมายของเราคือการหาข้อมูลชิ้นที่ <strong>|101⟩ (กล่องที่ 6)</strong> ลองกดปุ่มรันอัลกอริทึมทีละก้าวดูสิ!</p>
+          
+          <div class="bg-white rounded-2xl p-6 border shadow-sm flex flex-col items-center">
+            
+            <h4 class="font-bold text-slate-800 uppercase tracking-wider mb-6">ความน่าจะเป็นของแต่ละสถานะ</h4>
+            
+            <div class="w-full max-w-lg flex items-end justify-between h-40 border-b-2 border-slate-200 pb-2 mb-6 px-2">
+              <div class="flex flex-col items-center w-8 group">
+                <span id="l10-val-0" class="text-[10px] font-bold text-slate-500 mb-1 transition-all">12.5%</span>
+                <div id="l10-bar-0" class="w-full bg-slate-300 rounded-t-md transition-all duration-700 ease-out" style="height: 12.5%;"></div>
+                <span class="text-[10px] font-mono font-bold text-slate-400 mt-2">000</span>
+              </div>
+              <div class="flex flex-col items-center w-8 group">
+                <span id="l10-val-1" class="text-[10px] font-bold text-slate-500 mb-1 transition-all">12.5%</span>
+                <div id="l10-bar-1" class="w-full bg-slate-300 rounded-t-md transition-all duration-700 ease-out" style="height: 12.5%;"></div>
+                <span class="text-[10px] font-mono font-bold text-slate-400 mt-2">001</span>
+              </div>
+              <div class="flex flex-col items-center w-8 group">
+                <span id="l10-val-2" class="text-[10px] font-bold text-slate-500 mb-1 transition-all">12.5%</span>
+                <div id="l10-bar-2" class="w-full bg-slate-300 rounded-t-md transition-all duration-700 ease-out" style="height: 12.5%;"></div>
+                <span class="text-[10px] font-mono font-bold text-slate-400 mt-2">010</span>
+              </div>
+              <div class="flex flex-col items-center w-8 group">
+                <span id="l10-val-3" class="text-[10px] font-bold text-slate-500 mb-1 transition-all">12.5%</span>
+                <div id="l10-bar-3" class="w-full bg-slate-300 rounded-t-md transition-all duration-700 ease-out" style="height: 12.5%;"></div>
+                <span class="text-[10px] font-mono font-bold text-slate-400 mt-2">011</span>
+              </div>
+              <div class="flex flex-col items-center w-8 group">
+                <span id="l10-val-4" class="text-[10px] font-bold text-slate-500 mb-1 transition-all">12.5%</span>
+                <div id="l10-bar-4" class="w-full bg-slate-300 rounded-t-md transition-all duration-700 ease-out" style="height: 12.5%;"></div>
+                <span class="text-[10px] font-mono font-bold text-slate-400 mt-2">100</span>
+              </div>
+              
+              <div class="flex flex-col items-center w-8 group relative">
+                <div class="absolute -top-6 text-blue-500 animate-bounce"><i data-lucide="target" class="w-4 h-4"></i></div>
+                <span id="l10-val-5" class="text-[10px] font-bold text-blue-600 mb-1 transition-all">12.5%</span>
+                <div id="l10-bar-5" class="w-full bg-blue-400 rounded-t-md transition-all duration-700 ease-out shadow-[0_0_10px_rgba(251,191,36,0.5)]" style="height: 12.5%;"></div>
+                <span class="text-[10px] font-mono font-bold text-blue-600 mt-2">101</span>
+              </div>
+
+              <div class="flex flex-col items-center w-8 group">
+                <span id="l10-val-6" class="text-[10px] font-bold text-slate-500 mb-1 transition-all">12.5%</span>
+                <div id="l10-bar-6" class="w-full bg-slate-300 rounded-t-md transition-all duration-700 ease-out" style="height: 12.5%;"></div>
+                <span class="text-[10px] font-mono font-bold text-slate-400 mt-2">110</span>
+              </div>
+              <div class="flex flex-col items-center w-8 group">
+                <span id="l10-val-7" class="text-[10px] font-bold text-slate-500 mb-1 transition-all">12.5%</span>
+                <div id="l10-bar-7" class="w-full bg-slate-300 rounded-t-md transition-all duration-700 ease-out" style="height: 12.5%;"></div>
+                <span class="text-[10px] font-mono font-bold text-slate-400 mt-2">111</span>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-center w-full">
+              <div class="flex justify-center gap-4 mb-4">
+                <button onclick="l10ResetGrover()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg text-sm font-bold transition-all">รีเซ็ต</button>
+                <button id="l10-btn-grover" onclick="l10RunGroverStep()" class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm font-bold shadow-lg shadow-blue-200 transition-all flex items-center gap-2">
+                  <i data-lucide="play-circle" class="w-4 h-4"></i> Run Algorithm (Step 1)
+                </button>
+              </div>
+              <div class="h-8 flex items-center justify-center w-full max-w-lg bg-blue-50 rounded text-sm text-blue-800 border border-blue-100">
+                <span id="l10-grover-desc"><strong>เริ่มต้น:</strong> ใช้ H Gate เพื่อเข้าสู่ Superposition (ทุกค่าเท่ากัน 12.5%)</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <section class="rounded-[1.5rem] p-6 visual-container bg-slate-900 border col-span-1 md:col-span-2 shadow-xl">
+            <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="layers" class="w-6 h-6"></i> ภาพรวมของ Quantum Power</h3>
+            <p class="text-color-muted md-6">การทำงานของคอมพิวเตอร์ควอนตัม คือการประกอบจิ๊กซอว์ของทุกบทที่คุณเรียนมาเข้าด้วยกัน:</p><br>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="bg-slate-800 p-4 rounded-xl border border-slate-600 text-center hover:-translate-y-1 transition-transform">
+                <div class="w-10 h-10 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mx-auto mb-2"><i data-lucide="box" class="w-5 h-5"></i></div>
+                <p class="font-bold text-white mb-1">Qubit</p>
+                <p class="text-sm text-slate-400">หน่วยเก็บข้อมูล 3 มิติ</p>
+              </div>
+              <div class="bg-slate-800 p-4 rounded-xl border border-slate-600 text-center hover:-translate-y-1 transition-transform">
+                <div class="w-10 h-10 bg-fuchsia-500/20 text-fuchsia-400 rounded-full flex items-center justify-center mx-auto mb-2"><i data-lucide="split" class="w-5 h-5"></i></div>
+                <p class="font-bold text-white mb-1">Superposition</p>
+                <p class="text-sm text-slate-400">ลองหลายค่าได้พร้อมกัน</p>
+              </div>
+              <div class="bg-slate-800 p-4 rounded-xl border border-slate-600 text-center hover:-translate-y-1 transition-transform">
+                <div class="w-10 h-10 bg-teal-500/20 text-teal-400 rounded-full flex items-center justify-center mx-auto mb-2"><i data-lucide="link" class="w-5 h-5"></i></div>
+                <p class="font-bold text-white mb-1">Entanglement</p>
+                <p class="text-sm text-slate-400">เชื่อมโยงข้อมูลเข้าด้วยกัน</p>
+              </div>
+              <div class="bg-slate-800 p-4 rounded-xl border border-amber-500/30 text-center shadow-[0_0_15px_rgba(245,158,11,0.1)] hover:-translate-y-1 transition-transform">
+                <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-2"><i data-lucide="cpu" class="w-5 h-5"></i></div>
+                <p class="font-bold text-white mb-1">Algorithm</p>
+                <p class="text-sm text-slate-400">ใช้ Gates และวงจรเพื่อหาคำตอบ</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="rounded-[1.5rem] p-6 visual-container bg-slate-50 border col-span-1">
+            <h3 class="text-lg font-bold mb-3 text-slate-800 flex items-center gap-2"><i data-lucide="globe" class="w-5 h-5"></i> การประยุกต์ใช้จริง</h3>
+            <ul class="bullet-list text-slate-700">
+              <li><strong>Cryptography:</strong> ถอดรหัสผ่านที่คอมปกติใช้เวลาล้านปีได้ในไม่กี่นาที (Shor's Algorithm)</li>
+              <li><strong>Drug Discovery:</strong> จำลองปฏิกิริยาเคมีเพื่อคิดค้นยารักษาโรคใหม่ๆ</li>
+              <li><strong>Optimization:</strong> หาเส้นทางเดินรถที่ประหยัดและเร็วที่สุด</li>
+            </ul>
+          </section>
+
+          <section class="rounded-[1.5rem] p-6 visual-container border col-span-1">
+            <h3 class="text-lg font-bold mb-3 text-emerald-800 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> สรุป (Summary)</h3>
+            <ul class="bullet-list text-slate-700/80">
+              <li><strong>Quantum Algorithm</strong> คือวงจรควอนตัมที่ถูกออกแบบมาเพื่อแก้ปัญหาเฉพาะทาง</li>
+              <li>มันทำงานโดยการใช้ <strong>Superposition</strong> เพื่อลองทุกคำตอบ และใช้ <strong>Gates</strong> หักล้างคำตอบที่ผิด (Interference)</li>
+              <li>ช่วยให้เราแก้ปัญหาที่ซับซ้อนเกินกว่าคอมพิวเตอร์ทั่วไปจะรับมือได้</li>
+            </ul>
+          </section>
+        </div>
+
+      </div>
+    `
+  }
 ];
