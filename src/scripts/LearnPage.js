@@ -247,6 +247,39 @@ function initLessonInteractions(index) {
       updateL7Int2Slider(2);
     }
   }, 100);
+
+  // เช็คของบทที่ 8 (Entanglement)
+  setTimeout(() => {
+    const l8Container = document.getElementById('l8-qa-ball');
+    if (l8Container) {
+      resetL8(); // ล้างค่าและ UI กลับเป็น 100% |00>
+    }
+  }, 100);
+
+  // เช็คของบทที่ 9 (Quantum Circuits)
+  setTimeout(() => {
+    const l9Node = document.getElementById('l9-node-1');
+    if (l9Node) {
+      l9ResetStep(); // รีเซ็ต Simulation แบบขั้นบันได
+      l9ClearCircuit(); // ล้างกระดานต่อ Gate
+      
+      const out0 = document.getElementById('l9-out-0');
+      if (out0) out0.style.opacity = '0';
+      const out1 = document.getElementById('l9-out-1');
+      if (out1) out1.style.opacity = '0';
+      const entDesc = document.getElementById('l9-entangle-desc');
+      if (entDesc) entDesc.innerText = '';
+    }
+  }, 100);
+
+  // เช็คของบทที่ 10 (Quantum Algorithms)
+  setTimeout(() => {
+    const l10Box = document.getElementById('l10-box-0');
+    if (l10Box) {
+      l10ResetSearch();
+      l10ResetGrover();
+    }
+  }, 100);
 }
 
 function loadLesson(index) {
@@ -993,6 +1026,552 @@ function updateL7BarChart(v00, v01, v10, v11) {
   });
 }
 
+// ==========================================
+// Lesson 8: Entanglement Interactives
+// ==========================================
+
+let l8_isEntangled = false;
+let l8_isMeasured = false;
+
+function createL8Entanglement() {
+  if (l8_isMeasured) return; // ถ้าวัดไปแล้ว ห้ามทำซ้ำจนกว่าจะรีเซ็ต
+  
+  l8_isEntangled = true;
+  
+  // UI อัปเดตทรงกลม Qubit
+  const qaBall = document.getElementById('l8-qa-ball');
+  const qbBall = document.getElementById('l8-qb-ball');
+  const qaVal = document.getElementById('l8-qa-val');
+  const qbVal = document.getElementById('l8-qb-val');
+  
+  qaBall.style.backgroundColor = '#115e59'; // teal-800
+  qaBall.style.borderColor = '#2dd4bf'; // teal-400
+  qbBall.style.backgroundColor = '#115e59';
+  qbBall.style.borderColor = '#2dd4bf';
+  
+  qaVal.innerText = "?";
+  qaVal.style.color = '#fff';
+  qbVal.innerText = "?";
+  qbVal.style.color = '#fff';
+
+  // อัปเดตเส้นเชื่อม
+  const linkGlow = document.getElementById('l8-link-glow');
+  linkGlow.style.opacity = '1';
+  linkGlow.style.transform = 'translateX(0)';
+  // ให้ไฟวิ่งสลับไปมา
+  linkGlow.classList.add('animate-pulse');
+
+  // อัปเดตกราฟ (50% |00> และ 50% |11>)
+  updateL8BarChart(50, 0, 0, 50);
+
+  // เปลี่ยนสถานะข้อความและปุ่ม
+  document.getElementById('l8-status-text').innerHTML = "<span class='text-teal-400 font-bold'>สร้าง Entanglement สำเร็จ! (สถานะคือ 50% |00⟩ + 50% |11⟩)</span>";
+  
+  const measureBtn = document.getElementById('l8-btn-measure');
+  measureBtn.disabled = false;
+  measureBtn.className = "px-8 py-4 bg-rose-500 hover:bg-rose-600 text-white rounded-2xl font-bold flex flex-col items-center gap-1 transition-all w-full max-w-sm shadow-lg shadow-rose-200 transform hover:-translate-y-1";
+  measureBtn.innerHTML = `<i data-lucide="crosshair" class="w-6 h-6"></i> <span>Measure Qubit A</span><span class="text-xs font-normal opacity-90">(คลิกและลองสังเกตุผลลัพธ์ของ Qubit B)</span>`;
+  lucide.createIcons();
+}
+
+function measureL8QubitA() {
+  if (!l8_isEntangled || l8_isMeasured) return;
+  l8_isMeasured = true;
+
+  // สุ่มผลลัพธ์ 0 หรือ 1
+  const result = Math.random() < 0.5 ? 0 : 1;
+  
+  // อัปเดต Qubit A
+  const qaBall = document.getElementById('l8-qa-ball');
+  const qaVal = document.getElementById('l8-qa-val');
+  qaBall.style.backgroundColor = '#f8fafc'; // slate-50
+  qaBall.style.borderColor = '#cbd5e1'; // slate-300
+  qaVal.innerText = result;
+  qaVal.style.color = '#0f172a'; // slate-900
+
+  // 💥 จุดว้าว: อัปเดต Qubit B ให้ตรงกันทันที 💥
+  setTimeout(() => {
+    const qbBall = document.getElementById('l8-qb-ball');
+    const qbVal = document.getElementById('l8-qb-val');
+    
+    // ใส่ Effect แฟลชสว่างวาบให้ Qubit B ก่อนเปลี่ยนค่า
+    qbBall.style.boxShadow = '0 0 30px rgba(45, 212, 191, 1)';
+    
+    setTimeout(() => {
+      qbBall.style.backgroundColor = '#f8fafc';
+      qbBall.style.borderColor = '#cbd5e1';
+      qbBall.style.boxShadow = 'none';
+      qbVal.innerText = result;
+      qbVal.style.color = '#0f172a';
+      
+      // ลบเส้นเชื่อม (เพราะโดน Measure แล้ว Entanglement แตกสลาย)
+      document.getElementById('l8-link-glow').style.opacity = '0';
+      document.getElementById('l8-link-glow').classList.remove('animate-pulse');
+
+      // อัปเดตกราฟ (100% |00> หรือ 100% |11>)
+      if (result === 0) {
+        updateL8BarChart(100, 0, 0, 0);
+        document.getElementById('l8-status-text').innerHTML = "ผลลัพธ์: ได้ <strong class='text-white'>|00⟩</strong> 100% (Entanglement แตกสลายแล้ว)";
+      } else {
+        updateL8BarChart(0, 0, 0, 100);
+        document.getElementById('l8-status-text').innerHTML = "ผลลัพธ์: ได้ <strong class='text-white'>|11⟩</strong> 100% (Entanglement แตกสลายแล้ว)";
+      }
+    }, 300); // ดีเลย์นิดเดียวให้เห็นแฟลช
+  }, 100); // ดีเลย์นิดนึงให้ดูเหมือนวิ่งจาก A ไป B
+  
+  // ปิดปุ่ม
+  const measureBtn = document.getElementById('l8-btn-measure');
+  measureBtn.disabled = true;
+  measureBtn.className = "px-8 py-4 bg-slate-200 text-slate-400 cursor-not-allowed rounded-2xl font-bold flex flex-col items-center gap-1 transition-all w-full max-w-sm";
+  measureBtn.innerHTML = `<i data-lucide="check-circle" class="w-6 h-6"></i> <span>วัดค่าเสร็จสมบูรณ์</span>`;
+  lucide.createIcons();
+}
+
+function resetL8() {
+  l8_isEntangled = false;
+  l8_isMeasured = false;
+  
+  // คืนค่า UI ลูกบอล
+  const qaBall = document.getElementById('l8-qa-ball');
+  const qbBall = document.getElementById('l8-qb-ball');
+  const qaVal = document.getElementById('l8-qa-val');
+  const qbVal = document.getElementById('l8-qb-val');
+  
+  qaBall.style.backgroundColor = '#334155'; // slate-700
+  qaBall.style.borderColor = '#475569'; // slate-600
+  qbBall.style.backgroundColor = '#334155';
+  qbBall.style.borderColor = '#475569';
+  qaBall.style.boxShadow = 'none';
+  qbBall.style.boxShadow = 'none';
+  
+  qaVal.innerText = "?";
+  qaVal.style.color = '#94a3b8'; // slate-400
+  qbVal.innerText = "?";
+  qbVal.style.color = '#94a3b8';
+
+  // ปิดไฟเส้นเชื่อม
+  const linkGlow = document.getElementById('l8-link-glow');
+  if (linkGlow) {
+    linkGlow.style.opacity = '0';
+    linkGlow.style.transform = 'translateX(-100%)';
+    linkGlow.classList.remove('animate-pulse');
+  }
+
+  // รีเซ็ตกราฟ
+  updateL8BarChart(100, 0, 0, 0);
+
+  // รีเซ็ตข้อความและปุ่ม
+  const statusTxt = document.getElementById('l8-status-text');
+  if (statusTxt) statusTxt.innerHTML = "ตอนนี้ Qubit ทั้งสองยังไม่ได้เชื่อมกัน (อยู่ในสถานะ |00⟩)";
+  
+  const measureBtn = document.getElementById('l8-btn-measure');
+  if (measureBtn) {
+    measureBtn.disabled = true;
+    measureBtn.className = "px-8 py-4 bg-slate-200 text-slate-400 cursor-not-allowed rounded-2xl font-bold flex flex-col items-center gap-1 transition-all w-full max-w-sm";
+    measureBtn.innerHTML = `<i data-lucide="crosshair" class="w-6 h-6"></i> <span>Measure Qubit A</span><span class="text-xs font-normal opacity-80">(ต้องสร้าง Entanglement ก่อน)</span>`;
+    lucide.createIcons();
+  }
+}
+
+function updateL8BarChart(v00, v01, v10, v11) {
+  const vals = [
+    { id: '00', val: v00 },
+    { id: '01', val: v01 },
+    { id: '10', val: v10 },
+    { id: '11', val: v11 }
+  ];
+  
+  vals.forEach(item => {
+    const bar = document.getElementById(`l8-bar-${item.id}`);
+    const text = document.getElementById(`l8-val-${item.id}`);
+    
+    if (bar && text) {
+      bar.style.width = `${item.val}%`;
+      text.innerText = `${item.val}%`;
+      
+      // สลับสีให้ตรงเป๊ะ
+      if (item.val > 0) {
+        bar.style.backgroundColor = '#14b8a6'; // teal-500
+        text.style.color = '#fff';
+      } else {
+        bar.style.backgroundColor = '#64748b'; // slate-500
+        text.style.color = '#94a3b8'; // slate-400
+      }
+    }
+  });
+}
+
+// ==========================================
+// Lesson 9: Quantum Circuits Interactives
+// ==========================================
+
+// --- Interactive 2: Step-by-Step ---
+let l9_step = 0;
+const l9_maxStep = 3;
+
+function l9ResetStep() {
+  l9_step = 0;
+  updateL9StepUI();
+}
+
+function l9NextStep() {
+  if (l9_step < l9_maxStep) {
+    l9_step++;
+    updateL9StepUI();
+  }
+}
+
+function updateL9StepUI() {
+  const node1 = document.getElementById('l9-node-1');
+  const node2 = document.getElementById('l9-node-2');
+  const node3 = document.getElementById('l9-node-3');
+  const label = document.getElementById('l9-step-label');
+  const desc = document.getElementById('l9-step-desc');
+  const btnNext = document.getElementById('l9-btn-next');
+
+  // รีเซ็ตสไตล์
+  [node1, node2, node3].forEach(n => {
+    n.style.borderColor = '#64748b'; // slate-500
+    n.style.backgroundColor = '#334155'; // slate-700
+    n.style.color = '#fff';
+    n.style.boxShadow = 'none';
+  });
+
+  if (l9_step === 0) {
+    label.innerText = "จุดเริ่มต้น (Start)";
+    desc.innerHTML = "Qubit เริ่มต้นที่สถานะ <strong class='text-white'>|0⟩</strong> แบบ 100%";
+    btnNext.disabled = false;
+    btnNext.style.opacity = '1';
+  } 
+  else if (l9_step === 1) {
+    node1.style.borderColor = '#518adf'; 
+    node1.style.backgroundColor = '#3982be'; 
+    node1.style.boxShadow = '0 0 15px rgba(30, 90, 158, 0.6)';
+    label.innerText = "Step 1: H Gate (Hadamard)";
+    desc.innerHTML = "แยกเส้นทาง! สร้าง <strong>Superposition</strong> (50% |0⟩ และ 50% |1⟩)";
+  } 
+  else if (l9_step === 2) {
+    node1.style.borderColor = '#64748b';
+    node1.style.backgroundColor = '#334155';
+    node2.style.borderColor = '#518adf'; 
+    node2.style.backgroundColor = '#3982be'; 
+    node2.style.boxShadow = '0 0 15px rgba(30, 90, 158, 0.6)';
+    label.innerText = "Step 2: X Gate (NOT)";
+    desc.innerHTML = "สลับสถานะ (Flip)! แต่เนื่องจากเป็น 50/50 อยู่แล้ว ความน่าจะเป็นจึงยังเท่าเดิม (แต่เฟสเปลี่ยน)";
+  } 
+  else if (l9_step === 3) {
+    node2.style.borderColor = '#64748b';
+    node2.style.backgroundColor = '#334155';
+    node3.style.borderColor = '#f43f5e'; // rose-500
+    node3.style.backgroundColor = '#e11d48'; // rose-600
+    node3.style.boxShadow = '0 0 15px rgba(225, 29, 72, 0.6)';
+    label.innerText = "Step 3: Measurement (วัดผล)";
+    
+    const res = Math.random() < 0.5 ? 0 : 1;
+    desc.innerHTML = `ยุบตัว (Collapse)! สุ่มผลลัพธ์ออกมาได้เป็น <strong class='text-rose-400 text-xl'>|${res}⟩</strong>`;
+    
+    btnNext.disabled = true;
+    btnNext.style.opacity = '0.5';
+  }
+}
+
+// --- Interactive 3: Entanglement Circuit ---
+function l9RunEntanglement() {
+  const out0 = document.getElementById('l9-out-0');
+  const out1 = document.getElementById('l9-out-1');
+  const desc = document.getElementById('l9-entangle-desc');
+  
+  desc.innerText = "กำลังประมวลผล...";
+  out0.style.opacity = '0';
+  out1.style.opacity = '0';
+
+  setTimeout(() => {
+    // ผลลัพธ์ของ Bell State คือ 00 หรือ 11
+    const res = Math.random() < 0.5 ? '0' : '1';
+    
+    out0.innerText = `|${res}⟩`;
+    out1.innerText = `|${res}⟩`;
+    out0.style.opacity = '1';
+    out1.style.opacity = '1';
+    
+    desc.innerHTML = `เชื่อมสำเร็จ! ทั้งคู่ยุบตัวได้สถานะ <strong class='text-blue-600'>|${res}${res}⟩</strong> เสมอ!`;
+  }, 800);
+}
+
+// --- Interactive 4: Build Your Own Circuit ---
+let l9_userCircuit = []; // เก็บ string 'H' หรือ 'X' (สูงสุด 3 ตัว)
+
+function l9AddGate(gateType) {
+  if (l9_userCircuit.length >= 3) return; // เต็มแล้ว
+  l9_userCircuit.push(gateType);
+  updateL9CircuitUI();
+}
+
+function l9ClearCircuit() {
+  l9_userCircuit = [];
+  updateL9CircuitUI();
+  // รีเซ็ตผลลัพธ์กลับเป็น 100% |0>
+  setL9Results(100, 0);
+}
+
+function updateL9CircuitUI() {
+  for (let i = 0; i < 3; i++) {
+    const slot = document.getElementById(`l9-slot-${i}`);
+    if (i < l9_userCircuit.length) {
+      const gate = l9_userCircuit[i];
+      slot.innerText = gate;
+      slot.style.borderStyle = 'solid';
+      slot.style.color = '#fff';
+      
+      if (gate === 'H') {
+        slot.style.backgroundColor = '#2563eb'; // blue-600
+        slot.style.borderColor = '#1d4ed8'; // blue-700
+      } else {
+        slot.style.backgroundColor = '#059669'; // emerald-600
+        slot.style.borderColor = '#047857'; // emerald-700
+      }
+    } else {
+      slot.innerText = i + 1;
+      slot.style.borderStyle = 'dashed';
+      slot.style.backgroundColor = '#fff';
+      slot.style.borderColor = '#cbd5e1'; // slate-300
+      slot.style.color = '#94a3b8'; // slate-400
+    }
+  }
+}
+
+function l9RunCircuit() {
+  // คณิตศาสตร์ของควอนตัม 1 Qubit (Amplitudes)
+  // เริ่มที่ |0>
+  let a0 = 1.0; 
+  let a1 = 0.0;
+  
+  const invSqrt2 = 1.0 / Math.sqrt(2);
+
+  // วิ่งผ่านทีละ Gate
+  for (let gate of l9_userCircuit) {
+    let next_a0, next_a1;
+    if (gate === 'H') {
+      next_a0 = (a0 + a1) * invSqrt2;
+      next_a1 = (a0 - a1) * invSqrt2;
+    } else if (gate === 'X') {
+      next_a0 = a1;
+      next_a1 = a0;
+    }
+    a0 = next_a0;
+    a1 = next_a1;
+  }
+
+  // คำนวณความน่าจะเป็น (Probability = Amplitude^2)
+  // ปัดเศษนิดหน่อยป้องกัน Floating point error
+  let p0 = Math.round(Math.pow(a0, 2) * 100);
+  let p1 = Math.round(Math.pow(a1, 2) * 100);
+  
+  // ให้ชัวร์ว่ารวมกันได้ 100
+  if (p0 + p1 !== 100) p1 = 100 - p0;
+
+  setL9Results(p0, p1);
+}
+
+function setL9Results(p0, p1) {
+  const bar0 = document.getElementById('l9-res-0');
+  const bar1 = document.getElementById('l9-res-1');
+  const val0 = document.getElementById('l9-res-val-0');
+  const val1 = document.getElementById('l9-res-val-1');
+  
+  if (bar0 && bar1) {
+    bar0.style.width = `${p0}%`;
+    bar1.style.width = `${p1}%`;
+    val0.innerText = `${p0}%`;
+    val1.innerText = `${p1}%`;
+    
+    // เปลี่ยนสีไฮไลต์ตัวที่มีค่ามากกว่า
+    bar0.style.backgroundColor = p0 > 0 ? '#2b5be0' : '#475569';
+    bar1.style.backgroundColor = p1 > 0 ? '#2b5be0' : '#475569';
+  }
+}
+
+
+// Lesson 10: Quantum Algorithms Interactives
+
+
+// --- Interactive 1: Search Comparison ---
+let l10_searchInterval = null;
+let l10_isSearching = false;
+
+function l10ResetSearch() {
+  clearInterval(l10_searchInterval);
+  l10_isSearching = false;
+  
+  // รีเซ็ตสไตล์กล่องทั้งหมด
+  for(let i=0; i<4; i++) {
+    const box = document.getElementById(`l10-box-${i}`);
+    box.style.backgroundColor = '#1e293b'; // slate-800
+    box.style.borderColor = '#475569'; // slate-600
+    box.style.color = '#94a3b8'; // slate-400
+    box.style.transform = 'scale(1)';
+    box.style.boxShadow = 'none';
+  }
+  
+  document.getElementById('l10-search-status').innerHTML = "กำลังรอคำสั่ง...";
+}
+
+function l10RunClassical() {
+  if(l10_isSearching) return;
+  l10ResetSearch();
+  l10_isSearching = true;
+  
+  document.getElementById('l10-search-status').innerHTML = "Classical: กำลังค้นหาทีละกล่องอย่างช้าๆ...";
+  
+  let currentIndex = 0;
+  
+  l10_searchInterval = setInterval(() => {
+    // รีเซ็ตกล่องก่อนหน้า (ถ้ามี)
+    if(currentIndex > 0) {
+      const prevBox = document.getElementById(`l10-box-${currentIndex-1}`);
+      prevBox.style.backgroundColor = '#1e293b';
+      prevBox.style.borderColor = '#475569';
+    }
+    
+    // ไฮไลต์กล่องปัจจุบัน
+    const currBox = document.getElementById(`l10-box-${currentIndex}`);
+    currBox.style.backgroundColor = '#334155'; // slate-700
+    currBox.style.borderColor = '#94a3b8'; // slate-400
+    
+    // เช็คคำตอบ (กล่องที่ 3 คือเลข 9)
+    if (currentIndex === 3) {
+      clearInterval(l10_searchInterval);
+      setTimeout(() => {
+        currBox.style.backgroundColor = '#10b981'; // emerald-500
+        currBox.style.borderColor = '#059669'; // emerald-600
+        currBox.style.color = '#fff';
+        currBox.style.transform = 'scale(1.1)';
+        currBox.style.boxShadow = '0 0 20px rgba(16, 185, 129, 0.5)';
+        document.getElementById('l10-search-status').innerHTML = "<span class='text-emerald-500'>Classical: เจอเลข 9 แล้ว! (ต้องเปิดหาตั้ง 4 ครั้ง)</span>";
+        l10_isSearching = false;
+      }, 300);
+    } else {
+      currentIndex++;
+    }
+  }, 600); // ดีเลย์ 0.6 วิ ต่อการหา 1 กล่อง
+}
+
+function l10RunQuantum() {
+  if(l10_isSearching) return;
+  l10ResetSearch();
+  l10_isSearching = true;
+  
+  document.getElementById('l10-search-status').innerHTML = "Quantum: สร้าง Superposition เพื่อเช็คทุกกล่อง <strong>พร้อมกัน!</strong>";
+  
+  // 1. กระจาย Superposition (ไฮไลต์ทุกกล่องพร้อมกัน)
+  for(let i=0; i<4; i++) {
+    const box = document.getElementById(`l10-box-${i}`);
+    box.style.backgroundColor = '#3b82f6'; // blue-500
+    box.style.borderColor = '#60a5fa'; // blue-400
+    box.style.color = '#fff';
+    box.style.boxShadow = '0 0 15px rgba(59, 130, 246, 0.4)';
+  }
+  
+  // 2. ขยายคำตอบที่ถูกต้อง (Grover's Magic) ทันทีในเสี้ยววิ!
+  setTimeout(() => {
+    for(let i=0; i<4; i++) {
+      const box = document.getElementById(`l10-box-${i}`);
+      if(i === 3) { // คำตอบที่ถูก
+        box.style.backgroundColor = '#3b82f6'; // blue-500
+        box.style.borderColor = '#60a5fa'; // blue-400
+        box.style.transform = 'scale(1.1)';
+        box.style.boxShadow = '0 0 30px rgba(59, 130, 246, 0.8)';
+      } else { // คำตอบที่ผิดหดตัวลง
+        box.style.backgroundColor = '#1e293b'; 
+        box.style.borderColor = '#475569';
+        box.style.color = '#64748b'; // สีจางลง
+        box.style.boxShadow = 'none';
+        box.style.transform = 'scale(0.9)';
+      }
+    }
+    document.getElementById('l10-search-status').innerHTML = "<span class='text-blue-500'>Quantum: เจอเลข 9 แล้ว! (ใช้การทำงานเพียงก้าวเดียว!)</span>";
+    l10_isSearching = false;
+  }, 1000);
+}
+
+// --- Interactive 2: Probability Amplification (Grover's) ---
+let l10_groverStep = 0;
+
+// โอกาสเปอร์เซ็นต์ในแต่ละก้าว (จำลอง Amplitude Amplification ของจริง)
+// Target คือ index 5
+const l10_groverData = [
+  // Step 0: Initial Superposition
+  { target: 12.5, others: 12.5, desc: "<strong>เริ่มต้น:</strong> ใช้ H Gate เพื่อเข้าสู่ Superposition (ทุกค่ามีโอกาส 12.5% เท่ากัน)" },
+  // Step 1: 1st Iteration
+  { target: 78.1, others: 3.1, desc: "<strong>Step 1:</strong> ควอนตัมพลิกเฟสและขยายความน่าจะเป็นของเป้าหมายให้พุ่งสูงขึ้นอย่างชัดเจน!" },
+  // Step 2: 2nd Iteration (เกือบ 100% ในความเป็นจริงของ 3 qubits ใช้ 2 รอบพอดี)
+  { target: 94.5, others: 0.8, desc: "<strong>Step 2:</strong> ขยายซ้ำอีกรอบ ตอนนี้โอกาสสุ่มเจอคำตอบที่ถูกคือ <strong>94.5%</strong>! (พร้อมที่จะวัดผลแล้ว)" }
+];
+
+function l10ResetGrover() {
+  l10_groverStep = 0;
+  l10ApplyGroverData();
+  
+  const btn = document.getElementById('l10-btn-grover');
+  btn.disabled = false;
+  btn.innerHTML = `<i data-lucide="play-circle" class="w-4 h-4"></i> Run Algorithm (Step 1)`;
+  btn.className = "px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm font-bold shadow-lg shadow-blue-200 transition-all flex items-center gap-2";
+  lucide.createIcons();
+}
+
+function l10RunGroverStep() {
+  if (l10_groverStep >= 2) return; // ทำได้แค่ 2 ขั้น (เหมาะสมที่สุดสำหรับ 8 states)
+  
+  l10_groverStep++;
+  l10ApplyGroverData();
+  
+  const btn = document.getElementById('l10-btn-grover');
+  
+  if (l10_groverStep === 1) {
+    btn.innerHTML = `<i data-lucide="play-circle" class="w-4 h-4"></i> Run Algorithm (Step 2)`;
+  } else if (l10_groverStep === 2) {
+    btn.disabled = true;
+    btn.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4"></i> สำเร็จ (คำตอบชัดเจนแล้ว)`;
+    btn.className = "px-6 py-2 bg-slate-300 text-slate-500 cursor-not-allowed rounded-lg text-sm font-bold flex items-center gap-2 transition-all";
+  }
+  lucide.createIcons();
+}
+
+function l10ApplyGroverData() {
+  const data = l10_groverData[l10_groverStep];
+  
+  for(let i=0; i<8; i++) {
+    const bar = document.getElementById(`l10-bar-${i}`);
+    const valText = document.getElementById(`l10-val-${i}`);
+    
+    if (i === 5) { // Target |101>
+      bar.style.height = `${data.target}%`;
+      valText.innerText = `${data.target}%`;
+      
+      if (l10_groverStep > 0) {
+        bar.style.backgroundColor = '#f59e0b'; // amber-500
+        bar.style.boxShadow = `0 0 ${10 + (l10_groverStep*10)}px rgba(245, 158, 11, ${0.5 + (l10_groverStep*0.2)})`;
+      } else {
+        bar.style.backgroundColor = '#fbbf24'; // amber-400
+        bar.style.boxShadow = '0 0 10px rgba(251, 191, 36, 0.5)';
+      }
+    } else { // Others
+      bar.style.height = `${data.others}%`;
+      valText.innerText = `${data.others}%`;
+      
+      if (l10_groverStep > 0) {
+        bar.style.backgroundColor = '#e2e8f0'; // slate-200
+        valText.style.color = '#94a3b8'; // slate-400
+      } else {
+        bar.style.backgroundColor = '#cbd5e1'; // slate-300
+        valText.style.color = '#64748b'; // slate-500
+      }
+    }
+  }
+  
+  document.getElementById('l10-grover-desc').innerHTML = data.desc;
+}
+
 window.loadLesson = loadLesson;
 window.goToNextLesson = goToNextLesson;
 window.updateProbability = updateProbability;
@@ -1017,6 +1596,20 @@ window.setL7Int1State = setL7Int1State;
 window.updateL7Int2Slider = updateL7Int2Slider;
 window.applyL7Reset = applyL7Reset;
 window.applyL7HGateAll = applyL7HGateAll;
+window.createL8Entanglement = createL8Entanglement;
+window.measureL8QubitA = measureL8QubitA;
+window.resetL8 = resetL8;
+window.l9ResetStep = l9ResetStep;
+window.l9NextStep = l9NextStep;
+window.l9RunEntanglement = l9RunEntanglement;
+window.l9AddGate = l9AddGate;
+window.l9ClearCircuit = l9ClearCircuit;
+window.l9RunCircuit = l9RunCircuit;
+window.l10ResetSearch = l10ResetSearch;
+window.l10RunClassical = l10RunClassical;
+window.l10RunQuantum = l10RunQuantum;
+window.l10ResetGrover = l10ResetGrover;
+window.l10RunGroverStep = l10RunGroverStep;
 
 document.addEventListener("DOMContentLoaded", () => {
   loadLesson(0);
