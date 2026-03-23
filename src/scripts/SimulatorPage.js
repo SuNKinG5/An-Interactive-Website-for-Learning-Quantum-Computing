@@ -90,7 +90,12 @@ function getStateLabel([x, y, z]) {
 
 function updateSliders() {
   const thetaDeg = Math.round((state.theta * 180) / Math.PI);
-  const phiDeg = Math.round((state.phi * 180) / Math.PI);
+  let phiDeg = Math.round((state.phi * 180) / Math.PI);
+
+  //
+  if (phiDeg < 0) {
+    phiDeg += 360
+  }
 
   elements.thetaSlider.value = thetaDeg;
   elements.thetaValue.textContent = thetaDeg;
@@ -153,15 +158,33 @@ function updateAll() {
   renderHistory();
 }
 
-function applyGateToState(gate) {
-  const next = applyGate(getCurrentVector(), gate);
-  const [theta, phi] = toAngle(next);
+// function applyGateToState(gate) {
+//   const next = applyGate(getCurrentVector(), gate);
+//   const [theta, phi] = toAngle(next);
 
-  state.theta = theta;
-  state.phi = phi;
-  history.push(gate);
+//   state.theta = theta;
+//   state.phi = phi;
+//   history.push(gate);
+
+//   updateAll();
+// }
+function recomputeFromHistory() {
+  state.theta = DEFAULT_STATE.theta;
+  state.phi = DEFAULT_STATE.phi;
+
+  for (const gate of history) {
+    const next = applyGate(getCurrentVector(), gate);
+    const [theta, phi] = toAngle(next);
+    state.theta = theta;
+    state.phi = phi;
+  }
 
   updateAll();
+}
+
+function addGateToCircuit(gate) {
+  history.push(gate);
+  recomputeFromHistory();
 }
 
 function flashGateButton(gate) {
@@ -196,19 +219,42 @@ function resetState() {
 function bindEvents() {
   elements.thetaSlider.addEventListener("input", (event) => {
     state.theta = (Number(event.target.value) * Math.PI) / 180;
+    history.length = 0;
     updateAll();
   });
 
   elements.phiSlider.addEventListener("input", (event) => {
     state.phi = (Number(event.target.value) * Math.PI) / 180;
+    history.length = 0;
     updateAll();
   });
 
   Object.entries(elements.gateButtons).forEach(([gate, button]) => {
+    //click แบบเดิม
     button.addEventListener("click", () => {
       flashGateButton(gate);
-      applyGateToState(gate);
+      addGateToCircuit(gate);
     });
+    //ลากมาใส่
+    button.addEventListener("dragstart", (event) => {
+      event.dataTransfer.setData("text/plain", gate);
+      event.dataTransfer.effectAllowed = "copy";
+    });
+  });
+
+  elements.gateSequence.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "copy";
+  });
+
+  elements.gateSequence.addEventListener("drop", (event) => {
+    event.preventDefault();
+
+    const gate = event.dataTransfer.getData("text/plain");
+    if (!elements.gateButtons[gate]) return;
+
+    flashGateButton(gate);
+    addGateToCircuit(gate);
   });
 
   elements.resetBtn.addEventListener("click", resetState);
@@ -227,7 +273,7 @@ function bindEvents() {
 
     event.preventDefault();
     flashGateButton(gate);
-    applyGateToState(gate);
+    addGateToCircuit(gate);
   });
 }
 
