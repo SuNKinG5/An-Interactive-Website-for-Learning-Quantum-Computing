@@ -100,7 +100,35 @@ const algorithms = {
                 amplitudes: null
             }
         ]
+    },
+    shor: {
+        name: "Shor Algorithm",
+        desc: "Factor a composite number using period finding",
+        steps: [
+            {
+                title: "Choose N and a",
+                desc: "Start with a composite number and a valid base value",
+                circuit: ["N", "a", "gcd"],
+                explanation: "Choose a composite number N and a base a where 1 < a < N. First check whether gcd(a, N) already reveals a factor.",
+                amplitudes: null
+            },
+            {
+                title: "Look for Period",
+                desc: "Track repeated values of a^x mod N",
+                circuit: ["a^x mod N", "Repeat", "Period r"],
+                explanation: "The key idea is to find the period r where a^r mod N returns to 1. In this educational version, we show the arithmetic pattern directly.",
+                amplitudes: null
+            },
+            {
+                title: "Recover Factors",
+                desc: "Use the period to derive non-trivial factors",
+                circuit: ["r/2", "gcd", "Factors"],
+                explanation: "If the period is even, we can try gcd(a^(r/2)-1, N) and gcd(a^(r/2)+1, N) to recover factors of N.",
+                amplitudes: null
+            }
+        ]
     }
+
 };
 
 let currentAlgo = "deutsch";
@@ -117,6 +145,55 @@ function highlightKetText(text) {
     return text.replace(/\|([^>]+)>/g, '<span class="explanation-ket">|$1></span>');
 }
 
+// ---------- for shor slgorithms -----------------
+function gcd(a, b) {
+    a = Math.abs(a);
+    b = Math.abs(b);
+
+    while (b !== 0) {
+        const temp = b;
+        b = a % b;
+        a = temp;
+    }
+
+    return a;
+}
+
+function integerPow(base, exponent) {
+    let result = 1;
+
+    for (let i = 0; i < exponent; i++) {
+        result *= base;
+    }
+
+    return result;
+}
+
+function findPeriod(a, N, maxSteps = 64) {
+    const sequence = [];
+    let value = 1;
+
+    for (let x = 1; x <= maxSteps; x++) {
+        value = (value * a) % N;
+        sequence.push(`${a}^${x} mod ${N} = ${value}`);
+
+        if (value === 1) {
+            return { period: x, sequence };
+        }
+    }
+
+    return { period: null, sequence };
+}
+
+function renderShorPanel() {
+    const panel = document.getElementById("shor-sim-panel");
+    if (!panel) return;
+
+    panel.style.display = currentAlgo === "shor" ? "block" : "none";
+}
+
+//  ================= end =========================
+
 function renderStep() {
     const algo = algorithms[currentAlgo];
     const step = algo.steps[currentStep];
@@ -124,6 +201,8 @@ function renderStep() {
     document.getElementById("step-title").textContent = step.title;
     document.getElementById("step-desc").textContent = step.desc;
     document.getElementById("step-explanation").innerHTML = highlightKetText(step.explanation);
+    ////////// add for shor
+    renderShorPanel();
 
     const circuitGates = document.getElementById("circuit-gates");
     circuitGates.innerHTML = "";
@@ -207,6 +286,105 @@ function renderStepsPanel() {
     });
 }
 
+// --------------- shor algoritjms run simulation ------------------
+function runShorSimulation() {
+    const nInput = document.getElementById("shor-n");
+    const aInput = document.getElementById("shor-a");
+
+    const gcdEl = document.getElementById("shor-gcd");
+    const periodEl = document.getElementById("shor-period");
+    const factor1El = document.getElementById("shor-factor-1");
+    const factor2El = document.getElementById("shor-factor-2");
+    const summaryEl = document.getElementById("shor-summary");
+    const sequenceEl = document.getElementById("shor-sequence");
+    const messageEl = document.getElementById("shor-message");
+
+    const N = Number(nInput.value);
+    const a = Number(aInput.value);
+
+    sequenceEl.innerHTML = "";
+    gcdEl.textContent = "-";
+    periodEl.textContent = "-";
+    factor1El.textContent = "-";
+    factor2El.textContent = "-";
+    summaryEl.textContent = "No result yet";
+
+    if (!Number.isInteger(N) || N < 4) {
+        messageEl.textContent = "N must be an integer greater than 3.";
+        return;
+    }
+
+    if (!Number.isInteger(a) || a <= 1 || a >= N) {
+        messageEl.textContent = "a must satisfy 1 < a < N.";
+        return;
+    }
+
+    const g = gcd(a, N);
+    gcdEl.textContent = g;
+
+    if (g > 1) {
+        factor1El.textContent = g;
+        factor2El.textContent = N / g;
+        summaryEl.textContent = `${N} = ${g} x ${N / g}`;
+        messageEl.textContent = "A factor was found immediately using gcd(a, N).";
+        return;
+    }
+
+    const { period, sequence } = findPeriod(a, N);
+
+    sequence.forEach((item) => {
+        const line = document.createElement("div");
+        line.className = "shor-sequence-item";
+        line.textContent = item;
+        sequenceEl.appendChild(line);
+    });
+
+    if (!period) {
+        messageEl.textContent = "No period found in the search range. Try a different value of a.";
+        return;
+    }
+
+    periodEl.textContent = period;
+
+    if (period % 2 !== 0) {
+        messageEl.textContent = "The detected period is odd, so it is not useful for factor recovery.";
+        return;
+    }
+
+    const half = period / 2;
+    const powerValue = integerPow(a, half);
+
+    const factor1 = gcd(powerValue - 1, N);
+    const factor2 = gcd(powerValue + 1, N);
+
+    if (factor1 === 1 || factor1 === N || factor2 === 1 || factor2 === N) {
+        messageEl.textContent = "The period was found, but this choice of a did not produce non-trivial factors.";
+        factor1El.textContent = factor1;
+        factor2El.textContent = factor2;
+        summaryEl.textContent = "Try a different value of a";
+        return;
+    }
+
+    factor1El.textContent = factor1;
+    factor2El.textContent = factor2;
+    summaryEl.textContent = `${N} = ${factor1} x ${factor2}`;
+    messageEl.textContent = "Simulation complete. This is a simplified educational version of Shor's arithmetic flow.";
+}
+
+function resetShorSimulation() {
+    document.getElementById("shor-n").value = 35;
+    document.getElementById("shor-a").value = 2;
+    document.getElementById("shor-gcd").textContent = "-";
+    document.getElementById("shor-period").textContent = "-";
+    document.getElementById("shor-factor-1").textContent = "-";
+    document.getElementById("shor-factor-2").textContent = "-";
+    document.getElementById("shor-summary").textContent = "No result yet";
+    document.getElementById("shor-sequence").innerHTML = "";
+    document.getElementById("shor-message").textContent = "Pick values and run the simplified Shor simulation.";
+}
+
+// =================== end ====================================
+
 document.querySelectorAll(".algo-item").forEach((btn) => {
     btn.addEventListener("click", () => switchAlgorithm(btn.dataset.algo));
 });
@@ -232,6 +410,11 @@ document.getElementById("reset-algo-btn").addEventListener("click", () => {
     renderStepsPanel();
     renderStep();
 });
+
+// event listener for shor algorithms 
+document.getElementById("run-shor-btn").addEventListener("click", runShorSimulation);
+document.getElementById("reset-shor-btn").addEventListener("click", resetShorSimulation);
+
 
 async function onConfigChange(config) {
     const c = { ...defaultConfig, ...config };
