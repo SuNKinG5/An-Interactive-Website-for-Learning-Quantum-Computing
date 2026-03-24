@@ -176,6 +176,167 @@ const defaultConfig = {
     reset_algo_btn: "Reset"
 };
 
+algorithms.deutsch.steps = [
+    {
+        title: "ทำความเข้าใจโจทย์",
+        desc: "ตรวจสอบว่าฟังก์ชันเป็น constant หรือ balanced",
+        circuit: ["f(0)", "f(1)", "?"],
+        explanation: "Deutsch Algorithm ใช้แก้ปัญหาว่า ฟังก์ชัน f(x) ที่รับอินพุตเป็น 0 หรือ 1 นั้นเป็นฟังก์ชันแบบ constant หรือ balanced ถ้า f(0) และ f(1) ให้ผลเหมือนกัน ฟังก์ชันจะเป็น constant แต่ถ้าให้ผลต่างกัน ฟังก์ชันจะเป็น balanced จุดสำคัญคืออัลกอริทึมนี้พยายามหาคำตอบด้วยการเรียก oracle เพียงครั้งเดียว",
+        example: "ถ้า f(0)=0 และ f(1)=0 ฟังก์ชันนี้เป็น <strong>constant</strong> แต่ถ้า f(0)=0 และ f(1)=1 ฟังก์ชันนี้เป็น <strong>balanced</strong>",
+        amplitudes: null
+    },
+    {
+        title: "เตรียมสถานะเริ่มต้น",
+        desc: "กำหนดคิวบิตให้อยู่ในสถานะ |0>|1>",
+        circuit: ["|0>", "|1>"],
+        explanation: "อัลกอริทึมเริ่มจากคิวบิต 2 ตัวในสถานะ |0>|1> โดยคิวบิตตัวแรกใช้แทนอินพุต x และคิวบิตตัวที่สองใช้ช่วยให้ oracle ส่งข้อมูลของฟังก์ชันกลับมาในรูปแบบ phase การตั้งคิวบิตตัวที่สองเป็น |1> มีความสำคัญต่อการเกิด phase kickback ในขั้นตอนต่อไป",
+        example: "ก่อนผ่าน gate ใด ๆ ระบบยังอยู่ในสถานะเริ่มต้นธรรมดา คือคิวบิตตัวแรกเป็น <strong>|0></strong> และคิวบิตตัวที่สองเป็น <strong>|1></strong>",
+        amplitudes: null
+    },
+    {
+        title: "สร้าง Superposition",
+        desc: "ใส่ Hadamard gate กับคิวบิตทั้งสอง",
+        circuit: ["H", "H"],
+        explanation: "เมื่อใส่ Hadamard gate กับคิวบิตทั้งสอง ระบบจะเปลี่ยนจากสถานะพื้นฐานไปเป็น superposition ทำให้คิวบิตตัวแรกสามารถแทนทั้งอินพุต 0 และ 1 พร้อมกันได้ ส่วนคิวบิตตัวที่สองจะอยู่ในรูปแบบที่พร้อมให้ข้อมูลของฟังก์ชันถูกเข้ารหัสเป็น phase",
+        example: "เดิมทีถ้าเราคิดแบบ classical เราต้องลอง input ทีละค่า แต่หลังใส่ Hadamard คิวบิตตัวแรกจะพร้อมแทนทั้งกรณี <strong>0</strong> และ <strong>1</strong> ในการคำนวณเดียว",
+        amplitudes: null
+    },
+    {
+        title: "ผ่าน Quantum Oracle",
+        desc: "ให้ Uf เข้ารหัสข้อมูลของฟังก์ชันลงใน phase",
+        circuit: ["U_f"],
+        explanation: "oracle Uf ทำงานตามกฎ |x>|y> -> |x>|y⊕f(x)> แม้จะดูเหมือน oracle เปลี่ยนเฉพาะคิวบิตตัวที่สอง แต่เมื่อคิวบิตตัวที่สองอยู่ในสถานะที่เหมาะสม ผลของ f(x) จะถูกสะท้อนกลับไปเป็น phase ของคิวบิตตัวแรก ปรากฏการณ์นี้เรียกว่า phase kickback และเป็นหัวใจสำคัญของ Deutsch Algorithm",
+        example: "ถ้าเลือกฟังก์ชัน balanced เช่น f(0)=0 และ f(1)=1 phase ที่เกิดขึ้นหลังผ่าน <strong>U_f</strong> จะต่างจากกรณี constant อย่าง f(0)=0 และ f(1)=0",
+        amplitudes: null
+    },
+    {
+        title: "แปลง Phase ให้เป็นคำตอบ",
+        desc: "ใส่ Hadamard ที่คิวบิตตัวแรกอีกครั้ง",
+        circuit: ["H"],
+        explanation: "หลังจากผ่าน oracle แล้ว ข้อมูลสำคัญของฟังก์ชันยังไม่ออกมาเป็นผลลัพธ์ตรง ๆ แต่ซ่อนอยู่ใน relative phase ของคิวบิตตัวแรก การใส่ Hadamard อีกครั้งจะเปลี่ยน phase ที่ซ่อนอยู่นี้ให้กลายเป็นผลลัพธ์ที่พร้อมสำหรับการวัด",
+        example: "ถ้าฟังก์ชันเป็น constant ระบบจะถูกรวมให้เอนเอียงไปทางผลลัพธ์ <strong>|0></strong> แต่ถ้าฟังก์ชันเป็น balanced ระบบจะเอนเอียงไปทาง <strong>|1></strong>",
+        amplitudes: null
+    },
+    {
+        title: "วัดผลลัพธ์",
+        desc: "วัดคิวบิตตัวแรกเพื่อสรุปชนิดของฟังก์ชัน",
+        circuit: ["Measure"],
+        explanation: "ในขั้นตอนสุดท้าย เราวัดคิวบิตตัวแรก ถ้าวัดได้ 0 แสดงว่าฟังก์ชันเป็น constant แต่ถ้าวัดได้ 1 แสดงว่าฟังก์ชันเป็น balanced จุดเด่นของ Deutsch Algorithm คือสามารถใช้การเรียก oracle เพียงครั้งเดียวเพื่อแยกสองกรณีนี้ออกจากกันได้",
+        example: "ถ้า oracle เป็นฟังก์ชันที่ให้ค่าเหมือนกันทั้งสองอินพุต เราจะอ่านผลวัดได้เป็น <strong>0</strong> แต่ถ้าให้ค่าต่างกันระหว่างสองอินพุต เราจะได้ผลวัดเป็น <strong>1</strong>",
+        amplitudes: null
+    }
+];
+
+algorithms.grover.steps = [
+    {
+        title: "ทำความเข้าใจปัญหา",
+        desc: "ค้นหาคำตอบที่ถูกทำเครื่องหมายไว้จากข้อมูลที่ไม่เรียงลำดับ",
+        circuit: ["N states", "marked", "?"],
+        explanation: "Grover's Algorithm ใช้สำหรับค้นหาสถานะหรือคำตอบที่ต้องการจากชุดข้อมูลที่ไม่มีโครงสร้าง เช่น การหาค่าที่ตรงเงื่อนไขจากรายการจำนวนมาก จุดเด่นคือช่วยลดจำนวนขั้นตอนลงจากระดับ N เหลือประมาณรากที่สองของ N จึงเป็นการเร่งความเร็วแบบ quadratic speedup",
+        example: "ถ้ามีข้อมูล 16 ค่าและมีคำตอบถูกต้องอยู่เพียง 1 ค่า วิธี classical อาจต้องลองหลายครั้ง แต่ Grover ใช้จำนวนรอบประมาณ <strong>sqrt(16) = 4</strong> เพื่อเพิ่มโอกาสเจอคำตอบได้มากขึ้น",
+        amplitudes: null
+    },
+    {
+        title: "เตรียมสถานะเริ่มต้น",
+        desc: "สร้าง superposition ให้ทุกสถานะเริ่มต้นอย่างเท่าเทียมกัน",
+        circuit: ["H", "H", "H"],
+        explanation: "เริ่มต้นด้วยการใส่ Hadamard gate ให้กับทุกคิวบิต เพื่อสร้าง uniform superposition ทำให้ทุกสถานะที่เป็นไปได้มี amplitude เริ่มต้นเท่ากัน ระบบจึงเหมือนกำลังพิจารณาคำตอบทุกตัวพร้อมกันตั้งแต่ต้น",
+        example: "ถ้ามี 2 คิวบิต ระบบจะมี 4 สถานะคือ <strong>|00></strong>, <strong>|01></strong>, <strong>|10></strong> และ <strong>|11></strong> ซึ่งหลังใส่ Hadamard ทุกสถานะจะมีโอกาสเริ่มต้นเท่า ๆ กัน",
+        amplitudes: [0.25, 0.25, 0.25, 0.25]
+    },
+    {
+        title: "ทำเครื่องหมายด้วย Oracle",
+        desc: "ระบุสถานะเป้าหมายด้วยการกลับ phase",
+        circuit: ["Oracle"],
+        explanation: "Oracle เป็นส่วนที่ใช้ระบุคำตอบที่ต้องการ โดยจะกลับเครื่องหมายของ amplitude ของสถานะเป้าหมาย หรือเรียกว่า phase flip แม้ขั้นตอนนี้ยังไม่เพิ่มโอกาสในการวัดเจอคำตอบทันที แต่เป็นการเตรียมเงื่อนไขสำคัญสำหรับการขยาย amplitude ในขั้นถัดไป",
+        example: "ถ้าคำตอบเป้าหมายคือ <strong>|11></strong> oracle จะเปลี่ยน amplitude ของสถานะนี้ให้ติดลบ ขณะที่สถานะอื่นยังคงเดิม",
+        amplitudes: [-0.3, 0.2, 0.2, 0.2]
+    },
+    {
+        title: "ขยาย Amplitude",
+        desc: "ใช้ diffusion operator เพื่อเพิ่มโอกาสของคำตอบที่ถูกต้อง",
+        circuit: ["Diffuse"],
+        explanation: "Diffusion operator จะสะท้อนค่า amplitude ของทุกสถานะรอบค่าเฉลี่ยของระบบ ส่งผลให้ amplitude ของสถานะที่ถูก oracle ทำเครื่องหมายไว้เพิ่มขึ้น ขณะที่ amplitude ของสถานะอื่นลดลง กระบวนการนี้คือหัวใจของ amplitude amplification ใน Grover's Algorithm",
+        example: "หลังจาก oracle กลับ phase ของสถานะเป้าหมาย diffusion operator จะใช้การแทรกสอดเพื่อดัน amplitude ของสถานะนั้นให้สูงขึ้นกว่าสถานะอื่น",
+        amplitudes: [0.05, 0.15, 0.15, 0.65]
+    },
+    {
+        title: "ทำซ้ำ Grover Iteration",
+        desc: "สลับทำ Oracle และ Diffusion หลายรอบอย่างพอดี",
+        circuit: ["Oracle", "Diffuse", "Repeat"],
+        explanation: "หนึ่งรอบของ Grover Iteration ประกอบด้วย oracle และ diffusion operator เมื่อนำมาทำซ้ำหลายครั้ง amplitude ของสถานะเป้าหมายจะเพิ่มขึ้นเรื่อย ๆ จำนวนรอบที่เหมาะสมสำหรับกรณีมีคำตอบเดียวจะอยู่ประมาณ sqrt(N) หากทำมากหรือน้อยเกินไป ความน่าจะเป็นที่จะวัดเจอคำตอบอาจลดลงได้",
+        example: "ถ้ามีข้อมูล 16 สถานะและมีคำตอบเดียว จำนวนรอบที่เหมาะสมจะอยู่ประมาณ <strong>4 รอบ</strong> เพื่อให้โอกาสเจอคำตอบสูงที่สุด",
+        amplitudes: [0.02, 0.08, 0.08, 0.82]
+    },
+    {
+        title: "วัดผลลัพธ์",
+        desc: "อ่านคำตอบจากสถานะที่ถูกขยาย amplitude แล้ว",
+        circuit: ["Measure"],
+        explanation: "เมื่อทำ Grover Iteration ครบจำนวนรอบที่เหมาะสมแล้ว เราจึงวัดรีจิสเตอร์ของคิวบิต เนื่องจาก amplitude ของสถานะเป้าหมายถูกขยายขึ้นมาก การวัดจึงมีโอกาสสูงที่จะได้คำตอบที่ถูกต้อง",
+        example: "ถ้าสถานะ <strong>|11></strong> เป็นคำตอบเป้าหมาย หลังทำ iteration ครบแล้ว การวัดจะมีโอกาสสูงมากที่จะได้ผลเป็น <strong>|11></strong>",
+        amplitudes: [0.02, 0.02, 0.02, 0.94]
+    }
+];
+
+algorithms.teleport.steps = [
+    {
+        title: "ทำความเข้าใจเป้าหมาย",
+        desc: "ส่งสถานะควอนตัมจาก Alice ไปยัง Bob",
+        circuit: ["Q", "A-B entangled", "2 classical bits"],
+        explanation: "Quantum teleportation เป็นโปรโตคอลที่ใช้ส่งข้อมูลควอนตัมจาก Alice ไปยัง Bob โดยไม่ต้องส่งคิวบิตต้นฉบับผ่านช่องทางควอนตัมโดยตรง สิ่งที่ถูกส่งคือสถานะควอนตัมของคิวบิต ไม่ใช่วัตถุหรือสสาร และการทำงานนี้ต้องอาศัยทั้งคู่คิวบิตที่พัวพันกันและข้อมูลคลาสสิก 2 บิต",
+        example: "Alice มีคิวบิต Q ที่อยู่ในสถานะไม่ทราบค่า และต้องการให้ Bob ได้คิวบิตที่มีสถานะเดียวกันราวกับว่า Alice ส่ง Q ไปให้โดยตรง",
+        amplitudes: null
+    },
+    {
+        title: "เตรียม Bell Pair",
+        desc: "สร้างคู่คิวบิตพัวพันที่ Alice และ Bob แชร์ร่วมกัน",
+        circuit: ["H", "CNOT", "|Phi+>"],
+        explanation: "ก่อนเริ่มโปรโตคอล Alice และ Bob ต้องมีคู่คิวบิตที่อยู่ในสถานะพัวพันร่วมกัน โดย Alice ถือคิวบิต A และ Bob ถือคิวบิต B สถานะนี้มักเขียนเป็น |Phi+> และเป็นทรัพยากรสำคัญที่ทำให้การ teleportation เกิดขึ้นได้",
+        example: "Alice กับ Bob สามารถเตรียมคู่คิวบิตพัวพันไว้ล่วงหน้า แล้วแยกย้ายกันถือคนละตัวก่อนเริ่มส่งสถานะจริง",
+        amplitudes: null
+    },
+    {
+        title: "เชื่อม Q เข้ากับระบบ",
+        desc: "ใช้ CNOT และ Hadamard กับคิวบิตฝั่ง Alice",
+        circuit: ["CNOT", "H"],
+        explanation: "Alice นำคิวบิต Q ที่ต้องการส่งมาทำงานร่วมกับคิวบิต A ของตนเอง โดยใช้ CNOT ก่อน แล้วตามด้วย Hadamard ที่คิวบิต Q ขั้นตอนนี้ทำให้ข้อมูลของสถานะ Q ถูกกระจายเข้าไปในระบบรวมของ Q, A และ B เพื่อเตรียมพร้อมสำหรับการวัด",
+        example: "หลังจากทำสอง gate นี้ ข้อมูลของสถานะ Q จะไม่อยู่แบบอ่านตรง ๆ ที่คิวบิตเดิมอีกต่อไป แต่ถูกเข้ารหัสไว้ในโครงสร้างของระบบรวม",
+        amplitudes: null
+    },
+    {
+        title: "วัดคิวบิตของ Alice",
+        desc: "วัด Q และ A เพื่อให้ได้ข้อมูลคลาสสิก 2 บิต",
+        circuit: ["Measure Q", "Measure A"],
+        explanation: "Alice วัดคิวบิต Q และ A ใน standard basis แล้วจะได้ผลลัพธ์เป็นบิตคลาสสิก 2 บิต ขั้นตอนนี้สำคัญมาก เพราะหลังการวัด Alice จะไม่ได้ถือสถานะเดิมของ Q อีกต่อไป ซึ่งสอดคล้องกับหลัก no-cloning theorem ว่าเราไม่สามารถคัดลอกสถานะควอนตัมได้",
+        example: "ผลการวัดอาจออกมาเป็น 00, 01, 10 หรือ 11 โดยแต่ละกรณีมีโอกาสเกิดเท่ากัน",
+        amplitudes: null
+    },
+    {
+        title: "ส่งข้อมูลคลาสสิกให้ Bob",
+        desc: "Alice ส่งผลวัด 2 บิตไปยัง Bob",
+        circuit: ["a", "b", "classical"],
+        explanation: "หลังจากวัดแล้ว Alice จะส่งผลลัพธ์ 2 บิตไปให้ Bob ผ่านช่องทางคลาสสิก ข้อมูลนี้ไม่ได้บอกสถานะควอนตัมทั้งหมดโดยลำพัง แต่เป็นข้อมูลที่ Bob ต้องใช้ร่วมกับคิวบิตพัวพันที่ถืออยู่เพื่อกู้คืนสถานะเดิม",
+        example: "ถ้า Alice วัดได้ 10 เธอก็เพียงส่งบิต 1 และ 0 ไปให้ Bob ผ่านการสื่อสารแบบปกติ",
+        amplitudes: null
+    },
+    {
+        title: "Bob กู้คืนสถานะ",
+        desc: "ใช้ X และ Z ตามค่าบิตที่ได้รับ",
+        circuit: ["X/Z correction"],
+        explanation: "เมื่อ Bob ได้บิต 2 บิตจาก Alice แล้ว เขาจะเลือกทำ operation ที่เหมาะสมกับคิวบิต B ของตน ถ้าได้ผลบางแบบ Bob อาจไม่ต้องทำอะไรเลย แต่ในกรณีอื่นจะต้องใช้ X, Z หรือ ZX เพื่อเปลี่ยนคิวบิต B ให้กลับมาอยู่ในสถานะเดียวกับ Q เดิม",
+        example: "ถ้าผลวัดเป็น 00 Bob ทำ I, ถ้าเป็น 01 ทำ Z, ถ้าเป็น 10 ทำ X, และถ้าเป็น 11 ทำ ZX",
+        amplitudes: null
+    },
+    {
+        title: "ได้สถานะเดิมที่ Bob",
+        desc: "คิวบิตของ Bob กลายเป็นสถานะเดิมของ Q",
+        circuit: ["B = original state"],
+        explanation: "หลังจาก Bob ทำ correction เสร็จ คิวบิต B จะอยู่ในสถานะเดียวกับคิวบิต Q ตอนเริ่มต้น รวมถึงความสัมพันธ์กับระบบอื่นถ้า Q เคย entangled อยู่ด้วย ในขณะเดียวกัน Alice จะไม่เหลือสถานะเดิมนั้นอีกแล้ว และคู่ entanglement ที่ใช้ก็ถือว่าถูกใช้หมดไปในกระบวนการนี้",
+        example: "ผลสุดท้ายคือ Bob ได้สถานะของ Q อย่างสมบูรณ์ แต่ไม่ได้มีการสร้างสำเนาของ Q ขึ้นมาสองชุด",
+        amplitudes: null
+    }
+];
+
 function highlightKetText(text) {
     return text.replace(/\|([^>]+)>/g, '<span class="explanation-ket">|$1></span>');
 }
@@ -253,6 +414,14 @@ function renderStep() {
     document.getElementById("step-title").textContent = step.title;
     document.getElementById("step-desc").textContent = step.desc;
     document.getElementById("step-explanation").innerHTML = highlightKetText(step.explanation);
+    const exampleEl = document.getElementById("step-example");
+    if (step.example) {
+        exampleEl.style.display = "block";
+        exampleEl.innerHTML = `<strong>Example:</strong> ${highlightKetText(step.example)}`;
+    } else {
+        exampleEl.style.display = "none";
+        exampleEl.innerHTML = "";
+    }
     renderShorLab(step);
 
     const circuitGates = document.getElementById("circuit-gates");
