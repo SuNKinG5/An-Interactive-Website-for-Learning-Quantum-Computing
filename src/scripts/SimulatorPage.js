@@ -30,6 +30,10 @@ const history = {
 let blochSim = null;
 
 const elements = {
+  // thetaSlider: document.getElementById("theta-slider"),
+  // phiSlider: document.getElementById("phi-slider"),
+  // thetaValue: document.getElementById("theta-value"),
+  // phiValue: document.getElementById("phi-value"),
   resetBtn: document.getElementById("reset-btn"),
 
   gateSequenceQ0: document.getElementById("gate-sequence-q0"),
@@ -42,6 +46,12 @@ const elements = {
   prob1Percent: document.getElementById("prob-1-percent"),
   prob0Bar: document.getElementById("prob-0-bar"),
   prob1Bar: document.getElementById("prob-1-bar"),
+  // alphaDisplay: document.getElementById("alpha-display"),
+  // betaDisplay: document.getElementById("beta-display"),
+  // stateLabel: document.getElementById("state-label"),
+  // coordX: document.getElementById("coord-x"),
+  // coordY: document.getElementById("coord-y"),
+  // coordZ: document.getElementById("coord-z"),
 
   gateButtons: {
     X: document.getElementById("gate-x"),
@@ -51,6 +61,14 @@ const elements = {
     M: document.getElementById("gate-m"),
   },
 };
+
+// function safeNumber(value) {
+//   return Math.abs(value) < 1e-12 ? 0 : value;
+// }
+
+// function formatFixed(value) {
+//   return safeNumber(value).toFixed(3);
+// }
 
 function getQubitState(qubitKey) {
   return state.qubits[qubitKey];
@@ -84,6 +102,28 @@ function initBlochSphere() {
   });
 }
 
+// function getStateLabel([x, y, z]) {
+//   const epsilon = 1e-9;
+
+//   if (Math.abs(x) < epsilon && Math.abs(y) < epsilon && Math.abs(z - 1) < epsilon) {
+//     return "|0>";
+//   }
+
+//   if (Math.abs(x) < epsilon && Math.abs(y) < epsilon && Math.abs(z + 1) < epsilon) {
+//     return "|1>";
+//   }
+
+//   if (Math.abs(y) < epsilon && Math.abs(z) < epsilon && Math.abs(x - 1) < epsilon) {
+//     return "|+>";
+//   }
+
+//   if (Math.abs(y) < epsilon && Math.abs(z) < epsilon && Math.abs(x + 1) < epsilon) {
+//     return "|->";
+//   }
+
+//   return "|psi>";
+// }
+
 function setSelectedQubit(qubitKey) {
   state.selectedQubit = qubitKey;
   elements.gateSequenceQ0?.classList.toggle("is-selected", qubitKey === "q0");
@@ -95,6 +135,21 @@ function clearMeasurement(qubitKey) {
   state.measurement[qubitKey] = null;
   state.measuredRows[qubitKey] = false;
 }
+
+// function updateSliders() {
+//   const current = getCurrentQubitState();
+//   const thetaDeg = Math.round((current.theta * 180) / Math.PI);
+//   let phiDeg = Math.round((current.phi * 180) / Math.PI);
+
+//   if (phiDeg < 0) {
+//     phiDeg += 360;
+//   }
+
+//   elements.thetaSlider.value = thetaDeg;
+//   elements.thetaValue.textContent = thetaDeg;
+//   elements.phiSlider.value = phiDeg;
+//   elements.phiValue.textContent = phiDeg;
+// }
 
 function updateProbabilities() {
   const current = getCurrentQubitState();
@@ -116,6 +171,25 @@ function updateBloch() {
 
   blochSim.setBlochVector(getCurrentVector());
 }
+
+// function updateStateVector() {
+//   const current = getCurrentQubitState();
+//   const alpha = Math.cos(current.theta / 2);
+//   const beta = Math.sin(current.theta / 2);
+//   const [x, y, z] = getCurrentVector();
+//   const blochTargetLabel = document.getElementById("bloch-target-label");
+
+//   elements.alphaDisplay.textContent = alpha.toFixed(3);
+//   elements.betaDisplay.textContent = beta.toFixed(3);
+//   elements.stateLabel.textContent = `${state.selectedQubit} ${getStateLabel([x, y, z])}`;
+//   elements.coordX.textContent = formatFixed(x);
+//   elements.coordY.textContent = formatFixed(y);
+//   elements.coordZ.textContent = formatFixed(z);
+
+//   if (blochTargetLabel) {
+//     blochTargetLabel.textContent = `Showing ${state.selectedQubit} on the Bloch sphere`;
+//   }
+// }
 
 function renderHistory() {
   const renderRow = (container, gates, showMeasure) => {
@@ -152,8 +226,10 @@ function renderHistory() {
 }
 
 function updateAll() {
+  // updateSliders();
   updateBloch();
   updateProbabilities();
+  // updateStateVector();
   renderHistory();
 }
 
@@ -255,6 +331,22 @@ function bindWireInteractions(qubitKey, container) {
 }
 
 function bindEvents() {
+  // elements.thetaSlider.addEventListener("input", (event) => {
+  //   const current = getCurrentQubitState();
+  //   current.theta = (Number(event.target.value) * Math.PI) / 180;
+  //   history[state.selectedQubit].length = 0;
+  //   clearMeasurement(state.selectedQubit);
+  //   updateAll();
+  // });
+
+  // elements.phiSlider.addEventListener("input", (event) => {
+  //   const current = getCurrentQubitState();
+  //   current.phi = (Number(event.target.value) * Math.PI) / 180;
+  //   history[state.selectedQubit].length = 0;
+  //   clearMeasurement(state.selectedQubit);
+  //   updateAll();
+  // });
+
   Object.entries(elements.gateButtons).forEach(([gate, button]) => {
     if (!button) {
       return;

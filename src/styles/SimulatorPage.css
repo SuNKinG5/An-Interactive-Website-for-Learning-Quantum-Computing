@@ -6,6 +6,7 @@ html,
 body {
     height: 100%;
     margin: 0;
+    font-family: Google Sans, sans-serif;
 }
 
 body {
@@ -96,8 +97,7 @@ body {
     margin: 0 0 12px;
     font-size: 0.78rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #64748b;
+    color: #556377;
     font-weight: 700;
 }
 
@@ -167,7 +167,7 @@ body {
 }
 
 .composer-card {
-    padding: 22px;
+    padding: 25px;
 }
 
 .section-head {
@@ -193,20 +193,20 @@ body {
 
 .circuit-board {
     display: grid;
-    grid-template-columns: 70px 1fr;
+    grid-template-columns: 40px 1fr;
     gap: 16px;
-    min-height: 180px;
-    padding: 18px;
+    min-height: 90px;
+    padding: 25px;
     border-radius: 18px;
     background: linear-gradient(180deg, #fbfdff 0%, #f5f9ff 100%);
     border: 1px solid #e2e8f0;
 }
 
 .wire-labels {
+    margin-top: 12px;
     display: grid;
     align-content: start;
     gap: 52px;
-    font-family: "Space Mono", monospace;
     color: #475569;
 }
 
