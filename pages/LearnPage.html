@@ -26,7 +26,7 @@
 <body class="h-full">
   <div id="app-wrapper" class="w-full h-full overflow-auto flex">
     <aside id="sidebar" class="w-72 border-r flex flex-col">
-      <div class="p-6 border-b sidebar-header">
+      <div class="p-4 border-b sidebar-header">
         <a href="/index.html" class="flex items-center gap-3 no-underline text-color-main">
           <svg width="30" height="30" viewBox="0 0 28 28" fill="none">
             <circle cx="14" cy="14" r="12" stroke="#3b82f6" stroke-width="2" fill="none" />
@@ -43,8 +43,8 @@
         </a>
       </div>
 
-      <nav class="flex-1 overflow-y-auto px-4 py-6 flex flex-col">
-        <div class="text-xs font-semibold mb-2 px-2 text-color-muted">Quantum Basics</div>
+      <nav class="flex-1 overflow-y-auto px-4 flex flex-col">
+        <div class="sidebar-label">Quantum Basics</div>
 
         <button class="nav-btn nav-item-active" onclick="loadLesson(0)">
           <i data-lucide="cpu" class="nav-icon"></i><span>Introduction to Quantum Computing</span>
@@ -59,7 +59,7 @@
           <i data-lucide="git-merge" class="nav-icon"></i><span>Bloch Sphere</span>
         </button>
 
-        <div class="text-xs font-semibold mt-5 mb-2 px-2 text-color-muted">Intermediate Concepts</div>
+        <div class="sidebar-label">Intermediate Concepts</div>
 
         <button class="nav-btn" onclick="loadLesson(4)">
           <i data-lucide="box" class="nav-icon"></i><span>Pauli Gates</span>
@@ -74,7 +74,7 @@
           <i data-lucide="link" class="nav-icon"></i><span>Entanglement</span>
         </button>
 
-        <div class="text-xs font-semibold mt-5 mb-2 px-2 text-color-muted">Advanced Concepts</div>
+        <div class="sidebar-label">Advanced Concepts</div>
 
         <button class="nav-btn" onclick="loadLesson(8)">
           <i data-lucide="link" class="nav-icon"></i><span>Quantum Circuits</span>
