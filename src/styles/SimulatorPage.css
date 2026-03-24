@@ -203,11 +203,16 @@ body {
 }
 
 .wire-labels {
-    margin-top: 20px;
+    margin-top: 0; /* เอา margin ออกเพื่อให้เริ่มที่จุดเดียวกัน */
     display: grid;
     align-content: start;
-    gap: 52px;
-    color: #475569;
+    gap: 0; /* เราจะไปคุมระยะที่ตัว span แทนเพื่อให้แม่นยำ */
+}
+
+.wire-labels span {
+    height: 54px; /* ต้องเท่ากับความสูงของ .wire-row ใน ibmq-board */
+    display: flex;
+    align-items: center; /* จัดตัวหนังสือให้อยู่กึ่งกลางแนวตั้งของบรรทัดตัวเอง */
 }
 
 .wire-stage {
@@ -223,14 +228,12 @@ body {
 
 .wire-line {
     position: absolute;
-    top: 20px;
+    top: 50%;           /* อยู่กึ่งกลางความสูง 54px พอดี */
     left: 0;
     right: 0;
+    transform: translateY(-50%); /* จัดระเบียบให้เส้นอยู่กลางเป๊ะ */
     border-top: 2px solid #dbe4f0;
-}
-
-.wire-row-classical .wire-line {
-    border-top-style: double;
+    z-index: 0;
 }
 
 .gate-sequence {
@@ -360,14 +363,11 @@ body {
     }
 }
 
-.ibmq-board {
-    background: #ffffff;
-    border: 1px solid #dbe4f0;
-}
-
 .ibmq-stage {
-    gap: 34px;
-    padding-top: 8px;
+    gap: 0 !important;      /* ลบช่องว่างระหว่างแถวออก */
+    padding-top: 0 !important; 
+    display: flex;
+    flex-direction: column;
 }
 
 .ibmq-palette {
@@ -377,18 +377,6 @@ body {
 .palette-gate-measure {
     border-color: #93c5fd;
     color: #2563eb;
-}
-
-.wire-row {
-    min-height: 54px;
-}
-
-.wire-line {
-    top: 26px;
-}
-
-.wire-row-classical .wire-line {
-    border-top: 2px double #94a3b8;
 }
 
 .classical-sequence {

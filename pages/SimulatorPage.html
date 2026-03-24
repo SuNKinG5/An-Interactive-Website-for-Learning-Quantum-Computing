@@ -75,29 +75,28 @@
                             <p class="section-label">Circuit Composer</p>
                             <h2 class="section-title font-bold">Quantum Circuit</h2>
                         </div>
-                        <p class="text-mdsection-help">ลากเกตไปวางบน q[0] หรือ q[1] จากนั้นวัดผลลงใน classical register c
+                        <p class="text-mdsection-help">ลากเกตไปวางบน q[0] หรือ q[1] จากนั้นวัดผลลงใน classical register
+                            c
                         </p>
                     </div>
 
                     <div class="circuit-board ibmq-board">
-                        <div class="wire-labels">
-                            <span>q[0]</span>
-                            <span>q[1]</span>
-                            <span class="margin-bottom">c</span>
+                        <div class="wire-labels" style="display: flex; flex-direction: column;">
+                            <span style="height: 54px; display: flex; align-items: center; padding: 0;">q[0]</span>
+                            <span style="height: 54px; display: flex; align-items: center; padding: 0;">q[1]</span>
+                            <span style="height: 54px; display: flex; align-items: center; padding: 0;">c</span>
                         </div>
 
                         <div class="wire-stage ibmq-stage">
-                            <div class="wire-row">
+                            <div class="wire-row" style="height: 54px; position: relative;">
                                 <div class="wire-line"></div>
                                 <div id="gate-sequence-q0" class="gate-sequence"></div>
                             </div>
-
-                            <div class="wire-row">
+                            <div class="wire-row" style="height: 54px; position: relative;">
                                 <div class="wire-line"></div>
                                 <div id="gate-sequence-q1" class="gate-sequence"></div>
                             </div>
-
-                            <div class="wire-row wire-row-classical">
+                            <div class="wire-row wire-row-classical" style="height: 54px; position: relative;">
                                 <div class="wire-line"></div>
                                 <div id="classical-sequence-c" class="gate-sequence classical-sequence"></div>
                             </div>
