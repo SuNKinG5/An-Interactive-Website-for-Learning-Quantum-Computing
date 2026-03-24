@@ -1,3 +1,5 @@
+import { quizzes } from './Questions.js';
+
 // Initialize Lucide Icons
 lucide.createIcons();
 
