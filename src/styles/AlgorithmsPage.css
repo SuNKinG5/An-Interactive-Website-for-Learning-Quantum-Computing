@@ -323,54 +323,67 @@ body.algorithms-page {
     }
 }
 
-
-/* ------algorithms shor style add ----------- */
-.shor-sim-panel {
+/* css shor slgorithms  */
+.shor-lab-panel {
     margin-bottom: 32px;
-    padding: 24px;
-    border-radius: 28px;
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(248, 251, 255, 0.94) 100%);
-    box-shadow: var(--shadow);
 }
 
-.shor-sim-header {
-    margin-bottom: 18px;
-}
-
-.shor-sim-grid {
+.shor-lab-grid {
     display: grid;
-    grid-template-columns: 1.05fr 1.3fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
 }
 
-.shor-card {
-    padding: 18px;
-    border-radius: 22px;
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.8);
+.shor-lab-card {
+    padding: 20px;
+    border-radius: 24px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
 }
 
-.shor-card-title {
-    font-size: 12px;
+.shor-lab-wide {
+    grid-column: 1 / -1;
+}
+
+.shor-lab-kicker,
+.shor-lab-label,
+.shor-state-label {
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 14px;
 }
 
-.shor-label {
+.shor-lab-kicker {
+    color: var(--muted);
+    margin-bottom: 10px;
+}
+
+.shor-lab-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.shor-lab-body,
+.shor-lab-note,
+.shor-state-text,
+.shor-result-item span {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+.shor-lab-label {
     display: block;
-    font-size: 12px;
-    font-weight: 600;
     color: var(--muted);
-    margin-bottom: 6px;
+    margin: 12px 0 6px;
 }
 
-.shor-input {
+.shor-lab-input {
     width: 100%;
-    margin-bottom: 14px;
     padding: 12px 14px;
     border-radius: 14px;
     border: 1px solid rgba(148, 163, 184, 0.25);
@@ -380,78 +393,69 @@ body.algorithms-page {
     font-family: "Space Mono", monospace;
 }
 
-.shor-input:focus {
-    border-color: rgba(37, 99, 235, 0.55);
-    box-shadow: 0 0 0 4px rgba(219, 234, 254, 0.8);
-}
-
-.shor-actions {
+.shor-lab-actions {
     display: flex;
     gap: 10px;
-    margin: 8px 0 12px;
-}
-
-.shor-message {
-    font-size: 12px;
-    line-height: 1.6;
-    color: var(--muted);
-}
-
-.shor-stat-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.14);
-    font-size: 13px;
-    color: var(--muted);
-}
-
-.shor-stat-row strong {
-    color: var(--text);
-    font-family: "Space Mono", monospace;
-}
-
-.shor-sequence {
     margin-top: 14px;
+}
+
+.shor-state-grid {
     display: grid;
-    gap: 8px;
-    max-height: 220px;
-    overflow: auto;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 14px;
+    align-items: center;
 }
 
-.shor-sequence-item {
-    padding: 10px 12px;
-    border-radius: 14px;
-    background: rgba(239, 246, 255, 0.9);
-    color: var(--accent);
-    font-size: 12px;
-    font-family: "Space Mono", monospace;
-}
-
-.shor-result-box {
-    margin-top: 18px;
+.shor-state-box {
     padding: 16px;
     border-radius: 18px;
-    background: linear-gradient(135deg, rgba(219, 234, 254, 0.9) 0%, rgba(239, 246, 255, 0.96) 100%);
+    background: rgba(239, 246, 255, 0.82);
+    border: 1px solid rgba(147, 197, 253, 0.3);
 }
 
-.shor-result-box span {
+.shor-state-label {
     display: block;
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 6px;
+    color: var(--accent);
+    margin-bottom: 8px;
 }
 
-.shor-result-box strong {
-    color: var(--accent-strong);
+.shor-state-arrow {
+    color: var(--accent);
+    font-family: "Space Mono", monospace;
     font-size: 18px;
-    line-height: 1.4;
+    font-weight: 700;
 }
 
-@media (max-width: 1100px) {
-    .shor-sim-grid {
+.shor-result-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.shor-result-item {
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(248, 251, 255, 0.92);
+    border: 1px solid rgba(191, 219, 254, 0.4);
+}
+
+.shor-result-item strong {
+    display: block;
+    margin-top: 8px;
+    color: var(--accent-strong);
+    font-family: "Space Mono", monospace;
+    font-size: 15px;
+}
+
+@media (max-width: 960px) {
+    .shor-lab-grid,
+    .shor-result-grid,
+    .shor-state-grid {
         grid-template-columns: 1fr;
     }
+
+    .shor-state-arrow {
+        text-align: center;
+    }
 }
+
