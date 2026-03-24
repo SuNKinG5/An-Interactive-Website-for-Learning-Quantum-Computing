@@ -68,12 +68,13 @@
                         data-algo="teleport">
                         <i data-lucide="send" class="w-4 h-4"></i> Teleportation
                     </button>
-
                     <button
                         class="algo-item nav-chip w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all flex items-center gap-2"
                         data-algo="shor">
                         <i data-lucide="cpu" class="w-4 h-4"></i> Shor
                     </button>
+
+
 
                 </nav>
             </div>
@@ -127,78 +128,86 @@
                         <h2 id="step-title" class="text-2xl font-bold mb-2 page-title">Initialize Qubits</h2>
                         <p id="step-desc" class="text-sm muted-text">Prepare the starting qubits for the algorithm</p>
                     </div>
+                    
+                    <!-- add panel for shor  -->
+                    <section id="shor-lab-panel" class="shor-lab-panel mb-8" style="display: none;">
+                        <div class="shor-lab-grid">
+                            <article class="shor-lab-card">
+                                <p class="shor-lab-kicker">Step Explanation</p>
+                                <h3 id="shor-lab-step-title" class="shor-lab-title">Choose N and a</h3>
+                                <p id="shor-lab-step-body" class="shor-lab-body"></p>
+                            </article>
 
-                    <div class="mb-8">
+                            <article class="shor-lab-card">
+                                <p class="shor-lab-kicker">Interactive Input</p>
+
+                                <label class="shor-lab-label" for="shor-lab-n">Composite Number (N)</label>
+                                <input id="shor-lab-n" class="shor-lab-input" type="number" min="4" value="35">
+
+                                <label class="shor-lab-label" for="shor-lab-a">Base Value (a)</label>
+                                <input id="shor-lab-a" class="shor-lab-input" type="number" min="2" value="2">
+
+                                <div class="shor-lab-actions">
+                                    <button id="run-shor-lab-btn"
+                                        class="primary-button px-4 py-2 rounded-lg text-sm font-medium">Run
+                                        Step</button>
+                                    <button id="reset-shor-lab-btn"
+                                        class="toolbar-button px-4 py-2 rounded-lg text-sm font-medium">Reset</button>
+                                </div>
+
+                                <p id="shor-lab-message" class="shor-lab-note">Enter values and run the current step.
+                                </p>
+                            </article>
+
+                            <article class="shor-lab-card shor-lab-wide">
+                                <p class="shor-lab-kicker">State Change</p>
+                                <div class="shor-state-grid">
+                                    <div class="shor-state-box">
+                                        <span class="shor-state-label">Before</span>
+                                        <p id="shor-lab-before" class="shor-state-text">-</p>
+                                    </div>
+                                    <div class="shor-state-arrow">-></div>
+                                    <div class="shor-state-box">
+                                        <span class="shor-state-label">After</span>
+                                        <p id="shor-lab-after" class="shor-state-text">-</p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="shor-lab-card shor-lab-wide">
+                                <p class="shor-lab-kicker">Step Result</p>
+                                <div class="shor-result-grid">
+                                    <div class="shor-result-item">
+                                        <span>gcd(a, N)</span>
+                                        <strong id="shor-lab-gcd">-</strong>
+                                    </div>
+                                    <div class="shor-result-item">
+                                        <span>Period r</span>
+                                        <strong id="shor-lab-period">-</strong>
+                                    </div>
+                                    <div class="shor-result-item">
+                                        <span>Measurement Hint</span>
+                                        <strong id="shor-lab-measurement">-</strong>
+                                    </div>
+                                    <div class="shor-result-item">
+                                        <span>Factors</span>
+                                        <strong id="shor-lab-factors">-</strong>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- ===================== end  =========================== -->
+
+                    <!-- change class for shor  -->
+                    <div id="circuit-section" class="mb-8">
                         <h3 class="text-sm font-semibold mb-4 panel-title">Quantum Circuit</h3>
                         <div class="circuit-container">
                             <div id="circuit-gates" class="flex items-center gap-3">
                             </div>
                         </div>
                     </div>
-
-                    <!-- add for shor algorithms -->
-                    <section id="shor-sim-panel" class="shor-sim-panel" style="display: none;">
-                        <div class="shor-sim-header">
-                            <div>
-                                <p class="text-xs font-semibold uppercase tracking-wide panel-kicker">Interactive
-                                    Simulation</p>
-                                <h3 class="text-base font-bold page-title">Shor Input Lab</h3>
-                                <p class="text-sm muted-text">Enter your own values for N and a, then simulate the
-                                    arithmetic steps.</p>
-                            </div>
-                        </div>
-
-                        <div class="shor-sim-grid">
-                            <div class="shor-card">
-                                <label class="shor-label" for="shor-n">Composite Number (N)</label>
-                                <input id="shor-n" class="shor-input" type="number" min="4" value="35">
-
-                                <label class="shor-label" for="shor-a">Base Value (a)</label>
-                                <input id="shor-a" class="shor-input" type="number" min="2" value="2">
-
-                                <div class="shor-actions">
-                                    <button id="run-shor-btn"
-                                        class="primary-button px-4 py-2 rounded-lg text-sm font-medium">Run
-                                        Simulation</button>
-                                    <button id="reset-shor-btn"
-                                        class="toolbar-button px-4 py-2 rounded-lg text-sm font-medium">Reset</button>
-                                </div>
-
-                                <p id="shor-message" class="shor-message">Pick values and run the simplified Shor
-                                    simulation.</p>
-                            </div>
-
-                            <div class="shor-card">
-                                <p class="shor-card-title">Live Calculation</p>
-                                <div class="shor-stat-row">
-                                    <span>gcd(a, N)</span>
-                                    <strong id="shor-gcd">-</strong>
-                                </div>
-                                <div class="shor-stat-row">
-                                    <span>Detected Period</span>
-                                    <strong id="shor-period">-</strong>
-                                </div>
-                                <div id="shor-sequence" class="shor-sequence"></div>
-                            </div>
-
-                            <div class="shor-card">
-                                <p class="shor-card-title">Result</p>
-                                <div class="shor-stat-row">
-                                    <span>Factor 1</span>
-                                    <strong id="shor-factor-1">-</strong>
-                                </div>
-                                <div class="shor-stat-row">
-                                    <span>Factor 2</span>
-                                    <strong id="shor-factor-2">-</strong>
-                                </div>
-                                <div class="shor-result-box">
-                                    <span>Summary</span>
-                                    <strong id="shor-summary">No result yet</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- ----------------------------------------- -->
 
                     <div class="explanation-card rounded-2xl p-6 flex-1">
                         <h3 class="text-sm font-semibold mb-4 panel-title">Explanation</h3>
