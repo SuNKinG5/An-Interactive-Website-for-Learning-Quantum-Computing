@@ -10,17 +10,31 @@ const sphere = new BlochSphere(canvas, {
   arrowColor: 0x2563eb,
 });
 
-let vector = [0, 0, 1];
+let animatingVector = [0, 0, 1];
+let startVector = [0, 0, 1];
+let targetVector = [0, 0, 1];
+
+// ตัวแปรใหม่สำหรับกำหนดแกนและมุมหมุน
+let activeAxis = [1, 0, 0]; 
+let activeAngle = Math.PI;  
+let isAnimating = false;
+let animationStartTime;
+const animationDuration = 1000;
 
 const elements = {
-  label: document.getElementById("lbl"),
-  theta: document.getElementById("th"),
-  phi: document.getElementById("ph"),
-  x: document.getElementById("x"),
-  y: document.getElementById("y"),
-  z: document.getElementById("z"),
+  thetaSlider: document.getElementById("theta-slider"),
+  phiSlider: document.getElementById("phi-slider"),
+  stateSlider: document.getElementById("state-slider"),
+  thetaText: document.getElementById("th"),
+  phiText: document.getElementById("ph"),
+  stateIndicator: document.getElementById("state-indicator"),
   reset: document.getElementById("reset"),
   gateButtons: document.querySelectorAll("[data-gate]"),
+
+  prob0Text: document.getElementById("prob-0-text"),
+  prob0Bar: document.getElementById("prob-0-bar"),
+  prob1Text: document.getElementById("prob-1-text"),
+  prob1Bar: document.getElementById("prob-1-bar"),
 };
 
 function toAngles([x, y, z]) {
@@ -29,75 +43,169 @@ function toAngles([x, y, z]) {
   return [theta, phi];
 }
 
-function formatNumber(value) {
-  const rounded = Math.abs(value) < 1e-12 ? 0 : value;
-  return rounded.toFixed(3);
+function fromAngles(theta, phi) {
+  return [
+    Math.sin(theta) * Math.cos(phi),
+    Math.sin(theta) * Math.sin(phi),
+    Math.cos(theta)
+  ];
 }
 
-function getStateLabel([x, y, z]) {
-  const epsilon = 1e-9;
+function updatePanel(vec) {
+  const [theta, phi] = toAngles(vec);
 
-  if (Math.abs(x) < epsilon && Math.abs(y) < epsilon && Math.abs(z - 1) < epsilon) {
-    return "|0>";
-  }
+  let thetaDeg = Math.round((theta * 180) / Math.PI);
+  let phiDeg = Math.round((phi * 180) / Math.PI);
+  if (phiDeg < 0) phiDeg += 360; 
 
-  if (Math.abs(x) < epsilon && Math.abs(y) < epsilon && Math.abs(z + 1) < epsilon) {
-    return "|1>";
-  }
+  const statePercent = Math.round((thetaDeg / 180) * 100);
 
-  if (Math.abs(y) < epsilon && Math.abs(z) < epsilon && Math.abs(x - 1) < epsilon) {
-    return "|+>";
-  }
+  if (elements.thetaText) elements.thetaText.textContent = thetaDeg;
+  if (elements.phiText) elements.phiText.textContent = phiDeg;
+  if (elements.stateIndicator) elements.stateIndicator.textContent = statePercent + '%';
 
-  if (Math.abs(y) < epsilon && Math.abs(z) < epsilon && Math.abs(x + 1) < epsilon) {
-    return "|->";
-  }
+  if (elements.thetaSlider) elements.thetaSlider.value = thetaDeg;
+  if (elements.phiSlider) elements.phiSlider.value = phiDeg;
+  if (elements.stateSlider) elements.stateSlider.value = statePercent;
 
-  return "|psi>";
+  // P(0) = cos^2(theta/2) และ P(1) = sin^2(theta/2)
+  const p0 = Math.pow(Math.cos(theta / 2), 2);
+  const p1 = Math.pow(Math.sin(theta / 2), 2);
+  
+  // ทำเป็นเปอร์เซ็นต์ ทศนิยม 1 ตำแหน่ง
+  const p0Percent = (p0 * 100).toFixed(1);
+  const p1Percent = (p1 * 100).toFixed(1);
+
+  // อัปเดต Text
+  if (elements.prob0Text) elements.prob0Text.textContent = p0Percent + '%';
+  if (elements.prob1Text) elements.prob1Text.textContent = p1Percent + '%';
+
+  // อัปเดตความยาวหลอด Progress Bar
+  if (elements.prob0Bar) elements.prob0Bar.style.width = p0Percent + '%';
+  if (elements.prob1Bar) elements.prob1Bar.style.width = p1Percent + '%';
 }
 
-function updatePanel() {
-  const [theta, phi] = toAngles(vector);
-  const [x, y, z] = vector;
-
-  elements.label.textContent = getStateLabel(vector);
-  elements.theta.textContent = (theta * 180 / Math.PI).toFixed(1);
-  elements.phi.textContent = (phi * 180 / Math.PI).toFixed(1);
-  elements.x.textContent = formatNumber(x);
-  elements.y.textContent = formatNumber(y);
-  elements.z.textContent = formatNumber(z);
+function setInstantVector(nextVector) {
+  animatingVector = nextVector;
+  isAnimating = false;
+  sphere.setBlochVector(animatingVector);
+  updatePanel(animatingVector);
 }
 
-function setVector(nextVector) {
-  vector = nextVector;
-  sphere.setBlochVector(vector);
-  updatePanel();
+// ใหม่: ฟังก์ชันหมุน 3D รอบแกนใดๆ (Rodrigues' rotation formula)
+function rotateAroundAxis(v, axis, angle) {
+  const [vx, vy, vz] = v;
+  const [kx, ky, kz] = axis;
+
+  const cosA = Math.cos(angle);
+  const sinA = Math.sin(angle);
+  const dot = vx * kx + vy * ky + vz * kz;
+
+  const crossX = ky * vz - kz * vy;
+  const crossY = kz * vx - kx * vz;
+  const crossZ = kx * vy - ky * vx;
+
+  return [
+    vx * cosA + crossX * sinA + kx * dot * (1 - cosA),
+    vy * cosA + crossY * sinA + ky * dot * (1 - cosA),
+    vz * cosA + crossZ * sinA + kz * dot * (1 - cosA)
+  ];
 }
 
-elements.gateButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    setVector(applyGate(vector, button.dataset.gate));
+// ใหม่: จัดการแอนิเมชันตามชนิดของ Gate
+function startGateAnimation(gate) {
+  startVector = animatingVector;
+  
+  // กำหนดแกนตามชนิดของเกต (หมุน 180 องศา หรือ Math.PI ทั้งหมด)
+  if (gate === "X") {
+    activeAxis = [1, 0, 0]; // แกน X
+  } else if (gate === "Y") {
+    activeAxis = [0, 1, 0]; // แกน Y
+  } else if (gate === "Z") {
+    activeAxis = [0, 0, 1]; // แกน Z
+  } else if (gate === "H") {
+    activeAxis = [1/Math.sqrt(2), 0, 1/Math.sqrt(2)]; // แกนทแยง X+Z
+  }
+  
+  activeAngle = Math.PI; 
+  targetVector = applyGate(startVector, gate);
+  animationStartTime = performance.now();
+  isAnimating = true;
+}
+
+// --- Event Listeners ---
+
+if (elements.gateButtons) {
+  elements.gateButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      startGateAnimation(button.dataset.gate);
+    });
   });
-});
+}
 
-elements.reset.addEventListener("click", () => {
-  setVector([0, 0, 1]);
-});
+if (elements.reset) {
+  elements.reset.addEventListener("click", () => setInstantVector([0, 0, 1]));
+}
 
 window.addEventListener("keydown", (event) => {
   const gate = event.key.toUpperCase();
-  if (!["X", "Y", "Z", "H"].includes(gate)) {
-    return;
-  }
-
+  if (!["X", "Y", "Z", "H"].includes(gate)) return;
   event.preventDefault();
-  setVector(applyGate(vector, gate));
+  startGateAnimation(gate);
 });
 
-function loop() {
+// (Event Listener ของ Sliders ยังเหมือนเดิม)
+if (elements.thetaSlider) {
+  elements.thetaSlider.addEventListener('input', (e) => {
+    const theta = (parseFloat(e.target.value) * Math.PI) / 180;
+    const [, currentPhi] = toAngles(animatingVector);
+    setInstantVector(fromAngles(theta, currentPhi));
+  });
+}
+
+if (elements.phiSlider) {
+  elements.phiSlider.addEventListener('input', (e) => {
+    const phi = (parseFloat(e.target.value) * Math.PI) / 180;
+    const [currentTheta,] = toAngles(animatingVector);
+    setInstantVector(fromAngles(currentTheta, phi));
+  });
+}
+
+if (elements.stateSlider) {
+  elements.stateSlider.addEventListener('input', (e) => {
+    const val = parseFloat(e.target.value);
+    const theta = (val / 100) * Math.PI;
+    const [, currentPhi] = toAngles(animatingVector);
+    setInstantVector(fromAngles(theta, currentPhi));
+  });
+}
+
+// Main Render Loop อัปเดตใหม่
+function loop(currentTime) {
+  if (isAnimating && animationStartTime !== undefined) {
+    const elapsedTime = currentTime - animationStartTime;
+    const progress = Math.min(1, elapsedTime / animationDuration);
+
+    // 1. คำนวณมุมหมุน ณ เฟรมนี้
+    const currentAngle = activeAngle * progress;
+    
+    // 2. หมุนเวกเตอร์ตั้งต้นรอบแกนของเกต
+    animatingVector = rotateAroundAxis(startVector, activeAxis, currentAngle);
+    
+    sphere.setBlochVector(animatingVector);
+    updatePanel(animatingVector);
+
+    if (progress === 1) {
+      isAnimating = false;
+      // Snap เข้าค่า target ตอนจบเพื่อป้องกันจุดทศนิยมคลาดเคลื่อน
+      setInstantVector(targetVector); 
+    }
+  }
+
   sphere.render();
   requestAnimationFrame(loop);
 }
 
-setVector(vector);
-loop();
+// Initialize
+setInstantVector([0, 0, 1]);
+requestAnimationFrame(loop);
