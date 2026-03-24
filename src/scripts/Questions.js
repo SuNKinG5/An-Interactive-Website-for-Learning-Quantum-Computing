@@ -1,4 +1,4 @@
-const quizzes = {
+export const quizzes = {
     gates: {
         name: 'Quantum Gates',
         questions: [
