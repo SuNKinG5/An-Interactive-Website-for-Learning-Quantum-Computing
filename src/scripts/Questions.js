@@ -2,31 +2,106 @@ const quizzes = {
     gates: {
         name: 'Quantum Gates',
         questions: [
-            { question: 'What is the result of applying H gate to |0⟩?', options: ['|0⟩', '|1⟩', 'Superposition', 'Measurement'], correct: 2, explanation: 'The Hadamard gate creates an equal superposition: H|0⟩ = (|0⟩ + |1⟩)/√2. This is one of the fundamental operations in quantum computing.' },
-            { question: 'What does the Pauli X gate do to |0⟩?', options: ['Creates superposition', 'Flips to |1⟩', 'Measures the qubit', 'Applies phase shift'], correct: 1, explanation: 'The Pauli X gate is equivalent to the classical NOT operation: X|0⟩ = |1⟩ and X|1⟩ = |0⟩.' },
-            { question: 'Which gate applies a π phase to |1⟩?', options: ['Hadamard (H)', 'Pauli Z', 'CNOT', 'Swap gate'], correct: 1, explanation: 'The Pauli Z gate applies: Z|0⟩ = |0⟩ and Z|1⟩ = -|1⟩, adding a π phase to the |1⟩ state.' },
-            { question: 'What is a two-qubit entangling gate?', options: ['X gate', 'Y gate', 'CNOT gate', 'T gate'], correct: 2, explanation: 'The CNOT (Controlled-NOT) gate is used to create entanglement between qubits. It flips the target qubit if the control qubit is |1⟩.' },
-            { question: 'What happens when you apply H twice?', options: ['Get identity', 'Get -I', 'Get X', 'Creates superposition'], correct: 0, explanation: 'The Hadamard gate is self-adjoint: H² = I. Applying it twice returns the original state.' }
+            { 
+                question: 'ผลลัพธ์ของการใช้ H Gate (Hadamard) กับสถานะ |0⟩ คืออะไร?', 
+                options: ['ยังคงเป็น |0⟩', 'สลับเป็น |1⟩', 'กลายเป็น Superposition (สถานะทับซ้อน)', 'คิวบิตพัง'], 
+                correct: 2, 
+                explanation: 'Hadamard gate จะเปลี่ยนสถานะที่แน่นอนให้กลายเป็น Superposition แบบ 50/50 ซึ่งเป็นประตูบานแรกและเป็นพื้นฐานสำคัญของอัลกอริทึมควอนตัม' 
+            },
+            { 
+                question: 'Pauli X Gate ทำหน้าที่อะไรกับสถานะ |0⟩?', 
+                options: ['สร้าง Superposition', 'พลิกกลับ (Flip) เป็น |1⟩', 'วัดค่าคิวบิต (Measure)', 'เปลี่ยนเฟส (Phase)'], 
+                correct: 1, 
+                explanation: 'X gate ทำงานเหมือน NOT gate ในคอมพิวเตอร์ทั่วไป (ตีลังกาบน-ล่างบน Bloch Sphere) โดยจะสลับขั้วจาก |0⟩ เป็น |1⟩ และ |1⟩ เป็น |0⟩' 
+            },
+            { 
+                question: 'เกตใดที่ทำหน้าที่หมุนเฟส (เปลี่ยนทิศทาง) โดยไม่เปลี่ยนความน่าจะเป็น?', 
+                options: ['H Gate', 'Z Gate', 'CNOT Gate', 'Swap Gate'], 
+                correct: 1, 
+                explanation: 'Z gate จะไม่เปลี่ยนความน่าจะเป็นของ 0 หรือ 1 (บน-ล่าง) แต่มันจะหมุนรอบตัวเอง (เปลี่ยนเฟส) ซึ่งมีผลมากเมื่อนำไปทำงานร่วมกับ Superposition' 
+            },
+            { 
+                question: 'เกตใดต่อไปนี้ ใช้สำหรับเชื่อมคิวบิต 2 ตัวเข้าด้วยกัน (สร้าง Entanglement)?', 
+                options: ['X Gate', 'Y Gate', 'CNOT Gate', 'T Gate'], 
+                correct: 2, 
+                explanation: 'CNOT (Controlled-NOT) gate เป็นเกตที่ทำงานกับคิวบิต 2 ตัว โดยมันจะสลับค่าเป้าหมาย (Target) ก็ต่อเมื่อตัวควบคุม (Control) เป็น 1 เท่านั้น' 
+            },
+            { 
+                question: 'จะเกิดอะไรขึ้นถ้าเราใช้ H Gate ซ้อนกัน 2 ครั้งติดกัน?', 
+                options: ['กลับมาเป็นสถานะเริ่มต้นที่แน่นอน', 'กลายเป็นค่าติดลบ', 'ทำงานเหมือน X gate', 'สุ่มสถานะใหม่ทั้งหมด'], 
+                correct: 0, 
+                explanation: 'กฎสำคัญของควอนตัมคือเมื่อใช้ H gate สองครั้งติดกัน สถานะที่เบลอๆ จะกลับมารวมตัวเป็นสถานะเริ่มต้นที่ชัดเจนเหมือนเดิม (เปรียบเสมือนการกด Undo)' 
+            }
         ]
     },
     superposition: {
         name: 'Superposition',
         questions: [
-            { question: 'A qubit in superposition can be described as?', options: ['Either 0 or 1', 'Both 0 and 1 simultaneously', 'Random value', 'Unknown state'], correct: 1, explanation: 'Superposition allows a qubit to exist as a linear combination of basis states simultaneously: α|0⟩ + β|1⟩.' },
-            { question: 'How many basis states in a 2-qubit superposition?', options: ['2', '4', '3', '8'], correct: 1, explanation: 'Two qubits have 4 computational basis states: |00⟩, |01⟩, |10⟩, |11⟩. A 2-qubit superposition can be a combination of all these states.' },
-            { question: 'What is the amplitude |α| when H is applied to |0⟩?', options: ['1', '1/2', '1/√2', '1/4'], correct: 2, explanation: 'H|0⟩ = (|0⟩ + |1⟩)/√2, so the amplitude for both |0⟩ and |1⟩ is 1/√2.' },
-            { question: 'Superposition collapses when?', options: ['Always happens', 'We measure it', 'Time passes', 'Qubits interact'], correct: 1, explanation: 'Measurement causes superposition to collapse to one of the basis states. The probability of each outcome is |amplitude|².' },
-            { question: 'What is the probability of measuring |0⟩ from (|0⟩ + |1⟩)/√2?', options: ['0%', '50%', '75%', '100%'], correct: 1, explanation: 'The amplitude for |0⟩ is 1/√2, so probability = |1/√2|² = 1/2 = 50%.' }
+            { 
+                question: 'คิวบิตที่อยู่ในสถานะ Superposition อธิบายได้ตรงกับข้อใดมากที่สุด?', 
+                options: ['เป็น 0 หรือ 1 อย่างใดอย่างหนึ่ง', 'เป็นทั้ง 0 และ 1 พร้อมๆ กัน', 'เป็นค่าที่สุ่มมั่วๆ', 'เป็นสถานะที่คอมพิวเตอร์พัง'], 
+                correct: 1, 
+                explanation: 'Superposition คือความสามารถของคิวบิตที่สามารถประมวลผลหรือเก็บข้อมูลหลายสถานะ (ทั้ง 0 และ 1) ได้พร้อมๆ กัน' 
+            },
+            { 
+                question: 'ระบบที่มี 2 Qubits จะสามารถสร้างสถานะที่แตกต่างกันได้ทั้งหมดกี่แบบ?', 
+                options: ['2 แบบ', '4 แบบ', '6 แบบ', '8 แบบ'], 
+                correct: 1, 
+                explanation: 'จำนวนสถานะของควอนตัมจะเพิ่มขึ้นแบบยกกำลัง (2ⁿ) ดังนั้น 2 Qubits จะมี 4 สถานะ คือ |00⟩, |01⟩, |10⟩ และ |11⟩' 
+            },
+            { 
+                question: 'ถ้าคิวบิตอยู่ตรงเส้นศูนย์สูตรของ Bloch Sphere พอดี (สถานะ |+⟩) โอกาสที่จะวัดได้แต่ละค่าคือเท่าใด?', 
+                options: ['100% |0⟩', '75% |0⟩, 25% |1⟩', '50% |0⟩, 50% |1⟩', '100% |1⟩'], 
+                correct: 2, 
+                explanation: 'สถานะ |+⟩ (เกิดจากการใช้ H gate) คือการที่คิวบิตอยู่กึ่งกลางระหว่างขั้วเหนือ (0) และขั้วใต้ (1) พอดีเป๊ะ ทำให้มีโอกาส 50/50 เท่ากัน' 
+            },
+            { 
+                question: 'สถานะ Superposition จะยุบตัว (Collapse) กลับมาเป็น 0 หรือ 1 เมื่อใด?', 
+                options: ['เกิดขึ้นตลอดเวลา', 'เมื่อเราทำการ "วัดผล" (Measurement)', 'เมื่อเวลาผ่านไป 1 วินาที', 'เมื่อนำคิวบิตมาวางใกล้กัน'], 
+                correct: 1, 
+                explanation: 'ทันทีที่เราพยายาม "มอง" หรือทำการวัดผลคิวบิตเพื่อเอาข้อมูลออกมา สถานะที่เคยทับซ้อนกันจะยุบตัวลงเหลือเพียงค่าเดียว (0 หรือ 1) แบบ 100% ทันที' 
+            },
+            { 
+                question: 'ถ้าเรามี 3 Qubits เราจะสามารถลองหาคำตอบพร้อมๆ กันได้สูงสุดกี่ทางเลือก?', 
+                options: ['3 ทางเลือก', '6 ทางเลือก', '8 ทางเลือก', '9 ทางเลือก'], 
+                correct: 2, 
+                explanation: 'ตามสูตร 2ⁿ เมื่อมีคิวบิต 3 ตัว (2³) ระบบควอนตัมจะสามารถเก็บหรือประมวลผลคำตอบได้ 8 ทางเลือกพร้อมกันในครั้งเดียว!' 
+            }
         ]
     },
     measurement: {
-        name: 'Measurement',
+        name: 'Measurement & Entanglement',
         questions: [
-            { question: 'Measurement outcome probability is determined by?', options: ['The phase', 'Amplitude squared', 'Number of qubits', 'Gate sequence'], correct: 1, explanation: 'The probability of measuring a state is the square of its amplitude: P = |amplitude|².' },
-            { question: 'Can we know the exact state without measuring?', options: ['Yes, always', 'Sometimes', 'Never in quantum', 'Only for 1 qubit'], correct: 2, explanation: 'Quantum mechanics is probabilistic. We cannot predict individual measurement outcomes, only probabilities.' },
-            { question: 'What happens to the state after measurement?', options: ['Unchanged', 'Collapsed to measured state', 'Random', 'Entangled'], correct: 1, explanation: 'After measurement, the quantum state collapses to the measured basis state. Subsequent measurements will give the same result.' },
-            { question: 'Measuring a qubit multiple times gives?', options: ['Different results', 'Same result', 'Random outcomes', 'No info'], correct: 1, explanation: 'Once a qubit is measured and collapses to a state, repeated measurements yield the same result with 100% probability.' },
-            { question: 'Bell measurement involves how many qubits?', options: ['1 qubit', '2 qubits', '3 qubits', '4 qubits'], correct: 1, explanation: 'Bell measurement (or Bell state measurement) is performed on 2 qubits and produces 2 classical bits of information.' }
+            { 
+                question: 'ในสถานะ Superposition เราสามารถรู้ค่าที่แน่นอนของคิวบิตล่วงหน้าก่อนทำการวัดได้หรือไม่?', 
+                options: ['รู้ได้เสมอ (คำนวณได้)', 'รู้ได้บางครั้ง', 'ไม่มีทางรู้ได้ 100%', 'รู้ได้ถ้ามีแค่ 1 คิวบิต'], 
+                correct: 2, 
+                explanation: 'กลศาสตร์ควอนตัมทำงานบนพื้นฐานของ "ความน่าจะเป็น" เราไม่สามารถคาดเดาผลลัพธ์ล่วงหน้าได้แบบเจาะจง 100% จนกว่าจะทำการวัดผลจริงๆ' 
+            },
+            { 
+                question: 'ถ้านำคิวบิตที่เพิ่งถูก "วัดผล" ไปแล้ว (ยุบตัวแล้ว) มาวัดผลซ้ำอีกครั้ง จะเกิดอะไรขึ้น?', 
+                options: ['ได้ค่าต่างจากเดิม', 'ได้ค่าเดิมเสมอ 100%', 'ได้ผลแบบสุ่มใหม่', 'คิวบิตจะเปลี่ยนเป็น 0 เสมอ'], 
+                correct: 1, 
+                explanation: 'เมื่อสถานะยุบตัวจากการวัดครั้งแรกไปแล้ว มันจะสูญเสียคุณสมบัติควอนตัมไป การนำมาวัดซ้ำจึงได้ค่าเดิมเสมอ' 
+            },
+            { 
+                question: 'เกิดอะไรขึ้นกับคิวบิตตัวที่ 2 หากมันพัวพัน (Entangled) อยู่กับคิวบิตตัวแรกที่เพิ่งถูกวัดผล?', 
+                options: ['ไม่มีอะไรเปลี่ยนแปลง', 'ยุบตัวตามคิวบิตตัวแรกทันที!', 'กลายเป็นค่าแบบสุ่ม', 'การเชื่อมต่อถูกตัดขาดอย่างช้าๆ'], 
+                correct: 1, 
+                explanation: 'นี่คือ Spooky action at a distance! เมื่อตัวหนึ่งถูกวัดและยุบตัว อีกตัวที่พัวพันกันจะรู้ตัวและยุบตัวตามทันที ไม่ว่าจะอยู่ห่างไกลกันแค่ไหนก็ตาม' 
+            },
+            { 
+                question: 'Quantum Circuit (วงจรควอนตัม) ควรอ่านและประมวลผลในทิศทางใด?', 
+                options: ['จากขวาไปซ้าย', 'จากบนลงล่าง', 'จากซ้ายไปขวา', 'สลับไปมาได้'], 
+                correct: 2, 
+                explanation: 'Quantum Circuit จะเริ่มต้นอ่านจากคิวบิตทางด้านซ้ายสุด และไหลผ่าน Gate ต่างๆ ไปทางด้านขวา เพื่อนำไปวัดผลในขั้นตอนสุดท้าย' 
+            },
+            { 
+                question: 'อัลกอริทึมควอนตัม (Quantum Algorithm) ใช้หลักการใดในการทำให้คำตอบที่ถูกต้องเด่นชัดขึ้น?', 
+                options: ['เดาสุ่มไปเรื่อยๆ ให้เร็วที่สุด', 'Interference (การแทรกสอด)', 'โยนคิวบิตที่ผิดทิ้งไป', 'เพิ่มคิวบิตให้เยอะขึ้น'], 
+                correct: 1, 
+                explanation: 'ควอนตัมอัลกอริทึม (เช่น Grover) จะใช้ Superposition เพื่อลองทุกคำตอบ และใช้ Gate ควบคุมให้เกิด "การแทรกสอด (Interference)" หักล้างคำตอบที่ผิด และขยายคำตอบที่ถูกให้ชัดเจนขึ้น' 
+            }
         ]
     }
 };
