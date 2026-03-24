@@ -54,68 +54,57 @@
             <aside class="sim-sidebar">
                 <section class="sidebar-section">
                     <p class="sidebar-label">Operations</p>
-                    <div class="gate-palette">
-                        <button id="gate-h" class="palette-gate palette-gate-h" draggable="true">H</button>
+                    <div class="gate-palette ibmq-palette">
+                        <button id="gate-h" class="palette-gate" draggable="true">H</button>
                         <button id="gate-x" class="palette-gate" draggable="true">X</button>
-                        <button id="gate-y" class="palette-gate palette-gate-cyan" draggable="true">Y</button>
-                        <button id="gate-z" class="palette-gate palette-gate-violet" draggable="true">Z</button>
+                        <button id="gate-y" class="palette-gate" draggable="true">Y</button>
+                        <button id="gate-z" class="palette-gate" draggable="true">Z</button>
+                        <button id="gate-m" class="palette-gate palette-gate-measure" draggable="true">M</button>
                     </div>
                 </section>
 
-                <section class="sidebar-section">
-                    <p class="sidebar-label">State Controls</p>
 
-                    <label class="control-label" for="theta-slider">Theta</label>
-                    <div class="slider-row">
-                        <input type="range" id="theta-slider" min="0" max="180" value="90">
-                        <span class="slider-value"><span id="theta-value">90</span> deg</span>
-                    </div>
-
-                    <label class="control-label" for="phi-slider">Phi</label>
-                    <div class="slider-row">
-                        <input type="range" id="phi-slider" min="0" max="360" value="0">
-                        <span class="slider-value"><span id="phi-value">0</span> deg</span>
-                    </div>
-                </section>
-
-                <!-- <section class="sidebar-section">
-                    <p class="sidebar-label">Simulation Panels</p>
-                    <nav class="sim-nav">
-                        <button class="sim-nav-btn active" data-panel="bloch">Bloch Sphere</button>
-                        <button class="sim-nav-btn" data-panel="probabilities">Probabilities</button>
-                        <button class="sim-nav-btn" data-panel="statevector">State Vector</button>
-                    </nav>
-                </section> -->
             </aside>
 
             <main class="sim-main">
+
+                <!-- section for circuit composer it can drag -->
                 <section class="composer-card">
                     <div class="section-head">
                         <div>
                             <p class="section-label">Circuit Composer</p>
-                            <h2>Current Simulation</h2>
+                            <h2>Quantum Circuit</h2>
                         </div>
-                        <p class="section-help">ทุกเกตจะอัปเดตคิวบิตตัวเดียวกัน แต่แต่ละพาเนลจะแสดงผลลัพธ์ในคนละมุมมอง
+                        <p class="section-help">ลากเกตไปวางบน q[0] หรือ q[1] จากนั้นวัดผลลงใน classical register c
                         </p>
                     </div>
 
-                    <div class="circuit-board">
+                    <div class="circuit-board ibmq-board">
                         <div class="wire-labels">
                             <span>q[0]</span>
-                            <span>c[0]</span>
+                            <span>q[1]</span>
+                            <span>c</span>
                         </div>
 
-                        <div class="wire-stage">
+                        <div class="wire-stage ibmq-stage">
                             <div class="wire-row">
                                 <div class="wire-line"></div>
-                                <div id="gate-sequence" class="gate-sequence"></div>
+                                <div id="gate-sequence-q0" class="gate-sequence"></div>
                             </div>
+
+                            <div class="wire-row">
+                                <div class="wire-line"></div>
+                                <div id="gate-sequence-q1" class="gate-sequence"></div>
+                            </div>
+
                             <div class="wire-row wire-row-classical">
                                 <div class="wire-line"></div>
+                                <div id="classical-sequence-c" class="gate-sequence classical-sequence"></div>
                             </div>
                         </div>
                     </div>
                 </section>
+
 
                 <section class="simulation-grid">
                     <article class="sim-panel" data-panel-card="bloch">
@@ -158,31 +147,6 @@
                                     <div id="prob-1-bar" class="prob-bar-fill prob-bar-fill-alt"></div>
                                 </div>
                                 <p id="prob-1-display" class="prob-amp">0.707</p>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="sim-panel" data-panel-card="statevector">
-                        <div class="section-head">
-                            <div>
-                                <p class="section-label">Analytic View</p>
-                                <h3>State Vector</h3>
-                            </div>
-                        </div>
-                        <div class="state-panel">
-                            <div class="state-card">
-                                <span>alpha</span>
-                                <strong id="alpha-display">0.707</strong>
-                            </div>
-                            <div class="state-card">
-                                <span>beta</span>
-                                <strong id="beta-display">0.707</strong>
-                            </div>
-                            <div class="state-summary">
-                                <div><span>State</span><strong id="state-label">|psi></strong></div>
-                                <div><span>X</span><strong id="coord-x">1.000</strong></div>
-                                <div><span>Y</span><strong id="coord-y">0.000</strong></div>
-                                <div><span>Z</span><strong id="coord-z">0.000</strong></div>
                             </div>
                         </div>
                     </article>

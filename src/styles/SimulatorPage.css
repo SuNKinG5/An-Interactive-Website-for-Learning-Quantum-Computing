@@ -87,7 +87,7 @@ body {
     overflow: auto;
 }
 
-.sidebar-section + .sidebar-section {
+.sidebar-section+.sidebar-section {
     margin-top: 24px;
 }
 
@@ -138,8 +138,7 @@ body {
     border-color: rgba(129, 140, 248, 0.35);
 }
 
-.palette-gate:hover,
-.sim-nav-btn:hover {
+.palette-gate:hover {
     transform: translateY(-1px);
 }
 
@@ -151,57 +150,6 @@ body {
 .palette-gate.is-pressed {
     transform: translateY(1px) scale(0.985);
     box-shadow: 0 10px 18px rgba(37, 99, 235, 0.12);
-}
-
-.control-label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 0.88rem;
-    font-weight: 700;
-}
-
-.slider-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.slider-row input {
-    width: 100%;
-    accent-color: #2563eb;
-}
-
-.slider-value {
-    min-width: 80px;
-    text-align: right;
-    color: #2563eb;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-
-.sim-nav {
-    display: grid;
-    gap: 10px;
-}
-
-.sim-nav-btn {
-    text-align: left;
-    border: 1px solid #dbe4f0;
-    background: #fff;
-    color: #334155;
-    border-radius: 14px;
-    padding: 12px 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.18s ease;
-}
-
-.sim-nav-btn.active {
-    background: #eff6ff;
-    color: #2563eb;
-    border-color: #bfdbfe;
 }
 
 .sim-main {
@@ -296,6 +244,13 @@ body {
     overflow-x: auto;
 }
 
+.gate-sequence.is-selected {
+    outline: 2px solid rgba(59, 130, 246, 0.24);
+    outline-offset: 6px;
+    border-radius: 14px;
+    background: rgba(239, 246, 255, 0.55);
+}
+
 .sequence-gate {
     min-width: 42px;
     height: 42px;
@@ -316,7 +271,7 @@ body {
 
 .simulation-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
     margin-top: 20px;
 }
@@ -326,13 +281,6 @@ body {
     opacity: 1;
     transform: none;
     transition: all 0.2s ease;
-    border-color: #dbeafe;
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
-}
-
-.sim-panel.is-active {
-    opacity: 1;
-    transform: none;
     border-color: #dbeafe;
     box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
 }
@@ -353,8 +301,7 @@ body {
     display: block;
 }
 
-.bars-panel,
-.state-panel {
+.bars-panel {
     display: grid;
     gap: 18px;
 }
@@ -396,39 +343,6 @@ body {
     font-family: "Space Mono", monospace;
 }
 
-.state-card,
-.state-summary {
-    padding: 16px;
-    border-radius: 18px;
-    background: #f8fbff;
-    border: 1px solid #dbeafe;
-}
-
-.state-card span,
-.state-summary span {
-    color: #64748b;
-    font-size: 0.88rem;
-}
-
-.state-card strong {
-    display: block;
-    margin-top: 8px;
-    font-size: 1.5rem;
-    color: #2563eb;
-    font-family: "Space Mono", monospace;
-}
-
-.state-summary {
-    display: grid;
-    gap: 12px;
-}
-
-.state-summary div {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-}
-
 @media (max-width: 1180px) {
     .simulation-grid {
         grid-template-columns: 1fr;
@@ -444,6 +358,69 @@ body {
         border-right: 0;
         border-bottom: 1px solid #dbe4f0;
     }
+}
+
+.ibmq-board {
+    background: #ffffff;
+    border: 1px solid #dbe4f0;
+}
+
+.ibmq-stage {
+    gap: 34px;
+    padding-top: 8px;
+}
+
+.ibmq-palette {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.palette-gate-measure {
+    border-color: #93c5fd;
+    color: #2563eb;
+}
+
+.wire-row {
+    min-height: 54px;
+}
+
+.wire-line {
+    top: 26px;
+}
+
+.wire-row-classical .wire-line {
+    border-top: 2px double #94a3b8;
+}
+
+.classical-sequence {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #2563eb;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+}
+
+.measure-gate {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #2563eb;
+    font-weight: 700;
+    font-family: "Space Mono", monospace;
+}
+
+.classical-bitstring {
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: #f8fbff;
+    border: 1px solid #dbeafe;
+    color: #2563eb;
+    font-family: "Space Mono", monospace;
 }
 
 @media (max-width: 640px) {
