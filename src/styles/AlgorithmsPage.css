@@ -30,6 +30,7 @@ body.algorithms-page {
     font-family: "Google Sans", sans-serif;
     color: var(--text);
     background: var(--alg-bg);
+    font-size: 17px;
 }
 
 .page-shell {
@@ -46,10 +47,19 @@ body.algorithms-page {
     color: var(--text);
 }
 
+.page-header .page-title {
+    font-size: 1.35rem;
+}
+
 .page-kicker,
 .panel-kicker,
 .muted-text {
     color: var(--muted);
+}
+
+.page-kicker,
+.panel-kicker {
+    font-size: 0.9rem;
 }
 
 .accent-text {
@@ -69,6 +79,7 @@ body.algorithms-page {
     border: 1px solid var(--border);
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+    font-size: 1rem;
 }
 
 .toolbar-button:hover,
@@ -121,6 +132,7 @@ body.algorithms-page {
 
 .panel-title {
     color: var(--text);
+    font-size: 1rem;
 }
 
 .info-card,
@@ -141,6 +153,7 @@ body.algorithms-page {
     color: #475569;
     background: transparent;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .nav-chip.is-active {
@@ -203,6 +216,8 @@ body.algorithms-page {
     background: rgba(255, 255, 255, 0.6);
     color: var(--muted);
     cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 .active-step {
@@ -238,7 +253,7 @@ body.algorithms-page {
     justify-content: center;
     font-weight: bold;
     color: var(--accent);
-    font-size: 12px;
+    font-size: 0.95rem;
     font-family: "Space Mono", monospace;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(239, 246, 255, 0.92) 100%);
@@ -283,8 +298,8 @@ body.algorithms-page {
 
 .explanation-body {
     color: var(--muted);
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 1.05rem;
+    line-height: 1.95;
     max-width: 72ch;
 }
 
@@ -292,6 +307,21 @@ body.algorithms-page {
     margin-top: 20px;
     padding-top: 18px;
     border-top: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.step-example {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(147, 197, 253, 0.4);
+    background: rgba(239, 246, 255, 0.8);
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+.step-example strong {
+    color: var(--accent-strong);
 }
 
 .amplitude-item + .amplitude-item {
