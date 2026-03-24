@@ -199,13 +199,15 @@ function flashGateButton(gate) {
   }, 180);
 }
 
-function setActivePanel(panelName) {
+function setActivePanel(panelName = null) {
+  const showAllPanels = !panelName || elements.navButtons.length === 0;
+
   elements.navButtons.forEach((button) => {
-    button.classList.toggle("active", button.dataset.panel === panelName);
+    button.classList.toggle("active", !showAllPanels && button.dataset.panel === panelName);
   });
 
   elements.panelCards.forEach((card) => {
-    card.classList.toggle("is-active", card.dataset.panelCard === panelName);
+    card.classList.toggle("is-active", showAllPanels || card.dataset.panelCard === panelName);
   });
 }
 
@@ -280,7 +282,7 @@ function bindEvents() {
 document.addEventListener("DOMContentLoaded", () => {
   initBlochSphere();
   bindEvents();
-  setActivePanel("bloch");
+  setActivePanel();
   updateAll();
 
   const loop = () => {
