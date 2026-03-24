@@ -2,7 +2,7 @@ import { BlochSphere } from "../lib/quantum/BlochSphere.js";
 import { fromAngle, toAngle, applyGate } from "../lib/quantum/QuantumEngine.js";
 
 const DEFAULT_STATE = {
-  theta: Math.PI / 2,
+  theta: 0,
   phi: 0,
 };
 

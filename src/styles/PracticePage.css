@@ -11,3 +11,11 @@ body {
   background: #ffffff;
   color: #1e293b;
 }
+
+.sidebar-label,
+.section-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: #556377;
+    font-weight: 700;
+}

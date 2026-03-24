@@ -40,7 +40,7 @@
                     <div>
                         <h1 id="page-title" class="text-lg font-bold tracking-tight">Quantum Circuit
                             Simulator</h1>
-                        <p class="text-xs text-[#94a3b8]">Interactive State Rotation</p>
+                        <p class="text-xs text-[#474e57]">Interactive Circuit Builder</p>
                     </div>
                 </div>
                 <button id="reset-btn"
@@ -68,7 +68,7 @@
                     <label class="control-label" for="theta-slider">Theta</label>
                     <div class="slider-row">
                         <input type="range" id="theta-slider" min="0" max="180" value="90">
-                        <span class="slider-value"><span id="theta-value">90</span> deg</span>
+                        <span class="slider-value"><span id="theta-value">0</span> deg</span>
                     </div>
 
                     <label class="control-label" for="phi-slider">Phi</label>
@@ -93,25 +93,22 @@
                     <div class="section-head">
                         <div>
                             <p class="section-label">Circuit Composer</p>
-                            <h2>Current Simulation</h2>
+                            <h2 class="control-label">Current Simulation</h2>
                         </div>
-                        <p class="section-help">ทุกเกตจะอัปเดตคิวบิตตัวเดียวกัน แต่แต่ละพาเนลจะแสดงผลลัพธ์ในคนละมุมมอง
+                        <p class="text-mid">
+                            ทุกเกตจะอัปเดตคิวบิตตัวเดียวกัน เพียงแค่จะแสดงผลลัพธ์ในคนละมุมมอง
                         </p>
                     </div>
 
                     <div class="circuit-board">
                         <div class="wire-labels">
                             <span>q[0]</span>
-                            <span>c[0]</span>
                         </div>
 
                         <div class="wire-stage">
                             <div class="wire-row">
                                 <div class="wire-line"></div>
-                                <div id="gate-sequence" class="gate-sequence"></div>
-                            </div>
-                            <div class="wire-row wire-row-classical">
-                                <div class="wire-line"></div>
+                                <div id="gate-sequence" class="gate-sequence font-bold"></div>
                             </div>
                         </div>
                     </div>
@@ -122,7 +119,7 @@
                         <div class="section-head">
                             <div>
                                 <p class="section-label">3D View</p>
-                                <h3>Bloch Sphere</h3>
+                                <h3 class="control-label">Bloch Sphere</h3>
                             </div>
                         </div>
                         <div class="bloch-stage">
@@ -134,7 +131,7 @@
                         <div class="section-head">
                             <div>
                                 <p class="section-label">Measurement View</p>
-                                <h3>Probabilities</h3>
+                                <h3 class="control-label">Probabilities</h3>
                             </div>
                         </div>
                         <div class="bars-panel">
@@ -166,7 +163,7 @@
                         <div class="section-head">
                             <div>
                                 <p class="section-label">Analytic View</p>
-                                <h3>State Vector</h3>
+                                <h3 class="control-label">State Vector</h3>
                             </div>
                         </div>
                         <div class="state-panel">

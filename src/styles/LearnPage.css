@@ -474,3 +474,12 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.sidebar-label,
+.section-label {
+    margin: 20px 0 20px;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: #556377;
+    font-weight: 700;
+}
