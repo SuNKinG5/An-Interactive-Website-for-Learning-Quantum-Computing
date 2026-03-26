@@ -40,7 +40,7 @@
                     <div>
                         <h1 id="page-title" class="text-lg font-bold tracking-tight">Quantum Circuit
                             Simulator</h1>
-                        <p class="text-xs text-[#474e57]">Interactive Circuit Builder</p>
+                        <p class="text-xs text-[#94a3b8]">Interactive State Rotation</p>
                     </div>
                 </div>
                 <button id="reset-btn"
@@ -73,31 +73,30 @@
                     <div class="section-head">
                         <div>
                             <p class="section-label">Circuit Composer</p>
-                            <h2>Quantum Circuit</h2>
+                            <h2 class="section-title font-bold">Quantum Circuit</h2>
                         </div>
-                        <p class="section-help">ลากเกตไปวางบน q[0] หรือ q[1] จากนั้นวัดผลลงใน classical register c
+                        <p class="text-mdsection-help">ลากเกตไปวางบน q[0] หรือ q[1] จากนั้นวัดผลลงใน classical register
+                            c
                         </p>
                     </div>
 
                     <div class="circuit-board ibmq-board">
-                        <div class="wire-labels">
-                            <span>q[0]</span>
-                            <span>q[1]</span>
-                            <span>c</span>
+                        <div class="wire-labels" style="display: flex; flex-direction: column;">
+                            <span style="height: 54px; display: flex; align-items: center; padding: 0;">q[0]</span>
+                            <span style="height: 54px; display: flex; align-items: center; padding: 0;">q[1]</span>
+                            <span style="height: 54px; display: flex; align-items: center; padding: 0;">c</span>
                         </div>
 
                         <div class="wire-stage ibmq-stage">
-                            <div class="wire-row">
+                            <div class="wire-row" style="height: 54px; position: relative;">
                                 <div class="wire-line"></div>
                                 <div id="gate-sequence-q0" class="gate-sequence"></div>
                             </div>
-
-                            <div class="wire-row">
+                            <div class="wire-row" style="height: 54px; position: relative;">
                                 <div class="wire-line"></div>
                                 <div id="gate-sequence-q1" class="gate-sequence"></div>
                             </div>
-
-                            <div class="wire-row wire-row-classical">
+                            <div class="wire-row wire-row-classical" style="height: 54px; position: relative;">
                                 <div class="wire-line"></div>
                                 <div id="classical-sequence-c" class="gate-sequence classical-sequence"></div>
                             </div>
@@ -111,7 +110,7 @@
                         <div class="section-head">
                             <div>
                                 <p class="section-label">3D View</p>
-                                <h3 class="control-label">Bloch Sphere</h3>
+                                <h3 class="section-title font-bold">Bloch Sphere</h3>
                             </div>
                         </div>
                         <div class="bloch-stage">
@@ -123,7 +122,7 @@
                         <div class="section-head">
                             <div>
                                 <p class="section-label">Measurement View</p>
-                                <h3 class="control-label">Probabilities</h3>
+                                <h3 class="section-title font-bold">Probabilities</h3>
                             </div>
                         </div>
                         <div class="bars-panel">
