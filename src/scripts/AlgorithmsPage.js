@@ -1,7 +1,7 @@
 const algorithms = {
     deutsch: {
         name: "Deutsch Algorithm",
-        desc: "Determine whether a function is constant or balanced",
+        desc: "ระบุว่าฟังก์ชันนี้เป็นฟังก์ชัน Constant หรือฟังก์ชัน Balanced",
         steps: [
             {
                 title: "Initialize Qubits",
@@ -35,7 +35,7 @@ const algorithms = {
     },
     grover: {
         name: "Grover Search",
-        desc: "Search an unsorted database with quadratic speedup",
+        desc: "ค้นหาคำตอบที่ยังไม่เรียงลำดับในฐานข้อมูลขนาดใหญ่",
         steps: [
             {
                 title: "Initialize Superposition",
@@ -69,7 +69,7 @@ const algorithms = {
     },
     teleport: {
         name: "Quantum Teleportation",
-        desc: "Transfer a quantum state with entanglement and classical bits",
+        desc: "ส่งสถานะควอนตัมด้วยการใช้คู่ Entanglement และ Classical bits",
         steps: [
             {
                 title: "Prepare Bell Pair",
@@ -178,7 +178,7 @@ const defaultConfig = {
 
 algorithms.deutsch.steps = [
     {
-        title: "ทำความเข้าใจโจทย์",
+        title: "ทำความเข้าใจเป้าหมาย",
         desc: "ตรวจสอบว่าฟังก์ชันเป็น constant หรือ balanced",
         circuit: ["f(0)", "f(1)", "?"],
         explanation: "Deutsch Algorithm ใช้แก้ปัญหาว่า ฟังก์ชัน f(x) ที่รับอินพุตเป็น 0 หรือ 1 นั้นเป็นฟังก์ชันแบบ constant หรือ balanced ถ้า f(0) และ f(1) ให้ผลเหมือนกัน ฟังก์ชันจะเป็น constant แต่ถ้าให้ผลต่างกัน ฟังก์ชันจะเป็น balanced จุดสำคัญคืออัลกอริทึมนี้พยายามหาคำตอบด้วยการเรียก oracle เพียงครั้งเดียว",
@@ -229,7 +229,7 @@ algorithms.deutsch.steps = [
 
 algorithms.grover.steps = [
     {
-        title: "ทำความเข้าใจปัญหา",
+        title: "ทำความเข้าใจเป้าหมาย",
         desc: "ค้นหาคำตอบที่ถูกทำเครื่องหมายไว้จากข้อมูลที่ไม่เรียงลำดับ",
         circuit: ["N states", "marked", "?"],
         explanation: "Grover's Algorithm ใช้สำหรับค้นหาสถานะหรือคำตอบที่ต้องการจากชุดข้อมูลที่ไม่มีโครงสร้าง เช่น การหาค่าที่ตรงเงื่อนไขจากรายการจำนวนมาก จุดเด่นคือช่วยลดจำนวนขั้นตอนลงจากระดับ N เหลือประมาณรากที่สองของ N จึงเป็นการเร่งความเร็วแบบ quadratic speedup",
@@ -493,7 +493,7 @@ function renderStepsPanel() {
 
     algo.steps.forEach((step, idx) => {
         const stepBtn = document.createElement("button");
-        stepBtn.className = "step-item w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-all";
+        stepBtn.className = "step-item w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-all";
         if (idx === currentStep) {
             stepBtn.classList.add("active-step");
         }
