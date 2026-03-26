@@ -40,8 +40,8 @@
                     </div>
                 </div>
                 <button id="reset-algo-btn"
-                    class="toolbar-button px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
-                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset
+                    class="px-4 py-2 rounded-lg text-sm font-medium bg-[#f0f4f8] text-[#3b82f6] border border-[#e8eef6] cursor-pointer hover:bg-[#e1e9f2] transition">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4 inline-block mr-1.5 align-text-bottom"></i> Reset
                 </button>
             </div>
         </header>
@@ -86,8 +86,7 @@
                         <label class="block text-sm font-semibold mb-3 panel-title">Current Algorithm</label>
                         <div class="info-card rounded-lg p-4">
                             <p id="algo-name" class="text-sm font-bold accent-text">Deutsch Algorithm</p>
-                            <p id="algo-desc" class="text-xs mt-2 muted-text">Determine whether a function is constant
-                                or balanced</p>
+                            <p id="algo-desc" class="text-sm mt-2 muted-text">ระบุว่าฟังก์ชันนี้เป็นฟังก์ชัน Constant หรือฟังก์ชัน Balanced</p>
                         </div>
                     </div>
 
@@ -133,13 +132,13 @@
                     <section id="shor-lab-panel" class="shor-lab-panel mb-8" style="display: none;">
                         <div class="shor-lab-grid">
                             <article class="shor-lab-card">
-                                <p class="shor-lab-kicker">Step Explanation</p>
+                                <p class="shor-lab-kicker text-blue-600">Step Explanation</p>
                                 <h3 id="shor-lab-step-title" class="shor-lab-title">Choose N and a</h3>
                                 <p id="shor-lab-step-body" class="shor-lab-body"></p>
                             </article>
 
                             <article class="shor-lab-card">
-                                <p class="shor-lab-kicker">Interactive Input</p>
+                                <p class="shor-lab-kicker text-blue-600">Interactive Input</p>
 
                                 <label class="shor-lab-label" for="shor-lab-n">Composite Number (N)</label>
                                 <input id="shor-lab-n" class="shor-lab-input" type="number" min="4" value="35">
@@ -160,7 +159,7 @@
                             </article>
 
                             <article class="shor-lab-card shor-lab-wide">
-                                <p class="shor-lab-kicker">State Change</p>
+                                <p class="shor-lab-kicker text-blue-600">State Change</p>
                                 <div class="shor-state-grid">
                                     <div class="shor-state-box">
                                         <span class="shor-state-label">Before</span>
@@ -175,7 +174,7 @@
                             </article>
 
                             <article class="shor-lab-card shor-lab-wide">
-                                <p class="shor-lab-kicker">Step Result</p>
+                                <p class="shor-lab-kicker text-blue-600">Step Result</p>
                                 <div class="shor-result-grid">
                                     <div class="shor-result-item">
                                         <span>gcd(a, N)</span>
@@ -202,7 +201,7 @@
 
                     <!-- change class for shor  -->
                     <div id="circuit-section" class="mb-8">
-                        <h3 class="text-sm font-semibold mb-4 panel-title">Quantum Circuit</h3>
+                        <h3 class="text-md font-semibold mb-4 panel-title">Quantum Circuit</h3>
                         <div class="circuit-container">
                             <div id="circuit-gates" class="flex items-center gap-3">
                             </div>
@@ -210,7 +209,7 @@
                     </div>
 
                     <div class="explanation-card rounded-2xl p-6 flex-1">
-                        <h3 class="text-sm font-semibold mb-4 panel-title">Explanation</h3>
+                        <h3 class="text-lg font-semibold mb-4 panel-title">Explanation</h3>
                         <div id="step-explanation" class="explanation-body">
                         </div>
                         <div id="step-example" class="step-example" style="display: none;"></div>
