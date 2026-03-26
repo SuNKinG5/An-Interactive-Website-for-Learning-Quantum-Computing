@@ -177,7 +177,7 @@ const algorithms = {
                 title: "เลือกค่า N และ a",
                 desc: "เลือกจำนวนประกอบ N และค่า a ที่เหมาะสมเพื่อเริ่มต้นอัลกอริทึม",
                 circuit: ["N", "a", "gcd"],
-                explanation: "Shor's Algorithm เริ่มจากการเลือกจำนวนประกอบ N ที่ต้องการแยกตัวประกอบ และเลือกค่า a ที่อยู่ในช่วง 1 < a < N จากนั้นตรวจสอบค่า gcd(a, N) ก่อน ถ้า gcd มากกว่า 1 เราจะได้ตัวประกอบของ N ทันทีโดยยังไม่ต้องเข้าสู่ขั้นตอนควอนตัม",
+                explanation: "Shor's Algorithm เริ่มจากการเลือกจำนวนประกอบ N ที่ต้องการแยกตัวประกอบ และเลือกค่า a ที่อยู่ในช่วง 1 < a < N จากนั้นตรวจสอบค่า ห.ร.ม.(a, N) ก่อน ถ้า ห.ร.ม. มากกว่า 1 เราจะได้ตัวประกอบของ N ทันทีโดยยังไม่ต้องเข้าสู่ขั้นตอนควอนตัม",
                 labBefore: "ยังไม่ได้กำหนดโจทย์หรือค่าที่จะใช้ในอัลกอริทึม",
                 labAfter: "ระบบมีค่า N และ a พร้อมสำหรับการตรวจสอบและเข้าสู่ขั้นตอนหา period",
                 amplitudes: null
@@ -195,9 +195,9 @@ const algorithms = {
                 title: "ทำ Modular Exponentiation",
                 desc: "คำนวณ a^x mod N เพื่อสร้างรูปแบบการวนซ้ำที่ซ่อน period ไว้",
                 circuit: ["x", "a^x mod N", "periodicity"],
-                explanation: "ขั้นตอนนี้เป็นส่วนสำคัญของ Shor's Algorithm เพราะระบบจะเชื่อมแต่ละค่า x เข้ากับผลลัพธ์ของ a^x mod N ทำให้เกิดรูปแบบที่มีการวนซ้ำตาม period r ซึ่งเป็นข้อมูลสำคัญที่เราต้องการหาเพื่อนำไปใช้แยกตัวประกอบของ N",
+                explanation: "ขั้นตอนนี้เป็นส่วนสำคัญของ Shor's Algorithm เพราะระบบจะเชื่อมแต่ละค่า x เข้ากับผลลัพธ์ของ a<sup>x</sup> mod N ทำให้เกิดรูปแบบที่มีการวนซ้ำตาม period r ซึ่งเป็นข้อมูลสำคัญที่เราต้องการหาเพื่อนำไปใช้แยกตัวประกอบของ N",
                 labBefore: "ระบบมีค่า x หลายค่า แต่ยังไม่เชื่อมกับโครงสร้างของฟังก์ชัน modular",
-                labAfter: "สถานะของระบบเริ่มสะท้อนรูปแบบการวนซ้ำของ a^x mod N และซ่อน period ไว้ภายใน",
+                labAfter: "สถานะของระบบเริ่มสะท้อนรูปแบบการวนซ้ำของ a<sup>x</sup> mod N และซ่อน period ไว้ภายใน",
                 amplitudes: null
             },
             {
@@ -222,7 +222,7 @@ const algorithms = {
                 title: "คำนวณหาตัวประกอบ",
                 desc: "ใช้ period ที่หาได้เพื่อคำนวณหาตัวประกอบของ N",
                 circuit: ["r", "gcd(a^(r/2) +/- 1, N)", "factors"],
-                explanation: "เมื่อได้ period r ที่เหมาะสมแล้ว เราจะใช้สูตร gcd(a^(r/2)-1, N) และ gcd(a^(r/2)+1, N) เพื่อหาตัวประกอบของ N ถ้าค่า r ใช้งานได้จริง ขั้นตอนนี้จะให้ตัวประกอบที่ไม่เป็น trivial factors และทำให้เราแยก N ได้สำเร็จ",
+                explanation: "เมื่อได้ period r ที่เหมาะสมแล้ว เราจะใช้สูตร ห.ร.ม.(a<sup>r/2</sup>+1, N) และ ห.ร.ม.(a<sup>r/2</sup>+1, N) เพื่อหาตัวประกอบของ N ถ้าค่า r ใช้งานได้จริง ขั้นตอนนี้จะให้ตัวประกอบที่ไม่เป็น trivial factors และทำให้เราแยก N ได้สำเร็จ",
                 labBefore: "เรารู้ค่า period หรือค่าประมาณของมัน แต่ยังไม่ได้ตัวประกอบของ N",
                 labAfter: "ใช้ข้อมูลจาก period เพื่อคำนวณและหาตัวประกอบของ N ได้",
                 amplitudes: null
@@ -298,12 +298,13 @@ function renderShorLab(step) {
     if (!isShor) return;
 
     document.getElementById("shor-lab-step-title").textContent = step.title;
-    document.getElementById("shor-lab-step-body").textContent =  step.desc || "-";
+    // document.getElementById("shor-lab-step-body").textContent = step.explanation || step.desc || "-";
+    document.getElementById("shor-lab-step-body").innerHTML = highlightKetText(step.explanation || step.desc || "-");
     document.getElementById("shor-lab-before").textContent = step.labBefore || "-";
     document.getElementById("shor-lab-after").textContent = step.labAfter || "-";
     document.getElementById("shor-lab-gcd").textContent = "-";
     document.getElementById("shor-lab-period").textContent = "-";
-    document.getElementById("shor-lab-measurement").textContent = "-";
+    // document.getElementById("shor-lab-measurement").textContent = "-";
     document.getElementById("shor-lab-factors").textContent = "-";
     document.getElementById("shor-lab-message").textContent = `ขั้นตอนปัจจุบัน: ${step.title}`;
 }
@@ -316,8 +317,10 @@ function renderStep() {
 
     document.getElementById("step-title").textContent = step.title;
     document.getElementById("step-desc").textContent = step.desc;
+
     document.getElementById("step-explanation").innerHTML = highlightKetText(step.explanation);
     const exampleEl = document.getElementById("step-example");
+    
     if (step.example) {
         exampleEl.style.display = "block";
         exampleEl.innerHTML = `<strong>Example:</strong> ${highlightKetText(step.example)}`;
@@ -420,7 +423,7 @@ function runShorLabStep() {
 
     let gcdValue = "-";
     let periodValue = "-";
-    let measurementValue = "-";
+    // let measurementValue = "-";
     let factorsValue = "-";
     let beforeText = step.labBefore || "-";
     let afterText = step.labAfter || "-";
@@ -457,9 +460,9 @@ function runShorLabStep() {
         periodValue = String(period);
     }
 
-    if (currentStep >= 4 && period) {
-        measurementValue = `y/Q ~ s/${period}`;
-    }
+    // if (currentStep >= 4 && period) {
+    //     measurementValue = `y/Q ~ s/${period}`;
+    // }
 
     if (currentStep >= 5 && period && period % 2 === 0) {
         const half = period / 2;
@@ -477,7 +480,7 @@ function runShorLabStep() {
     document.getElementById("shor-lab-after").textContent = afterText;
     document.getElementById("shor-lab-gcd").textContent = gcdValue;
     document.getElementById("shor-lab-period").textContent = periodValue;
-    document.getElementById("shor-lab-measurement").textContent = measurementValue;
+    // document.getElementById("shor-lab-measurement").textContent = measurementValue;
     document.getElementById("shor-lab-factors").textContent = factorsValue;
     document.getElementById("shor-lab-message").textContent = message;
 }
@@ -517,7 +520,7 @@ document.getElementById("reset-shor-lab-btn").addEventListener("click", () => {
     document.getElementById("shor-lab-a").value = 2;
     document.getElementById("shor-lab-gcd").textContent = "-";
     document.getElementById("shor-lab-period").textContent = "-";
-    document.getElementById("shor-lab-measurement").textContent = "-";
+    // document.getElementById("shor-lab-measurement").textContent = "-";
     document.getElementById("shor-lab-factors").textContent = "-";
 
     if (currentAlgo === "shor") {
